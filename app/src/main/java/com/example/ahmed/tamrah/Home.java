@@ -17,7 +17,7 @@ import java.util.zip.Inflater;
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link Home.OnFragmentInteractionListener} interface
- * to handle interaction events.
+ * to handle intekraction events.
  * Use the {@link Home#newInstance} factory method to
  * create an instance of this fragment.
  */
