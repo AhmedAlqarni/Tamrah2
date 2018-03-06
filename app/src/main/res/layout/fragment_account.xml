@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/light_brown"
+    android:orientation="vertical"
     tools:context="com.example.ahmed.tamrah.Account">
 
     <ScrollView
@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -22,14 +22,20 @@
                 android:layout_marginBottom="5dp"
                 android:background="@color/white">
 
-
-                <ImageView
-                    android:id="@+id/imageView2"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="162dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:src="@drawable/profilepage" />
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="162dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/profilepage" />
+                </RelativeLayout>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_image"
