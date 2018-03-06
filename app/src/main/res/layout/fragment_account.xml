@@ -220,7 +220,7 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/About211"
+                    android:id="@+id/OfferTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -235,7 +235,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_below="@+id/About211"
+                    android:layout_below="@+id/OfferTitle"
                     android:layout_margin="10dp"
                     android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
 

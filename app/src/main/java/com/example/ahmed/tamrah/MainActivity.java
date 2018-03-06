@@ -87,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.Account:
                 fragmentClass = Account.class;
                 break;
+            case R.id.SearchResultPage:
+                fragmentClass = SearchResults.class;
+                break;
+
+
             default:
                 fragmentClass = Home.class;
         }

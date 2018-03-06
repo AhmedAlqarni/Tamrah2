@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/toolBar"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:clickable="true"
+            app:queryHint="Search for Tamr..." />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_layout"
+        android:background="@color/light_brown">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+
+
+
+            <!--Offer Block-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="164dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="164dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="2dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ajuah" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="4"
+                    android:paddingLeft="3dp">
+
+                    <TextView
+                        android:id="@+id/TamrahType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/Rating"
+                        android:layout_marginStart="7dp"
+                        android:padding="2dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@color/colorPrimary"
+                        android:radius="10dp"
+                        android:text="Ajuah"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/OfferTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignStart="@+id/TamrahType"
+                        android:layout_marginTop="8dp"
+                        android:text="Best Ajuah in Jeddah"
+                        android:textColor="@color/darkgrey"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/TamrahType"
+                        android:layout_below="@+id/TamrahType"
+                        android:layout_marginTop="6dp"
+                        android:text="Jeddah"
+                        android:textColor="@color/darkgrey"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/Rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/OfferTitle"
+                        android:layout_below="@+id/OfferTitle"
+                        android:layout_marginTop="6dp"
+                        android:text="4.8"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/totalRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/Rating"
+                        android:layout_alignBottom="@+id/Rating"
+                        android:layout_toEndOf="@+id/Rating"
+                        android:text="/5"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginEnd="14dp"
+                        android:textColor="@color/darkgrey"
+                        android:text="35 SAR"
+                        android:textSize="24sp" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
