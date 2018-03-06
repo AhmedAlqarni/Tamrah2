@@ -3,6 +3,7 @@ package com.example.ahmed.tamrah;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         //ToolBar
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         toolBar.setTitle("Tamrah");
+        //toolBar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolBar);
 
 
