@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "397887336039",
+    "firebase_url": "https://tamrah2-1e7b1.firebaseio.com",
+    "project_id": "tamrah2-1e7b1",
+    "storage_bucket": "tamrah2-1e7b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397887336039:android:c9a908b0330ace7b",
+        "android_client_info": {
+          "package_name": "com.example.ahmed.tamrah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397887336039-jb91k9g4d0d262lgooqd8u9u3blem720.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfz40GNN2suBlKQcj8RyEhr6-p3Dy6WmY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
