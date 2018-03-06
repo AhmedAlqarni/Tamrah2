@@ -19,7 +19,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/white">
 
 
@@ -70,17 +70,17 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/white">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@color/white">
 
                     <TextView
-                        android:id="@+id/About2"
+                        android:id="@+id/About433"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -91,18 +91,18 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/About_Info"
+                        android:id="@+id/About_Info43"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:layout_below="@+id/About2"
+                        android:layout_below="@+id/About433"
                         android:layout_margin="10dp"
                         android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
 
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/About2"
+                    android:id="@+id/About43"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -113,11 +113,11 @@
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/About_Info"
+                    android:id="@+id/About_Info443"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_below="@+id/About2"
+                    android:layout_below="@+id/About43"
                     android:layout_margin="10dp"
                     android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
 
@@ -126,17 +126,17 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/white">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@color/white">
 
                     <TextView
-                        android:id="@+id/About2"
+                        android:id="@+id/About32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -147,18 +147,18 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/About_Info"
+                        android:id="@+id/About_Info32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:layout_below="@+id/About2"
+                        android:layout_below="@+id/About32"
                         android:layout_margin="10dp"
                         android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
 
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/About2"
+                    android:id="@+id/About22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -173,7 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_below="@+id/About2"
+                    android:layout_below="@+id/About22"
                     android:layout_margin="10dp"
                     android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
 
@@ -182,13 +182,69 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/white">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/About222"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="16dp"
+                        android:text="About"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/About_Info222"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_below="@+id/About222"
+                        android:layout_margin="10dp"
+                        android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/About211"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="16dp"
+                    android:text="About"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/About_Info211"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/About211"
+                    android:layout_margin="10dp"
+                    android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:background="@color/white">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
                     android:background="@color/white">
 
                     <TextView
@@ -214,7 +270,7 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/About2"
+                    android:id="@+id/About100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -225,11 +281,11 @@
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/About_Info"
+                    android:id="@+id/About_Info100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_below="@+id/About2"
+                    android:layout_below="@+id/About100"
                     android:layout_margin="10dp"
                     android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
 
@@ -238,79 +294,23 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/white">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/white">
-
-                    <TextView
-                        android:id="@+id/About2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="16dp"
-                        android:text="About"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/About_Info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_below="@+id/About2"
-                        android:layout_margin="10dp"
-                        android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
-
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/About2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="16dp"
-                    android:text="About"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/About_Info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_below="@+id/About2"
-                    android:layout_margin="10dp"
-                    android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@color/white">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="5dp"
                         android:background="@color/white">
 
                         <TextView
-                            android:id="@+id/About2"
+                            android:id="@+id/About4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
@@ -321,18 +321,18 @@
                             android:textSize="24sp" />
 
                         <TextView
-                            android:id="@+id/About_Info"
+                            android:id="@+id/About_Info4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:layout_below="@+id/About2"
+                            android:layout_below="@+id/About4"
                             android:layout_margin="10dp"
                             android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
 
                     </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/About2"
+                        android:id="@+id/About6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -343,11 +343,11 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/About_Info"
+                        android:id="@+id/About_Info6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:layout_below="@+id/About2"
+                        android:layout_below="@+id/About6"
                         android:layout_margin="10dp"
                         android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
 
@@ -356,11 +356,11 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@color/white">
 
                     <TextView
-                        android:id="@+id/About2"
+                        android:id="@+id/About7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -371,18 +371,18 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/About_Info"
+                        android:id="@+id/About_Info7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:layout_below="@+id/About2"
+                        android:layout_below="@+id/About7"
                         android:layout_margin="10dp"
                         android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
 
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/About2"
+                    android:id="@+id/About88"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -393,11 +393,11 @@
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/About_Info"
+                    android:id="@+id/About_Info88"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_below="@+id/About2"
+                    android:layout_below="@+id/About88"
                     android:layout_margin="10dp"
                     android:text="    Sells Tamr for 25 years, I have the cheapest prices, and I guarantee the fastest delivery of Tamr, thank you for buying in advance." />
 
