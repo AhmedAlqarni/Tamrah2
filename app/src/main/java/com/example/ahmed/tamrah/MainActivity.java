@@ -23,13 +23,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //ToolBar
-        toolBar = (Toolbar) findViewById(R.id.toolBar);
-        setSupportActionBar(toolBar);
+
 
 
         //initilize the activity_main and the left drawer
         setContentView(R.layout.activity_main);
+
+        //ToolBar
+        toolBar = (Toolbar) findViewById(R.id.toolBar);
+        toolBar.setTitle("Tamrah");
+        setSupportActionBar(toolBar);
+
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
