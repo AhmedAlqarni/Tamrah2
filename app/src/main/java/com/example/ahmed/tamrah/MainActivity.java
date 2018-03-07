@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private Toolbar toolBar;
     private SearchView searchView;
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    public static DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         NavigationView nvDrawer = (NavigationView) findViewById(R.id.nV);
         mToggle.syncState();
@@ -66,17 +67,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Fragment myFragment =null;
+        Fragment myFragment = null;
         Class fragmentClass;
 
         //Drawer only
-        if(mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
         //home buttons
         fragmentClass = null;
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.cartIconeHome:
                 fragmentClass = ShoppingCart.class;
                 break;
@@ -90,23 +91,23 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
                 return true;
         }
-        try{
+        try {
             myFragment = (Fragment) fragmentClass.newInstance();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContents, myFragment).commit();
 
         return super.onOptionsItemSelected(item);
     }
 
 
     //for the left menu choices and transitions
-    public void selectItemDrawer(MenuItem menuItem){
-        Fragment myFragment =null;
+    public void selectItemDrawer(MenuItem menuItem) {
+        Fragment myFragment = null;
         Class fragmentClass;
-        switch(menuItem.getItemId()) {
+        switch (menuItem.getItemId()) {
             case R.id.Home:
                 fragmentClass = Home.class;
                 break;
@@ -139,13 +140,13 @@ public class MainActivity extends AppCompatActivity {
             default:
                 fragmentClass = Home.class;
         }
-        try{
+        try {
             myFragment = (Fragment) fragmentClass.newInstance();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.flContents, myFragment).commit();
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
         mDrawerLayout.closeDrawers();
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void setupDrawerContent(NavigationView navigationView){
+    private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
