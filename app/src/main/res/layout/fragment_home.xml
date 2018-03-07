@@ -53,6 +53,8 @@
                     android:src="@drawable/sale22" />
             </RelativeLayout>
 
+
+
             <!-- Super Sales-->
             <RelativeLayout
                 android:layout_width="match_parent"

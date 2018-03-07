@@ -3,6 +3,7 @@ package com.example.ahmed.tamrah;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,8 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.app.FragmentManager;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         //ToolBar
         toolBar = (Toolbar) findViewById(R.id.toolBar);
-        toolBar.setTitle("Tamrah");
-        //toolBar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolBar);
 
 
@@ -58,9 +59,38 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Fragment myFragment =null;
+        Class fragmentClass;
+
+        //Drawer only
         if(mToggle.onOptionsItemSelected(item)){
             return true;
         }
+
+        //home buttons
+        fragmentClass = null;
+        switch(item.getItemId()) {
+            case R.id.cartIconeHome:
+                fragmentClass = ShoppingCart.class;
+                break;
+            case R.id.cameraIconHome:
+                //show message
+                Context context = getApplicationContext();
+                CharSequence text = "Now you go to Camera...";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                return true;
+        }
+        try{
+            myFragment = (Fragment) fragmentClass.newInstance();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -128,6 +158,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
 }

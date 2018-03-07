@@ -12,10 +12,18 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
-        app:titleTextColor="@color/white"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         android:theme="@style/AppTheme.PopupOverlay">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Tamrah"
+            android:textSize="22sp"
+            app:titleTextColor="@color/white"
+            android:gravity = "center"
+            android:id="@+id/toolbar_title" />
 
     </android.support.v7.widget.Toolbar>
 
@@ -45,7 +53,6 @@
 
 
     </android.support.v4.widget.DrawerLayout>
-
 
 </RelativeLayout>
 

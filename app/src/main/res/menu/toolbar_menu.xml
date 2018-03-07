@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/cartIconeHome"
+        android:icon="@drawable/ic_if_shopping_cart_103346"
+        android:orderInCategory="100"
+        android:title="cart"
+        app:showAsAction="always"></item>
+    <item
+        android:id="@+id/cameraIconHome"
+        android:icon="@drawable/ic_camera_black_24dp"
+        android:orderInCategory="200"
+        android:title="camera"
+        app:showAsAction="always"></item>
+</menu>
