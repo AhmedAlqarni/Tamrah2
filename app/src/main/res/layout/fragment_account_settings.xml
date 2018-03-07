@@ -1,0 +1,302 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ahmed.tamrah.AccountSettings">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/b1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_brown">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Edit Account"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="395dp"
+            android:layout_height="685dp"
+            android:background="@color/light_brown"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="57dp">
+
+            <!--Name-->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/b2"
+                android:layout_marginBottom="2dp"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textVi5ew6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name:"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="19dp" />
+
+                <TextView
+                    android:id="@+id/textVi4ew9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="Ahmed Alqarni"
+                    android:textSize="22sp"
+                    app:layout_constraintStart_toStartOf="@+id/textVi5ew6"
+                    tools:layout_editor_absoluteY="58dp" />
+
+                <Button
+                    android:id="@+id/button32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    tools:layout_editor_absoluteX="291dp"
+                    tools:layout_editor_absoluteY="26dp" />
+            </android.support.constraint.ConstraintLayout>
+
+            <!--Email-->
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="2dp"
+                android:background="@color/white"
+
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email:"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="19dp" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="Alqarni@hotmail.com"
+                    android:textSize="22sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView6"
+                    tools:layout_editor_absoluteY="58dp" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    tools:layout_editor_absoluteX="291dp"
+                    tools:layout_editor_absoluteY="26dp" />
+            </android.support.constraint.ConstraintLayout>
+            <!--Password-->
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="2dp"
+                android:background="@color/white"
+
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textV33iew6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password:"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="19dp" />
+
+                <TextView
+                    android:id="@+id/tex2tView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="**************"
+                    android:textSize="22sp"
+                    app:layout_constraintStart_toStartOf="@+id/textV33iew6"
+                    tools:layout_editor_absoluteY="58dp" />
+
+                <Button
+                    android:id="@+id/butt4on2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    tools:layout_editor_absoluteX="291dp"
+                    tools:layout_editor_absoluteY="26dp" />
+            </android.support.constraint.ConstraintLayout>
+
+            <!--Region-->
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="2dp"
+                android:background="@color/white"
+
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tetV33iew6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Region:"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="19dp" />
+
+                <TextView
+                    android:id="@+id/tex2tVew9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="Makkah"
+                    android:textSize="22sp"
+                    app:layout_constraintStart_toStartOf="@+id/tetV33iew6"
+                    tools:layout_editor_absoluteY="58dp" />
+
+                <Button
+                    android:id="@+id/but4on2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    tools:layout_editor_absoluteX="291dp"
+                    tools:layout_editor_absoluteY="26dp" />
+            </android.support.constraint.ConstraintLayout>
+
+            <!--Phone-->
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="2dp"
+                android:background="@color/white"
+
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tetV3iew6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone:"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="19dp" />
+
+                <TextView
+                    android:id="@+id/tex2tew9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="+966544444444"
+                    android:textSize="22sp"
+                    app:layout_constraintStart_toStartOf="@+id/tetV3iew6"
+                    tools:layout_editor_absoluteY="58dp" />
+
+                <Button
+                    android:id="@+id/but4n2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    tools:layout_editor_absoluteX="291dp"
+                    tools:layout_editor_absoluteY="26dp" />
+            </android.support.constraint.ConstraintLayout>
+
+
+            <!--Phone-->
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="2dp"
+                android:background="@color/white"
+
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tet3iew6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address:"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="19dp" />
+
+                <TextView
+                    android:id="@+id/tex2tw9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="Sulatan Street, Muha..."
+                    android:textSize="22sp"
+                    app:layout_constraintStart_toStartOf="@+id/tet3iew6"
+                    tools:layout_editor_absoluteY="58dp" />
+
+                <Button
+                    android:id="@+id/bt4n2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    tools:layout_editor_absoluteX="291dp"
+                    tools:layout_editor_absoluteY="26dp" />
+            </android.support.constraint.ConstraintLayout>
+
+
+            <!--Phone-->
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="2dp"
+                android:background="@color/white"
+
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/teV3iew6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bio:"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="19dp" />
+
+                <TextView
+                    android:id="@+id/te2tew9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="I sell the best Tamr..."
+                    android:textSize="22sp"
+                    app:layout_constraintStart_toStartOf="@+id/teV3iew6"
+                    tools:layout_editor_absoluteY="58dp" />
+
+                <Button
+                    android:id="@+id/bu4nn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    tools:layout_editor_absoluteX="291dp"
+                    tools:layout_editor_absoluteY="26dp" />
+            </android.support.constraint.ConstraintLayout>
+
+
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>
