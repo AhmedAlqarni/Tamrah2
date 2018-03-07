@@ -14,13 +14,15 @@
         android:background="@color/colorPrimary"
         android:padding="@dimen/activity_horizontal_margin">
 
-        <android.support.v7.widget.SearchView
+        <SearchView
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:queryHint="Search for Tamr..."
             android:background="@color/white"
             android:clickable="true"
-            app:queryHint="Search for Tamr..." />
+            android:iconifiedByDefault="false"
+            />
 
     </LinearLayout>
 

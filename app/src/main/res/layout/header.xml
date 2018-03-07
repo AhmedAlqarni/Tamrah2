@@ -4,18 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="160dp"
     android:background="@drawable/profile_header"
-    android:padding="20dp">
+    android:padding="18dp">
 
     <!--    circular image  -->
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ahmed_photo"
-         />
-    
+        android:src="@drawable/ahmed_photo" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

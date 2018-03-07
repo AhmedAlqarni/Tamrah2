@@ -17,11 +17,12 @@
         android:theme="@style/AppTheme.PopupOverlay">
 
         <TextView
+            android:paddingLeft="15dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Tamrah"
             android:textSize="22sp"
-            app:titleTextColor="@color/white"
+            android:textColor="@color/white"
             android:gravity = "center"
             android:id="@+id/toolbar_title" />
 

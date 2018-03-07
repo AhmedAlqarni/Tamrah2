@@ -12,6 +12,8 @@ import android.widget.EditText;
 
 import java.util.zip.Inflater;
 
+import static com.example.ahmed.tamrah.R.id.search_view;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +32,7 @@ public class Home extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -58,12 +61,7 @@ public class Home extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-        //SearchView searchView = (SearchView) R.id.search_view;
-        //EditText searEditText = (EditText) searchView.findViewById()
+
 
     }
 
