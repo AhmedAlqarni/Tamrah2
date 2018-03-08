@@ -22,6 +22,8 @@
             android:layout_height="wrap_content"
             android:text="Tamrah"
             android:textSize="22sp"
+            android:onClick="goToHome"
+            android:clickable="true"
             android:textColor="@color/white"
             android:gravity = "center"
             android:id="@+id/toolbar_title" />

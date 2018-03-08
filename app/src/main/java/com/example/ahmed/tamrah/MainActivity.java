@@ -18,12 +18,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.app.FragmentManager;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import static com.example.ahmed.tamrah.R.id.search_view;
+import static com.example.ahmed.tamrah.R.id.toolbar_title;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mDatabase.child("MEOW").setValue("MEOWWW");
-
 
 
         //initilize the activity_main and the left drawer
@@ -95,8 +96,8 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
 
         return super.onOptionsItemSelected(item);
     }
@@ -171,4 +172,32 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //This is to make the app title clickable
+    public void goToHome(View view) {
+        Fragment myFragment =null;
+        Class fragmentClass;
+        fragmentClass = Home.class;
+        try{
+            myFragment = (Fragment) fragmentClass.newInstance();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
+
+    }
+
+    //this is for the button in profile page "Edit Account"
+    public void goToAccountSettings(View view) {
+        Fragment myFragment =null;
+        Class fragmentClass;
+        fragmentClass = AccountSettings.class;
+        try{
+            myFragment = (Fragment) fragmentClass.newInstance();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
+    }
 }

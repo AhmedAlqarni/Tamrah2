@@ -1,12 +1,15 @@
 package com.example.ahmed.tamrah;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 /**
@@ -49,6 +52,29 @@ public class Account extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Fragment myFragment =null;
+        Class fragmentClass;
+
+        //home buttons
+        fragmentClass = null;
+        switch(item.getItemId()) {
+            case R.id.EditAccount:
+                fragmentClass = AccountSettings.class;
+                break;
+
+        }
+        try{
+            myFragment = (Fragment) fragmentClass.newInstance();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
