@@ -1,11 +1,17 @@
 package com.example.ahmed.tamrah;
 //Ahmed Alqarni
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,8 +27,16 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.internal.zzdym;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseUserMetadata;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
 
 import static com.example.ahmed.tamrah.R.id.search_view;
 import static com.example.ahmed.tamrah.R.id.toolbar_title;
@@ -34,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolBar;
     private SearchView searchView;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser client ;
+    //private FirebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         //set the Default page to Home fragment
         FragmentManager fm = getFragmentManager();
         fm.beginTransaction().replace(R.id.flContents, new Home()).commit();
+
+        client=FirebaseAuth.getInstance().getCurrentUser();
 
 
     }
@@ -121,11 +141,38 @@ public class MainActivity extends AppCompatActivity {
                 fragmentClass = Orders.class;
                 break;
             case R.id.Login:
-                fragmentClass = Login.class;
-                break;
+                startActivity(new Intent(this,LoginActivity.class));
+                Log.i("k","new Login");
+                return;
             case R.id.Signup:
-                fragmentClass = Signup.class;
-                break;
+                Log.i("k","signUp");
+                startActivity(new Intent(this,Registration.class));
+                return;
+            case R.id.logout:
+                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                alertDialog.setTitle("Logout");
+                alertDialog.setMessage("You are signed in as: "+client.getEmail());
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Logout",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                FirebaseAuth.getInstance().signOut();
+                                dialog.dismiss();
+                                //startActivity(new Intent(this,MainActivity.class));
+                                Log.i("1","loggedOut");
+                                Toast.makeText(getApplicationContext(), "LoggedOut", Toast.LENGTH_LONG).show();
+                                mDrawerLayout.closeDrawers();
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //FirebaseAuth.getInstance().signOut();
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+                //logout ccode goes here
+                return;
             case R.id.ContactUs:
                 fragmentClass = ContactUs.class;
                 break;
@@ -138,6 +185,8 @@ public class MainActivity extends AppCompatActivity {
 
 
             default:
+                Log.i("k","not there");
+
                 fragmentClass = Home.class;
         }
         try{
@@ -200,4 +249,5 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
     }
+
 }
