@@ -2,14 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item android:id="@+id/Home" android:title="Home" android:icon="@drawable/ic_home_black_24px"/>
 <item android:id="@+id/ShoppingCart" android:title="Shopping Cart" android:icon="@drawable/ic_if_shopping_cart_103346"/>
-<item android:id="@+id/Account" android:title="Account" android:icon="@drawable/ic_if_ic_account_box_48px_352000"/>
-<item android:id="@+id/Orders" android:title="Orders" android:icon="@drawable/ic_if_ic_history_48px_352426"/>
-<item android:id="@+id/Settings" android:title="Settings" android:icon="@drawable/ic_if_ic_settings_48px_352095"/>
-<item android:id="@+id/ContactUs" android:title="Contact us" android:icon="@drawable/ic_if_headset_1724751"/>
+    <item
+        android:id="@+id/Profile"
+        android:icon="@drawable/ic_if_ic_account_box_48px_352000"
+        android:title="Profile" />
+    <item android:id="@+id/Orders" android:title="Orders" android:icon="@drawable/ic_if_ic_history_48px_352426"/>
+    <item
+        android:id="@+id/Account_Settings"
+        android:icon="@drawable/ic_if_ic_settings_48px_352095"
+        android:title="Account Settings" />
+    <item<item android:id="@+id/ContactUs" android:title="Contact us" android:icon="@drawable/ic_if_headset_1724751"/>
 <item android:id="@+id/Login" android:title="Login" android:icon="@drawable/ic_if_sign_out_298869"/>
     <item android:id="@+id/Signup" android:title="Signup" android:icon="@drawable/ic_if_sign_out_298869"/>
-    <item android:id="@+id/logout" android:title="logout" android:icon="@drawable/ic_if_sign_out_298869"/>
-
     <item android:id="@+id/SearchResultPage" android:title="SearchResultPage" android:icon="@drawable/ic_if_sign_out_298869"/>
+    <item
+        android:id="@+id/OfferPage"
+        android:icon="@drawable/ic_if_sign_out_298869"
+        android:title="OfferPage" />
+
 
 </menu>

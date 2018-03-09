@@ -3,12 +3,15 @@
     <color name="colorPrimary">#795548</color>
     <color name="colorPrimaryDark">#5D4037</color>
     <color name="white">#ffffff</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#795548</color>
     <color name="darkgrey">#1d1d1d</color>
     <color name="orange">#ffbf00</color>
+    <color name="dark_orange">#EE7600</color>
     <color name="black">#000000</color>
     <color name="light_brown">#e8e8e8</color>
 
-    <!--1d1d1d-->
+
+
+    <!--EE7600-->
 
 </resources>

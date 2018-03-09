@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
 
-
+        //Left menu Drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -134,8 +134,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.ShoppingCart:
                 fragmentClass = ShoppingCart.class;
                 break;
-            case R.id.Settings:
-                fragmentClass = Settings.class;
+            case R.id.Account_Settings:
+                fragmentClass = AccountSettings.class;
                 break;
             case R.id.Orders:
                 fragmentClass = Orders.class;
@@ -176,7 +176,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.ContactUs:
                 fragmentClass = ContactUs.class;
                 break;
-            case R.id.Account:
+            case R.id.OfferPage:
+                startActivity(new Intent(this,OfferActivity.class));
+                return;
+            case R.id.Profile:
                 fragmentClass = Account.class;
                 break;
             case R.id.SearchResultPage:
@@ -249,5 +252,4 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
     }
-
 }
