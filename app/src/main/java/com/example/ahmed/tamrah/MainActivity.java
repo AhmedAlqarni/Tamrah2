@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                                 FirebaseAuth.getInstance().signOut();
                                 dialog.dismiss();
                                 //startActivity(new Intent(this,MainActivity.class));
-                                Log.i("1","loggedOut");
+                                Log.i("1","logged out");
                                 Toast.makeText(getApplicationContext(), "LoggedOut", Toast.LENGTH_LONG).show();
                                 mDrawerLayout.closeDrawers();
                             }
