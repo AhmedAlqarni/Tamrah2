@@ -1,5 +1,6 @@
 package com.example.ahmed.tamrah;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
