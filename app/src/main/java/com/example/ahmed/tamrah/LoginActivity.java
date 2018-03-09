@@ -70,6 +70,10 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void login() {
+        User user = new User(this);
+        user.login(editTextEmail.getText().toString().trim(),editTextpassword.getText().toString().trim());
+
+        /*
         String email = editTextEmail.getText().toString().trim(); //convert editText object to string
         String password = editTextpassword.getText().toString().trim();//convert editText object to string
 
@@ -109,7 +113,7 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
                             Log.i("g","faile"); // failure in logging in
                         }
                     }
-                });
+                });*/
 
 
     }

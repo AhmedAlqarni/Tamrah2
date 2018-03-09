@@ -58,6 +58,10 @@ public class Registration extends AppCompatActivity {
     }
 
     private void registerUser(){
+        User user = new User(this);
+        user.register(editTextEmail.getText().toString().trim(),editTextPassword.getText().toString().trim());
+
+        /*
         Log.i("q","160");
         String email, password;
         email = editTextEmail.getText().toString().trim();
@@ -100,9 +104,11 @@ public class Registration extends AppCompatActivity {
                         }
                     }
                 });
+                */
 
 
     }
+    /*
     public void  loginAfterRegister(){ // After the user has registered, he will be signed in automatically
         String email = editTextEmail.getText().toString().trim(); //convert editText object to string
         String password = editTextPassword.getText().toString().trim();//convert editText object to string
@@ -116,5 +122,6 @@ public class Registration extends AppCompatActivity {
                 });
 
     }
+    */
 
 }

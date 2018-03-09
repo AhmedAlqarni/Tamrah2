@@ -149,13 +149,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this,Registration.class));
                 return;
             case R.id.logout:
+                User user = new User(this);
+
+                user.logout();
+                mDrawerLayout.closeDrawers();
+
+                /*
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                 alertDialog.setTitle("Logout");
                 alertDialog.setMessage("You are signed in as: "+client.getEmail());
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Logout",
                         new DialogInterface.OnClickListener() {
+                            //firebase logout
                             public void onClick(DialogInterface dialog, int which) {
-                                FirebaseAuth.getInstance().signOut();
+                                firebaseAuth = FirebaseAuth.getInstance();
+                                firebaseAuth.signOut();
                                 dialog.dismiss();
                                 //startActivity(new Intent(this,MainActivity.class));
                                 Log.i("1","logged out");
@@ -172,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
                         });
                 alertDialog.show();
                 //logout ccode goes here
+                */
                 return;
             case R.id.ContactUs:
                 fragmentClass = ContactUs.class;
