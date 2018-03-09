@@ -16,7 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".OfferActivity" />
+        <activity
+            android:name=".Base_activity"
+            android:label="@string/title_activity_base_activity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

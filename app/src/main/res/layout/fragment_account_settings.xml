@@ -1,47 +1,45 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/light_brown"
     tools:context="com.example.ahmed.tamrah.AccountSettings">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
 
-        <android.support.constraint.ConstraintLayout
+        <RelativeLayout
             android:id="@+id/b1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/light_brown">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/SettingsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Edit Account"
-                android:textColor="@android:color/black"
+                android:layout_marginBottom="10dp"
+                android:text="Account Settings"
+                android:textColor="@color/black"
                 android:textSize="30sp"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.45999998" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="395dp"
-                android:layout_height="685dp"
-                android:background="@color/light_brown"
-                android:orientation="vertical"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="57dp">
 
                 <!--Name-->
                 <android.support.constraint.ConstraintLayout
-                    android:id="@+id/b2"
+                    android:id="@+id/NameFrame"
+                    android:layout_below="@id/SettingsTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -51,106 +49,160 @@
                         android:id="@+id/textVi5ew6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
                         android:text="Name:"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="24sp"
-                        tools:layout_editor_absoluteX="8dp"
-                        tools:layout_editor_absoluteY="19dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.29000002" />
 
                     <TextView
                         android:id="@+id/textVi4ew9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
                         android:text="Ahmed Alqarni"
-                        android:textSize="22sp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/textVi5ew6"
-                        tools:layout_editor_absoluteY="58dp" />
+                        app:layout_constraintTop_toBottomOf="@+id/textVi5ew6"
+                        app:layout_constraintVertical_bias="0.23000002" />
 
                     <Button
                         android:id="@+id/button32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:text="Edit"
-                        tools:layout_editor_absoluteX="291dp"
-                        tools:layout_editor_absoluteY="26dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </android.support.constraint.ConstraintLayout>
 
                 <!--Email-->
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/EmailFrame"
+                    android:layout_below="@id/NameFrame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
-
                     android:background="@color/white">
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/Email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
                         android:text="Email:"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="24sp"
-                        tools:layout_editor_absoluteX="8dp"
-                        tools:layout_editor_absoluteY="19dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.29000002" />
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/EmailInput"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
                         android:text="Alqarni@hotmail.com"
-                        android:textSize="22sp"
-                        app:layout_constraintStart_toStartOf="@+id/textView6"
-                        tools:layout_editor_absoluteY="58dp" />
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/Email"
+                        app:layout_constraintTop_toBottomOf="@+id/Email"
+                        app:layout_constraintVertical_bias="0.23000002" />
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/buoutn32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:text="Edit"
-                        tools:layout_editor_absoluteX="291dp"
-                        tools:layout_editor_absoluteY="26dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </android.support.constraint.ConstraintLayout>
+
+
                 <!--Password-->
                 <android.support.constraint.ConstraintLayout
+                    android:layout_below="@id/EmailFrame"
+                    android:id="@+id/PasswordFrame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
-
                     android:background="@color/white">
 
                     <TextView
-                        android:id="@+id/textV33iew6"
+                        android:id="@+id/Password"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
                         android:text="Password:"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="24sp"
-                        tools:layout_editor_absoluteX="8dp"
-                        tools:layout_editor_absoluteY="19dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.29000002" />
 
                     <TextView
-                        android:id="@+id/tex2tView9"
+                        android:id="@+id/PasswordInput"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
                         android:text="**************"
-                        android:textSize="22sp"
-                        app:layout_constraintStart_toStartOf="@+id/textV33iew6"
-                        tools:layout_editor_absoluteY="58dp" />
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/Password"
+                        app:layout_constraintTop_toBottomOf="@+id/Password"
+                        app:layout_constraintVertical_bias="0.23000002" />
 
                     <Button
-                        android:id="@+id/butt4on2"
+                        android:id="@+id/butn32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:text="Edit"
-                        tools:layout_editor_absoluteX="291dp"
-                        tools:layout_editor_absoluteY="26dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </android.support.constraint.ConstraintLayout>
 
                 <!--Region-->
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/RegionFrame"
+                    android:layout_below="@id/PasswordFrame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -158,112 +210,219 @@
                     android:background="@color/white">
 
                     <TextView
-                        android:id="@+id/tetV33iew6"
+                        android:id="@+id/Region"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="16dp"
                         android:text="Region:"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="24sp"
-                        tools:layout_editor_absoluteX="8dp"
-                        tools:layout_editor_absoluteY="19dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.29000002" />
 
                     <TextView
                         android:id="@+id/tex2tVew9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_marginStart="24dp"
                         android:text="Makkah"
-                        android:textSize="22sp"
-                        app:layout_constraintStart_toStartOf="@+id/tetV33iew6"
-                        tools:layout_editor_absoluteY="58dp" />
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/Region"
+                        app:layout_constraintTop_toBottomOf="@+id/Region"
+                        app:layout_constraintVertical_bias="0.23000002" />
 
                     <Spinner
                         android:id="@+id/spinner3"
                         android:layout_width="183dp"
                         android:layout_height="43dp"
-                        tools:layout_editor_absoluteX="196dp"
-                        tools:layout_editor_absoluteY="23dp" />
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.9"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </android.support.constraint.ConstraintLayout>
 
                 <!--Phone-->
                 <android.support.constraint.ConstraintLayout
+                    android:layout_below="@id/RegionFrame"
+                    android:id="@+id/PhoneFrame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
-
                     android:background="@color/white">
 
                     <TextView
-                        android:id="@+id/tetV3iew6"
+                        android:id="@+id/Phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
                         android:text="Phone:"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="24sp"
-                        tools:layout_editor_absoluteX="8dp"
-                        tools:layout_editor_absoluteY="19dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.29000002" />
 
                     <TextView
-                        android:id="@+id/tex2tew9"
+                        android:id="@+id/PhoneInput"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
                         android:text="+966544444444"
-                        android:textSize="22sp"
-                        app:layout_constraintStart_toStartOf="@+id/tetV3iew6"
-                        tools:layout_editor_absoluteY="58dp" />
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/Phone"
+                        app:layout_constraintTop_toBottomOf="@+id/Phone"
+                        app:layout_constraintVertical_bias="0.23000002" />
 
                     <Button
-                        android:id="@+id/but4n2"
+                        android:id="@+id/bonutn32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:text="Edit"
-                        tools:layout_editor_absoluteX="291dp"
-                        tools:layout_editor_absoluteY="26dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </android.support.constraint.ConstraintLayout>
 
 
-                <!--Phone-->
+                <!--Address-->
                 <android.support.constraint.ConstraintLayout
+                    android:layout_below="@id/PhoneFrame"
+                    android:id="@+id/AdressFrame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
-
                     android:background="@color/white">
 
                     <TextView
-                        android:id="@+id/tet3iew6"
+                        android:id="@+id/Adress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
                         android:text="Address:"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="24sp"
-                        tools:layout_editor_absoluteX="8dp"
-                        tools:layout_editor_absoluteY="19dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.29000002" />
 
                     <TextView
-                        android:id="@+id/tex2tw9"
+                        android:id="@+id/AdressInput"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:text="Sulatan Street, Muha..."
-                        android:textSize="22sp"
-                        app:layout_constraintStart_toStartOf="@+id/tet3iew6"
-                        tools:layout_editor_absoluteY="58dp" />
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
+                        android:text="Jeddah,Sultan St..."
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/Adress"
+                        app:layout_constraintTop_toBottomOf="@+id/Adress"
+                        app:layout_constraintVertical_bias="0.23000002" />
 
                     <Button
-                        android:id="@+id/bt4n2"
+                        android:id="@+id/bonut032"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:text="Edit"
-                        tools:layout_editor_absoluteX="291dp"
-                        tools:layout_editor_absoluteY="26dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </android.support.constraint.ConstraintLayout>
 
-
-                <!--Phone-->
+                <!--Bio-->
                 <android.support.constraint.ConstraintLayout
+                    android:layout_below="@id/AdressFrame"
+                    android:id="@+id/BioFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/Bio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
+                        android:text="Bio:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.29000002" />
+
+                    <TextView
+                        android:id="@+id/BioInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
+                        android:text="I have the best deals..."
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/Bio"
+                        app:layout_constraintTop_toBottomOf="@+id/Bio"
+                        app:layout_constraintVertical_bias="0.23000002" />
+
+                    <Button
+                        android:id="@+id/bon7ut032"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Edit"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
+                <!--Language-->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/LanguageFrame"
+                    android:layout_below="@id/BioFrame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -271,36 +430,119 @@
                     android:background="@color/white">
 
                     <TextView
-                        android:id="@+id/teV3iew6"
+                        android:id="@+id/Language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Bio:"
-                        android:textColor="@android:color/black"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="16dp"
+                        android:text="Language:"
+                        android:textColor="@color/black"
                         android:textSize="24sp"
-                        tools:layout_editor_absoluteX="8dp"
-                        tools:layout_editor_absoluteY="19dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.29000002" />
 
                     <TextView
-                        android:id="@+id/te2tew9"
+                        android:id="@+id/SelectedLanguage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_marginStart="24dp"
-                        android:text="I sell the best Tamr..."
-                        android:textSize="22sp"
-                        app:layout_constraintStart_toStartOf="@+id/teV3iew6"
-                        tools:layout_editor_absoluteY="58dp" />
+                        android:text="English"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/Language"
+                        app:layout_constraintTop_toBottomOf="@+id/Language"
+                        app:layout_constraintVertical_bias="0.23000002" />
 
-                    <Button
-                        android:id="@+id/bu4nn2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Edit"
-                        tools:layout_editor_absoluteX="291dp"
-                        tools:layout_editor_absoluteY="26dp" />
+                    <Spinner
+                        android:id="@+id/LanguageSpinner"
+                        android:layout_width="183dp"
+                        android:layout_height="43dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.9"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </android.support.constraint.ConstraintLayout>
 
 
-            </LinearLayout>
-        </android.support.constraint.ConstraintLayout>
+                <!--Currency-->
+                <android.support.constraint.ConstraintLayout
+                    android:layout_below="@+id/LanguageFrame"
+                    android:id="@+id/CurrencyFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/Currency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="16dp"
+                        android:text="Currency:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.29000002" />
+
+                    <TextView
+                        android:id="@+id/SelectedCurrency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="24dp"
+                        android:text="Saudi Riyal"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/Currency"
+                        app:layout_constraintTop_toBottomOf="@+id/Currency"
+                        app:layout_constraintVertical_bias="0.23000002" />
+
+                    <Spinner
+                        android:id="@+id/CurrencySpinner"
+                        android:layout_width="183dp"
+                        android:layout_height="43dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.9"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
+
+            <Button
+                android:layout_below="@id/CurrencyFrame"
+                android:id="@+id/DoneButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="@color/orange"
+                android:text="Done"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
+        </RelativeLayout>
     </ScrollView>
-</FrameLayout>
+</RelativeLayout>

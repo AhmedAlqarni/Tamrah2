@@ -18,6 +18,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/fs"
                 android:layout_alignParentStart="true"
@@ -26,53 +27,42 @@
                 android:paddingBottom="10dp">
 
                 <RelativeLayout
-                    android:id="@+id/relativeLayout"
+                    android:id="@+id/Imagle_Layout"
                     android:layout_width="match_parent"
-                    android:layout_height="162dp"
+                    android:layout_height="300dp"
                     android:background="@color/white">
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/Offer_Image"
                         android:layout_width="match_parent"
-                        android:layout_height="162dp"
+                        android:layout_height="match_parent"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/profilepage" />
+                        android:src="@drawable/ajuah" />
                 </RelativeLayout>
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="26dp"
-                    android:layout_marginTop="82dp"
-                    android:padding="5dp"
-                    android:src="@drawable/ahmed_photo"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_width="3dp" />
 
                 <TextView
                     android:id="@+id/FirstName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/profile_image"
-                    android:layout_marginBottom="10dp"
+                    android:layout_below="@+id/Imagle_Layout"
                     android:layout_marginStart="11dp"
-                    android:text="Ahmed Alqarni"
+                    android:layout_marginTop="12dp"
+                    android:text="Best discounted Ajuah in Jeddah."
                     android:textColor="@android:color/black"
-                    android:textSize="30dp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/SellerRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/textView2"
-                    android:layout_alignBottom="@+id/textView2"
-                    android:layout_toStartOf="@+id/textView2"
+                    android:layout_alignBaseline="@+id/FirstName"
+                    android:layout_alignBottom="@+id/FirstName"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="37dp"
                     android:text="4.9"
                     android:textColor="@android:color/black"
                     android:textSize="30sp" />
@@ -81,10 +71,11 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/FirstName"
-                    android:layout_alignBottom="@+id/FirstName"
+
+                    android:layout_alignBaseline="@+id/SellerRating"
+                    android:layout_alignBottom="@+id/SellerRating"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="20dp"
                     android:text="/5"
                     android:textSize="18sp" />
 
@@ -95,7 +86,7 @@
                     android:layout_alignStart="@+id/FirstName"
                     android:layout_below="@+id/SellerRating"
                     android:text="Makkah Region"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -103,25 +94,25 @@
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/textView5"
                     android:layout_below="@+id/textView5"
-                    android:text="+9665444444444"
-                    android:textColor="@android:color/holo_blue_dark"
-                    android:textSize="18sp" />
+                    android:text="35 SAR"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/textView3"
-                    android:paddingRight="5dp"
                     android:layout_below="@+id/textView3"
-                    android:text="Tamr seller for 25 years in the business, I have really good deals, best quality in Jeddah and in the region, you can't find best prices."
+                    android:paddingRight="5dp"
+                    android:text="I have the best dicounted Ajuah in the city , I provide delivery for other regions, thank you for buying."
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
             </RelativeLayout>
 
             <Button
-                android:id="@+id/EditAccount"
+                android:id="@+id/EditOffer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -130,25 +121,130 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@color/orange"
-                android:text="Edit Account"
+                android:text="Edit Offer"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/AddOfferToCart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/dark_orange"
+                android:text="Add to Cart"
                 android:textAllCaps="false"
                 android:textSize="18sp" />
 
             <TextView
-                android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:text="Add review"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="7dp"
                 android:paddingLeft="10dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="5dp"
+                android:text="Seller"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.45999998"
-                >
-            </TextView>
+                app:layout_constraintVertical_bias="0.45999998"></TextView>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/fs"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="18dp"
+                android:background="@color/white"
+                android:paddingBottom="10dp">
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/white">
+
+                </RelativeLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_imageOfferPage"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/relativeLayout"
+                    android:padding="5dp"
+                    android:src="@drawable/ahmed_photo"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="3dp" />
+
+                <TextView
+                    android:id="@+id/FirstNameOfferPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/textView4OfferPage"
+                    android:layout_marginStart="11dp"
+                    android:layout_toEndOf="@+id/profile_imageOfferPage"
+                    android:text="Ahmed Alqarni"
+                    android:textColor="@android:color/black"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/SellerRatingOfferPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/relativeLayout"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="7dp"
+                    android:text="4.9"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/textView2OfferPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/SellerRatingOfferPage"
+                    android:layout_alignBottom="@+id/SellerRatingOfferPage"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="6dp"
+                    android:text="/5"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView4OfferPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/FirstNameOfferPage"
+                    android:layout_below="@+id/SellerRatingOfferPage"
+                    android:text="+9665444444444"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="18sp" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="7dp"
+                android:paddingLeft="10dp"
+                android:text="Add review"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.45999998"></TextView>
+
+
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
