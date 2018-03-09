@@ -179,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.OfferPage:
                 fragmentClass = Offer.class;
                 break;
+            //This is profile page
             case R.id.Profile:
                 fragmentClass = Account.class;
                 break;
