@@ -131,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
                 fragmentClass = ContactUs.class;
                 break;
             case R.id.OfferPage:
-                startActivity(new Intent(this,OfferActivity.class));
-                return;
+                fragmentClass = Offer.class;
+                break;
             case R.id.Profile:
                 fragmentClass = Account.class;
                 break;
