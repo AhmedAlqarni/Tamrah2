@@ -38,6 +38,7 @@
             <!--Cart_Item-->
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/Cart_Item"
+                android:onClick="goToOffer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/CartTitle"
@@ -81,6 +82,7 @@
                     android:layout_width="176dp"
                     android:layout_height="170dp"
                     android:src="@drawable/ajuah"
+                    android:onClick="goToOffer"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0.021"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -139,6 +141,7 @@
                 android:id="@+id/Cart_Item2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="goToOffer"
                 android:layout_below="@id/Cart_Item"
                 android:layout_marginBottom="5dp"
                 android:background="@color/white"
@@ -180,6 +183,7 @@
                     android:layout_width="176dp"
                     android:layout_height="170dp"
                     android:src="@drawable/ajuah"
+                    android:onClick="goToOffer"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0.021"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -238,11 +242,28 @@
                 android:id="@+id/CheckoutBtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:onClick="goToCheckoutpage"
                 android:layout_margin="10dp"
                 android:background="@color/orange"
                 android:text="Checkout"
                 android:textAllCaps="false"
                 android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/ContinueShoppingBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/CheckoutBtn"
+                android:layout_alignParentBottom="true"
+                android:onClick="goToHome"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@color/dark_orange"
+                android:text="Continue Shopping"
+                android:textAllCaps="false"
+                android:textSize="18sp"></Button>
+
 
         </RelativeLayout>
     </ScrollView>

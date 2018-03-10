@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -27,19 +28,19 @@
 
     </LinearLayout>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/search_layout"
         android:background="@color/light_brown">
 
-        <LinearLayout
+
+
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:orientation="vertical"
             android:padding="5dp">
-
-
 
 
             <!--Offer Block-->
@@ -47,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="164dp"
                 android:layout_gravity="center"
+                android:onClick="goToOffer"
                 android:layout_marginBottom="5dp"
                 android:background="@color/white"
                 android:orientation="horizontal">
@@ -55,6 +57,7 @@
                     android:layout_width="164dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="goToOffer"
                     android:padding="2dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ajuah" />
@@ -138,14 +141,24 @@
 
                 </RelativeLayout>
 
-
             </LinearLayout>
 
+        </android.support.constraint.ConstraintLayout>
 
+    </android.support.v4.widget.NestedScrollView>
 
-
-
-        </LinearLayout>
-    </ScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="goToAddOffer"
+        android:padding="10dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="21dp"
+        android:src="@drawable/ic_add_white_36px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </RelativeLayout>

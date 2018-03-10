@@ -55,7 +55,10 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
         if (view == loginButton){
             login();
         }
+
     }
+
+
     public void  loginAfterRegister(String email,String password){
 
         firebaseAuth.signInWithEmailAndPassword(email,password)
@@ -117,4 +120,13 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
         return firebaseAuth;
     }
 
+    public void noAccount(View view) {
+        finish();
+        startActivity(new Intent(this,Registration.class));
+    }
+
+    public void goToForgetPassword(View view) {
+        finish();
+        startActivity(new Intent(this,ForgetPassword.class));
+    }
 }

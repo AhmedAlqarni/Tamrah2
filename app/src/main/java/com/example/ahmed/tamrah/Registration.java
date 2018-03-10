@@ -117,4 +117,8 @@ public class Registration extends AppCompatActivity {
 
     }
 
+    public void hasAccount(View view) {
+        finish();
+        startActivity(new Intent(this,LoginActivity.class));
+    }
 }

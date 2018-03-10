@@ -5,11 +5,18 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -24,6 +31,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.app.FragmentManager;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar toolBar;
+    private static final int SELECTED_PICTURE = 1;
+    ImageView iV;
     private SearchView searchView;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth firebaseAuth;
@@ -56,8 +67,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //DataBase Test
         mDatabase.child("MEOW").setValue("MEOWWW");
 
+        //image
+       //iV = (ImageView) findViewById(R.id.imageViewAdding);
 
         //initilize the activity_main and the left drawer
         setContentView(R.layout.activity_main);
@@ -124,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //for the left menu choices and transitions
+    //for the buttons action handling
     public void selectItemDrawer(MenuItem menuItem){
         Fragment myFragment =null;
         Class fragmentClass;
@@ -198,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).addToBackStack( "tag" ).commit();
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
         mDrawerLayout.closeDrawers();
@@ -224,32 +239,99 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //Button Handler
     //This is to make the app title clickable
     public void goToHome(View view) {
-        Fragment myFragment =null;
-        Class fragmentClass;
-        fragmentClass = Home.class;
-        try{
-            myFragment = (Fragment) fragmentClass.newInstance();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
+        buttonHandeler(Home.class);
+    }
+
+    //Button Handler
+    //this is for the button in profile page "Edit Account"
+    public void goToAccountSettings(View view) {
+        buttonHandeler(AccountSettings.class);
+    }
+
+    //Button Handler
+    //this is for the button in shopping cart page "shopping cart"
+    public void goToCheckoutpage(View view) {
+        buttonHandeler(Checkout.class);
+    }
+
+
+    //Button Handler
+    //this is for any clicked offer in any page
+    public void goToOffer(View view) {
+        buttonHandeler(Offer.class);
+    }
+
+    //Button Handler
+    //this is for user photo clicked in left drawer
+    public void goToUserProfile(View view) {
+        buttonHandeler(Account.class);
+        mDrawerLayout.closeDrawers();
 
     }
 
-    //this is for the button in profile page "Edit Account"
-    public void goToAccountSettings(View view) {
+    //Button Handler
+    //for selecting image in the Add Offer page
+    public void selectPictureBtn(View view){
+        Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(i,SELECTED_PICTURE);
+
+    }
+
+
+    //Button Handler
+    //this is for the plus button in searchin for offer page
+    public void goToAddOffer(View view) {
+        buttonHandeler(AddOffer.class);
+    }
+
+
+    //Forreading a picture from the device
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode){
+            case SELECTED_PICTURE:
+                if(requestCode == RESULT_OK){
+                    Uri uri = data.getData();
+                    String[]projection= {MediaStore.Images.Media.DATA};
+                    Cursor cursor = getContentResolver().query(uri,projection,null,null,null);
+                    cursor.moveToFirst();
+                    int columnIndex = cursor.getColumnIndex(projection[0]);
+                    String filePath = cursor.getString(columnIndex);
+                    cursor.close();
+                    // String picturePath contains the path of selected Image
+                    Bitmap yourSelectedPic = BitmapFactory.decodeFile(filePath);
+                    Drawable d = new BitmapDrawable(yourSelectedPic);
+                    iV.setBackground(d);
+
+
+                    // Show the Selected Image on ImageView
+                    ImageView imageView = (ImageView) findViewById(R.id.imageViewAdding);
+                    imageView.setImageURI(null);
+                    imageView.setImageURI(Uri.parse(filePath));
+                    //imageView.setImageBitmap(BitmapFactory.decodeFile(filePath));
+                }
+                break;
+
+
+        }
+    }
+
+    //Button Handler main function for all buttons
+    //You can use it in any button page transtions only
+    public void buttonHandeler(Class f) {
         Fragment myFragment =null;
         Class fragmentClass;
-        fragmentClass = AccountSettings.class;
+        fragmentClass = f;
         try{
             myFragment = (Fragment) fragmentClass.newInstance();
         }catch (Exception e){
             e.printStackTrace();
         }
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).addToBackStack( "tag" ).commit();
     }
 }

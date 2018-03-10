@@ -118,6 +118,16 @@
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/changeProfilePic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/profile_image"
+                    android:layout_below="@+id/relativeLayout"
+                    android:layout_gravity="center"
+                    app:backgroundTint="@android:color/darker_gray"
+                    android:src="@drawable/ic_menu_camera" />
+
             </RelativeLayout>
 
             <Button
@@ -126,6 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:onClick="goToAccountSettings"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -176,7 +187,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_marginRight="16dp"
-                    android:text="Send review"
+                    android:text="Add Review"
                     android:textAllCaps="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent" />
@@ -245,7 +256,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/fs"
                     android:layout_below="@+id/fs"
-                    android:text="I bought 5 times from this seller and the delivery is fast. thank you."
+                    android:text="I bought 5 times from this seller and the delivery was fast. thank you."
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 

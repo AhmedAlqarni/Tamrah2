@@ -10,16 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
             <TextView
-                android:id="@+id/OrdersTitle"
+                android:id="@+id/CheckoutTitle"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:text="Orders"
+                android:text="Checkout"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -41,10 +49,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/OrdersTitle"
+                android:layout_below="@+id/CheckoutTitle"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
-                android:text="21 Jan 2017"
+                android:text="Order summary"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -59,24 +67,11 @@
                 android:id="@+id/Order_Item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="goToOffer"
                 android:layout_below="@id/OrderDate"
                 android:layout_marginBottom="5dp"
                 android:background="@color/white"
                 android:backgroundTint="@color/white"
-                android:minHeight="180dp">
-
-                <ImageView
-                    android:id="@+id/OrderPhoto"
-                    android:layout_width="176dp"
-                    android:onClick="goToOffer"
-                    android:layout_height="170dp"
-                    android:src="@drawable/ajuah"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0.021"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:minHeight="80dp">
 
                 <TextView
                     android:id="@+id/OrderOfferTitle2"
@@ -90,8 +85,8 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/OrderPhoto"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -103,26 +98,26 @@
                     android:layout_marginTop="8dp"
                     android:text="Ahmed Alqarni"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/OrderPhoto"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/OrderOfferTitle2" />
 
                 <TextView
                     android:id="@+id/OrderPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_red_dark"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="35 SAR"
+                    android:textColor="@android:color/holo_red_dark"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/OrderPhoto"
-                    app:layout_constraintTop_toBottomOf="@+id/OrderSeller"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintHorizontal_bias="0.97"
+                    app:layout_constraintStart_toEndOf="@+id/OrderSeller"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.8" />
 
                 <TextView
                     android:id="@+id/OrderQuantitiy"
@@ -135,9 +130,9 @@
                     android:text="5 Kg"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/OrderPhoto"
-                    app:layout_constraintTop_toBottomOf="@+id/OrderPrice"
+                    app:layout_constraintHorizontal_bias="0.24"
+                    app:layout_constraintStart_toEndOf="@+id/OrderSeller"
+                    app:layout_constraintTop_toBottomOf="@+id/OrderOfferTitle2"
                     app:layout_constraintVertical_bias="0.0" />
             </android.support.constraint.ConstraintLayout>
 
@@ -147,23 +142,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Order_Item"
-                android:onClick="goToOffer"
                 android:layout_marginBottom="5dp"
                 android:background="@color/white"
                 android:backgroundTint="@color/white"
-                android:minHeight="180dp">
-
-                <ImageView
-                    android:id="@+id/OrderPhoto2"
-                    android:layout_width="176dp"
-                    android:layout_height="170dp"
-                    android:onClick="goToOffer"
-                    android:src="@drawable/ajuah"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0.021"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:minHeight="80dp">
 
                 <TextView
                     android:id="@+id/OrderOfferTitle22"
@@ -177,8 +159,8 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/OrderPhoto2"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -190,26 +172,26 @@
                     android:layout_marginTop="8dp"
                     android:text="Ahmed Alqarni"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/OrderPhoto2"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/OrderOfferTitle22" />
 
                 <TextView
                     android:id="@+id/OrderPrice2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_red_dark"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="35 SAR"
+                    android:textColor="@android:color/holo_red_dark"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/OrderPhoto2"
-                    app:layout_constraintTop_toBottomOf="@+id/OrderSeller2"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintHorizontal_bias="0.97"
+                    app:layout_constraintStart_toEndOf="@+id/OrderSeller2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.8" />
 
                 <TextView
                     android:id="@+id/OrderQuantitiy2"
@@ -222,16 +204,127 @@
                     android:text="5 Kg"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/OrderPhoto2"
-                    app:layout_constraintTop_toBottomOf="@+id/OrderPrice2"
+                    app:layout_constraintHorizontal_bias="0.24"
+                    app:layout_constraintStart_toEndOf="@+id/OrderSeller2"
+                    app:layout_constraintTop_toBottomOf="@+id/OrderOfferTitle22"
                     app:layout_constraintVertical_bias="0.0" />
+            </android.support.constraint.ConstraintLayout>
+
+
+        </RelativeLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Your totsl is"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.050000012" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="70 SAR"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Your address is"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.03"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Makkah region, Jeddah city, Sultan St."
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.27"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+
+                <Button
+                    android:id="@+id/ConfirmBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="goToHome"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/orange"
+                    android:text="Confirm Order"
+                    android:textAllCaps="false"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView16"
+                    app:layout_constraintVertical_bias="0.07999998" />
+
+                <Button
+                    android:id="@+id/CancelOrderBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:onClick="goToHome"
+                    android:background="@color/dark_orange"
+                    android:text="Cancel Order"
+                    android:textAllCaps="false"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ConfirmBtn" />
+
+
             </android.support.constraint.ConstraintLayout>
 
 
 
 
-        </RelativeLayout>
+        </LinearLayout>
+
     </ScrollView>
 
 </FrameLayout>

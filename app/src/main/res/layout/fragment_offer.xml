@@ -109,6 +109,15 @@
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
+                <Spinner
+                    android:id="@+id/QuantitiyKG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/textView4"
+                    android:layout_alignEnd="@+id/textView2"
+                    android:layout_alignStart="@+id/SellerRating"
+                    android:layout_below="@+id/textView5" />
+
             </RelativeLayout>
 
             <Button
@@ -272,7 +281,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_marginRight="16dp"
-                    android:text="Send review"
+                    android:text="Add Review"
                     android:textAllCaps="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent" />
@@ -332,7 +341,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/textView8"
                     android:layout_marginStart="6dp"
-                    android:text="Best Seller in the city"
+                    android:text="Best Tamr in the city"
                     android:textSize="20sp" />
 
                 <TextView
@@ -341,7 +350,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/fs"
                     android:layout_below="@+id/fs"
-                    android:text="I bought 5 times from this seller and the delivery is fast. thank you."
+                    android:text="I bought 5 times from this Tamr and the delivery was fast. thank you."
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
