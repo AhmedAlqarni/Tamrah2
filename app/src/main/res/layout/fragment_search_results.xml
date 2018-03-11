@@ -1,13 +1,38 @@
-<RelativeLayout
+
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/search_result_format"
-    tools:context=".SearchResults">
+    tools:context=".SearchResultsFrag">
 
+    <LinearLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/toolBar"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:focusable="false"
+            android:layout_height="wrap_content"
+            android:queryHint="Search for Tamr..."
+            android:background="@color/white"
+            android:clickable="true"
+            android:iconifiedByDefault="false"
+            />
+
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -15,4 +40,18 @@
         android:layout_height="wrap_content"
         android:scrollbars="vertical"/>
 
-</RelativeLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="goToAddOffer"
+        android:padding="10dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="21dp"
+        android:src="@drawable/ic_add_white_36px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</LinearLayout>

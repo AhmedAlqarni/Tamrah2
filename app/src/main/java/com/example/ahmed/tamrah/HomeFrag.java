@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Checkout.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Checkout#newInstance} factory method to
+ * {@link HomeFrag.OnFragmentInteractionListener} interface
+ * to handle intekraction events.
+ * Use the {@link HomeFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Checkout extends Fragment {
+public class HomeFrag extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,9 +27,10 @@ public class Checkout extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
     private OnFragmentInteractionListener mListener;
 
-    public Checkout() {
+    public HomeFrag() {
         // Required empty public constructor
     }
 
@@ -39,11 +40,11 @@ public class Checkout extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Checkout.
+     * @return A new instance of fragment HomeFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static Checkout newInstance(String param1, String param2) {
-        Checkout fragment = new Checkout();
+    public static HomeFrag newInstance(String param1, String param2) {
+        HomeFrag fragment = new HomeFrag();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -54,17 +55,15 @@ public class Checkout extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_checkout, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -100,4 +99,6 @@ public class Checkout extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }

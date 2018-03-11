@@ -2,23 +2,18 @@ package com.example.ahmed.tamrah;
 //Ahmed Alqarni
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -32,23 +27,12 @@ import android.view.MenuItem;
 import android.app.FragmentManager;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.internal.zzdym;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.FirebaseUserMetadata;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.List;
-
-import static com.example.ahmed.tamrah.R.id.search_view;
-import static com.example.ahmed.tamrah.R.id.toolbar_title;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -90,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
         setupDrawerContent(nvDrawer);
 
 
-        //set the Default page to Home fragment
+        //set the Default page to HomeFrag fragment
         FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.flContents, new Home()).commit();
+        fm.beginTransaction().replace(R.id.flContents, new HomeFrag()).commit();
 
         client=FirebaseAuth.getInstance().getCurrentUser();
 
@@ -113,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentClass = null;
         switch(item.getItemId()) {
             case R.id.cartIconeHome:
-                fragmentClass = ShoppingCart.class;
+                fragmentClass = ShoppingCartFrag.class;
                 break;
             case R.id.cameraIconHome:
                 //show message
@@ -144,16 +128,16 @@ public class MainActivity extends AppCompatActivity {
         Class fragmentClass;
         switch(menuItem.getItemId()) {
             case R.id.Home:
-                fragmentClass = Home.class;
+                fragmentClass = HomeFrag.class;
                 break;
             case R.id.ShoppingCart:
-                fragmentClass = ShoppingCart.class;
+                fragmentClass = ShoppingCartFrag.class;
                 break;
             case R.id.Account_Settings:
-                fragmentClass = AccountSettings.class;
+                fragmentClass = AccountSettingsFrag.class;
                 break;
             case R.id.Orders:
-                fragmentClass = Orders.class;
+                fragmentClass = OrdersFrag.class;
                 break;
             case R.id.Login:
                 startActivity(new Intent(this,LoginActivity.class));
@@ -161,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             case R.id.Signup:
                 Log.i("k","signUp");
-                startActivity(new Intent(this,Registration.class));
+                startActivity(new Intent(this,SignupActivity.class));
                 return;
             case R.id.logout:
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
@@ -189,23 +173,23 @@ public class MainActivity extends AppCompatActivity {
                 //logout ccode goes here
                 return;
             case R.id.ContactUs:
-                fragmentClass = ContactUs.class;
+                fragmentClass = ContactUsFrag.class;
                 break;
             case R.id.OfferPage:
-                fragmentClass = Offer.class;
+                fragmentClass = OfferFrag.class;
                 break;
             case R.id.Profile:
-                fragmentClass = Account.class;
+                fragmentClass = AccountFrag.class;
                 break;
             case R.id.SearchResultPage:
-                fragmentClass = SearchResults.class;
+                fragmentClass = SearchResultsFrag.class;
                 break;
 
 
             default:
                 Log.i("k","not there");
 
-                fragmentClass = Home.class;
+                fragmentClass = HomeFrag.class;
         }
         try{
             myFragment = (Fragment) fragmentClass.newInstance();
@@ -242,38 +226,38 @@ public class MainActivity extends AppCompatActivity {
     //Button Handler
     //This is to make the app title clickable
     public void goToHome(View view) {
-        buttonHandeler(Home.class);
+        buttonHandeler(HomeFrag.class);
     }
 
     //Button Handler
     //this is for the button in profile page "Edit Account"
     public void goToAccountSettings(View view) {
-        buttonHandeler(AccountSettings.class);
+        buttonHandeler(AccountSettingsFrag.class);
     }
 
     //Button Handler
     //this is for the button in shopping cart page "shopping cart"
     public void goToCheckoutpage(View view) {
-        buttonHandeler(Checkout.class);
+        buttonHandeler(CheckoutFrag.class);
     }
 
 
     //Button Handler
     //this is for any clicked offer in any page
     public void goToOffer(View view) {
-        buttonHandeler(Offer.class);
+        buttonHandeler(OfferFrag.class);
     }
 
     //Button Handler
     //this is for user photo clicked in left drawer
     public void goToUserProfile(View view) {
-        buttonHandeler(Account.class);
+        buttonHandeler(AccountFrag.class);
         mDrawerLayout.closeDrawers();
 
     }
 
     //Button Handler
-    //for selecting image in the Add Offer page
+    //for selecting image in the Add OfferFrag page
     public void selectPictureBtn(View view){
         Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i,SELECTED_PICTURE);
@@ -284,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
     //Button Handler
     //this is for the plus button in searchin for offer page
     public void goToAddOffer(View view) {
-        buttonHandeler(AddOffer.class);
+        buttonHandeler(AddOfferFrag.class);
     }
 
 

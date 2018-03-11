@@ -40,7 +40,7 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
 
        // if(firebaseAuth.getCurrentUser() != null){ To know if the user is logged in or not
             //finish();
-         //   startActivity(new Intent(getApplicationContext(),Registration.class));
+         //   startActivity(new Intent(getApplicationContext(),SignupActivity.class));
           //  finish();
       //  }
 
@@ -122,11 +122,11 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
 
     public void noAccount(View view) {
         finish();
-        startActivity(new Intent(this,Registration.class));
+        startActivity(new Intent(this,SignupActivity.class));
     }
 
     public void goToForgetPassword(View view) {
         finish();
-        startActivity(new Intent(this,ForgetPassword.class));
+        startActivity(new Intent(this,ForgetPasswordActivity.class));
     }
 }

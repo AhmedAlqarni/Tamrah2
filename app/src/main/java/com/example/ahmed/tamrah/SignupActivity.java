@@ -20,9 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.concurrent.Executor;
-
-public class Registration extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
 
     //private View rootView;
 
@@ -87,7 +85,7 @@ public class Registration extends AppCompatActivity {
                         }
                         else{
                             progressDialog.dismiss();
-                            AlertDialog alertDialog = new AlertDialog.Builder(Registration.this).create();
+                            AlertDialog alertDialog = new AlertDialog.Builder(SignupActivity.this).create();
                             alertDialog.setTitle("Registering Failed");
                             alertDialog.setMessage("Invalid email or password");
                             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",

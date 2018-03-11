@@ -5,8 +5,8 @@ package com.example.ahmed.tamrah;
  */
 
 public class Offer {
-        private String mTitle, mType, mCity;
-        private double mPrice, mRate;
+    private String mTitle, mType, mCity;
+    private double mPrice, mRate;
 
     public Offer() {}
 

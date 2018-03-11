@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class ForgetPassword extends AppCompatActivity {
+public class ForgetPasswordActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +15,6 @@ public class ForgetPassword extends AppCompatActivity {
 
     public void noAccount(View view) {
         finish();
-        startActivity(new Intent(this,Registration.class));
+        startActivity(new Intent(this,SignupActivity.class));
     }
 }
