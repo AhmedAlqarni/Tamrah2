@@ -21,6 +21,7 @@ android {
 
 dependencies {
     implementation 'com.google.firebase:firebase-database:11.8.0'
+    implementation 'com.android.support:recyclerview-v7:25.4.0'
 
     //noinspection GradleCompatible
     implementation 'com.android.support:support-v4:25.4.0'

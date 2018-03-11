@@ -4,9 +4,19 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 /**
@@ -26,22 +36,15 @@ public class SearchResults extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private List<Offer> offerList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private OffersAdapter mAdapter;
 
     private OnFragmentInteractionListener mListener;
 
     public SearchResults() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SearchResults.
-     */
-    // TODO: Rename and change types and number of parameters
     public static SearchResults newInstance(String param1, String param2) {
         SearchResults fragment = new SearchResults();
         Bundle args = new Bundle();
@@ -61,10 +64,41 @@ public class SearchResults extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mAdapter = new OffersAdapter(offerList);
+
+        View rootView = inflater.inflate(R.layout.fragment_search_results, container, true);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+
+        prepareOffers(); //STUB
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search_results, container, false);
+    }
+
+    //Stub Method
+    public void prepareOffers(){
+
+        for(int i = 0; i< 100; i++) {
+            switch (i%4) {
+                case 0:
+                    offerList.add(new Offer("Best of the best" + i, "Ajuah", "Riyadh", 39.99 + i, 4.5));
+                    break;
+                case 1:
+                    offerList.add(new Offer("Not for sale .. lolol" + i, "Sukkari", "Riyadh", 39.99 + i, 4.5));
+                    break;
+                case 2:
+                    offerList.add(new Offer("You want tamr? come and get it ... if you can" + i, "Khulass", "Riyadh", 39.99 + i, 4.5));
+                    break;
+                case 3:
+                    offerList.add(new Offer("Just filling space to check if every thing works smoothly ... whats up guys?" + i, "MEOWWWWW", "Riyadh", 39.99 + i, 4.5));
+                    break;
+            }
+        }
+        mAdapter.notifyDataSetChanged();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -100,4 +134,5 @@ public class SearchResults extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }
