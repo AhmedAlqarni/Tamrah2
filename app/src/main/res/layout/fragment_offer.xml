@@ -80,7 +80,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/Region"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/FirstName"
@@ -89,21 +89,21 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/Phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/textView5"
-                    android:layout_below="@+id/textView5"
+                    android:layout_alignStart="@+id/Description"
+                    android:layout_below="@+id/Description"
                     android:text="35 SAR"
                     android:textColor="@android:color/holo_red_dark"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/Description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/textView3"
-                    android:layout_below="@+id/textView3"
+                    android:layout_alignStart="@+id/Region"
+                    android:layout_below="@+id/Region"
                     android:paddingRight="5dp"
                     android:text="I have the best dicounted Ajuah in the city , I provide delivery for other regions, thank you for buying."
                     android:textColor="@android:color/black"
@@ -113,10 +113,10 @@
                     android:id="@+id/QuantitiyKG"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/textView4"
+                    android:layout_alignBottom="@+id/Phone"
                     android:layout_alignEnd="@+id/textView2"
                     android:layout_alignStart="@+id/SellerRating"
-                    android:layout_below="@+id/textView5" />
+                    android:layout_below="@+id/Description" />
 
             </RelativeLayout>
 
