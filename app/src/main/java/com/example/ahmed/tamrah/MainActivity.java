@@ -1,10 +1,8 @@
 package com.example.ahmed.tamrah;
 //Ahmed Alqarni
 
-import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -55,11 +53,12 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser client ;
     //private FirebaseAuth;
+    static User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        user = new User(this);
         //DataBase Test
         mDatabase.child("MEOW").setValue("MEOWWW");
 
@@ -200,8 +199,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             //This is profile page
             case R.id.Profile:
-                fragmentClass = AccountFrag.class;
-                break;
+                startActivity(new Intent(this, AccountActivity.class));
+                return;
             case R.id.SearchResultPage:
                 fragmentClass = SearchResultsFrag.class;
                 break;
@@ -272,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
     //Button Handler
     //this is for user photo clicked in left drawer
     public void goToUserProfile(View view) {
-        buttonHandeler(AccountFrag.class);
+        buttonHandeler(AccountActivity.class);
         mDrawerLayout.closeDrawers();
 
     }

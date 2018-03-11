@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +47,8 @@ public class User {
     private FirebaseAuth.AuthStateListener firebaseAuthListner;
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
-    private Map<String, Object> x;
+    private Map<String, Object> userInfo;
+    private String myUID;
 
 
     public User(Context context) {
@@ -54,15 +56,12 @@ public class User {
         progressDialog = new ProgressDialog(context);
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
+        //myUID = user.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference();
-
-
-        if (user != null) {
-            Log.i("1-", "user is null");
-        }
+        getUserProfile("VUlTKvNnDKfxPhanW38or1TYQiS2");
     }
 
-    public void register(String email, String password) {
+    public void register(String email, String password, String name) {
         if (TextUtils.isEmpty(email)) {
             //email is empty
             Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
@@ -83,6 +82,7 @@ public class User {
                         if (task.isSuccessful()) {
                             progressDialog.dismiss();
                             Toast.makeText(context.getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+
                             // Later
                             //loginAfterRegister(email,password);
                         } else {
@@ -100,7 +100,13 @@ public class User {
                         }
                     }
                 });
-
+        if(firebaseAuth.getCurrentUser()!= null){
+            myUID = firebaseAuth.getCurrentUser().getUid();
+            DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("User").child(myUID);
+            Map newPost = new HashMap();
+            newPost.put("name", name);
+            current_user_db.setValue(newPost);
+        }
     }
 
     public void login(String email, String password) {
@@ -114,6 +120,7 @@ public class User {
         if (TextUtils.isEmpty(password)) {
             //password is empty
             Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
+            return;
         }
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog.setMessage("Logging in ...");
@@ -175,127 +182,53 @@ public class User {
 
     }
 
-
-    public void getUserProfile(){
-        /*
-        user = FirebaseAuth.getInstance().getCurrentUser();
-
-        if (user != null) {
-            // Name, email address, and profile photo Url
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            Uri photoUrl = user.getPhotoUrl();
-
-            // Check if user's email is verified
-            //boolean emailVerified = user.isEmailVerified();
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getToken() instead.
-            String uid = user.getUid();
-        }
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            // Name, email address, and profile photo Url
-            name = user.getDisplayName();
-            Log.i("kkk",name);
-            String email = user.getEmail();
-            Uri photoUrl = user.getPhotoUrl();
-
-            // Check if user's email is verified
-            boolean emailVerified = user.isEmailVerified();
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getToken() instead.
-            String uid = user.getUid();
-        } */
+    public void getUserProfile(final String UID) {
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("User");//.child("name");//what is the argument
-        //databaseReference.
-
-
-
-        //To be Reviewed ...
+        databaseReference = firebaseDatabase.getReference("User");
         databaseReference.addValueEventListener(new ValueEventListener() {
 
             //This will be called when there is a change in the User child
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
-                    x = (Map<String, Object>) childSnapshot.getValue();
-                    //Log.i("1",);
-                    name = x.get("name").toString();
-                    region = x.get("region").toString();
-                    description = x.get("description").toString();
-                    phoneNum = x.get("phoneNum").toString();
-                    profileImage = ((Image) x.get("profileImage"));
-                }
+                dataSnapshot = dataSnapshot.child(UID);
+                userInfo = ((Map<String, Object>) dataSnapshot.getValue());
+                //Log.i("1",);
+                name = userInfo.get("name").toString();
+                region = userInfo.get("region").toString();
+                description = userInfo.get("description").toString();
+                phoneNum = userInfo.get("phoneNum").toString();
+                //profileImage = ((Image) userInfo.get("profileImage"));
 
+                Log.i("f", name);
+                Log.i("f", region);
+                Log.i("f", description);
+                Log.i("f", phoneNum);
 
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
     }
 
-    public void updateProfile(){
+    public void updateProfile() {
 
         String userId = firebaseAuth.getCurrentUser().getUid();
         DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("User").child(userId);
         Map newPost = new HashMap();
-        newPost.put("name","khalid");
-        newPost.put("phoneNum","966565684101");
-        newPost.put("region","Riyadh");
-        newPost.put("description","Fuck you MotherFucker...");
-        newPost.put("profileImage","http://justfood.nawa3em.com/subimg/106376015231.jpg");
+        newPost.put("name", "khalid");
+        newPost.put("phoneNum", "966565684101");
+        newPost.put("region", "Riyadh");
+        newPost.put("description", "Fuck you MotherFucker...");
+        newPost.put("profileImage", "http://justfood.nawa3em.com/subimg/106376015231.jpg");
 
         current_user_db.setValue(newPost);
-        /*
-        Log.i("g","kljdglksjgl;js;ljgsdg");
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName("Khalid")
-                .setPhotoUri(Uri.parse("https://i2.wp.com/www.alhadathnews.net/wp-content/uploads/2013/09/f4h.net_1.jpg?resize=615%2C297"))
-                .build();
-
-        user.updateProfile(profileUpdates)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "User profile updated.");
-                        }
-                        else {
-                            Log.i("1","faliled");
-                        }
-                    }
-                });
-        getUserProfile();*/
     }
 
-
-    /*
-    public void  loginAfterRegister(String email, String password){ // After the user has registered, he will be signed in automatically
-        //firebaseAuth
-        firebaseAuth.signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        ((Activity)context).finish();
-                        context.startActivity(new Intent(context.getApplicationContext(),MainActivity.class));
-                    }
-                });
-
-    }*/
-
-    public void confirmEmail(){
+    public void confirmEmail() {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
@@ -310,7 +243,7 @@ public class User {
                 });
     }
 
-    public void resetPassword(String emailAddress){
+    public void resetPassword(String emailAddress) {
         firebaseAuth = FirebaseAuth.getInstance();
         //String emailAddress = "user@example.com";
 
@@ -323,11 +256,9 @@ public class User {
                         }
                     }
                 });
-
     }
 
-    public void setPassword(String newPassword){
-
+    public void setPassword(String newPassword) {
         user = FirebaseAuth.getInstance().getCurrentUser();
         //String newPassword = "SOME-SECURE-PASSWORD";
 
@@ -342,5 +273,23 @@ public class User {
                 });
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
 }

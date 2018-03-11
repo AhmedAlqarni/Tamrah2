@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/light_brown"
     android:orientation="vertical"
-    tools:context="com.example.ahmed.tamrah.Account">
+    tools:context="com.example.ahmed.tamrah.AccountActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/Region"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/FirstName"
@@ -98,22 +98,22 @@
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/Phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/textView5"
-                    android:layout_below="@+id/textView5"
+                    android:layout_alignStart="@+id/Description"
+                    android:layout_below="@+id/Description"
                     android:text="+9665444444444"
                     android:textColor="@android:color/holo_blue_dark"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/Description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/textView3"
+                    android:layout_alignStart="@+id/Region"
                     android:paddingRight="5dp"
-                    android:layout_below="@+id/textView3"
+                    android:layout_below="@+id/Region"
                     android:text="Tamr seller for 25 years in the business, I have really good deals, best quality in Jeddah and in the region, you can't find best prices."
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
@@ -136,7 +136,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:onClick="goToAccountSettings"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"

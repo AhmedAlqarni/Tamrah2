@@ -31,6 +31,7 @@ public class SignupActivity extends AppCompatActivity {
     private Toolbar toolBar;
 
     private TextView textViewSignIn;
+    private TextView textViewName;
 
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
@@ -51,6 +52,7 @@ public class SignupActivity extends AppCompatActivity {
         editTextEmail = (EditText) findViewById(R.id.input_email);
         editTextPassword = (EditText) findViewById(R.id.input_password);
         textViewSignIn = (TextView) findViewById(R.id.link_login); //???
+        textViewName = (TextView) findViewById(R.id.input_name);
         Log.i("k","108");
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -64,7 +66,9 @@ public class SignupActivity extends AppCompatActivity {
 
     private void registerUser(){
         User user = new User(this);
-        user.register(editTextEmail.getText().toString().trim(),editTextPassword.getText().toString().trim());
+        user.register(editTextEmail.getText().toString().trim(),
+                editTextPassword.getText().toString().trim(),
+                textViewName.getText().toString().trim());
 
         /*
         Log.i("q","160");
