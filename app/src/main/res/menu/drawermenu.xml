@@ -19,6 +19,8 @@
         android:id="@+id/OfferPage"
         android:icon="@drawable/ic_if_sign_out_298869"
         android:title="OfferPage" />
+    <item android:id="@+id/UpdateProfile" android:title="UpdateProfile" android:icon="@drawable/ic_if_sign_out_298869"/>
+
     <item android:id="@+id/logout" android:title="Logout" android:icon="@drawable/ic_if_sign_out_298869"/>
 
 

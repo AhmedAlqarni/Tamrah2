@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth firebaseAuth;
     private FirebaseUser client ;
+    private User user;
     //private FirebaseAuth;
 
     @Override
@@ -134,6 +135,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.ShoppingCart:
                 fragmentClass = ShoppingCart.class;
                 break;
+            case R.id.UpdateProfile:
+                //fragmentClass = ShoppingCart.class;
+                user = new User(this);
+                //user.updateProfile();
+                //user.getUserProfile();
+                user.resetPassword("alnamlahk@gmail.com");
+                return;
+
             case R.id.Account_Settings:
                 fragmentClass = AccountSettings.class;
                 break;
@@ -149,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this,Registration.class));
                 return;
             case R.id.logout:
-                User user = new User(this);
+                user = new User(this);
 
                 user.logout();
                 mDrawerLayout.closeDrawers();

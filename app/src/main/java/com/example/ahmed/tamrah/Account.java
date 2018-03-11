@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -31,6 +33,13 @@ public class Account extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private ImageView imageProfileView;
+    private EditText EditTextName;
+    private EditText EditTextRegion;
+    private EditText EditTextDescription;
+    private EditText EditTextPhoneNum;
+    private String EditTextAddress;
 
     public Account() {
         // Required empty public constructor
@@ -89,6 +98,16 @@ public class Account extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        EditTextName = (EditText) getView().findViewById(R.id.FirstName);
+        EditTextRegion = (EditText) getView().findViewById(R.id.textView3);
+        EditTextDescription = (EditText) getView().findViewById(R.id.textView5);
+        EditTextPhoneNum =  (EditText) getView().findViewById(R.id.textView4);
+        //EditTextAddress = (EditText) getView().findViewById(R.id.textView4);
+
+
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_account, container, false);
     }

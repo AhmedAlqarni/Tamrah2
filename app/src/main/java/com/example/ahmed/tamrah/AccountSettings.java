@@ -1,6 +1,8 @@
 package com.example.ahmed.tamrah;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentSender;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -28,6 +30,7 @@ public class AccountSettings extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private static final int  CHOOSE_IMAGE = 101;
 
     public AccountSettings() {
         // Required empty public constructor
@@ -99,5 +102,15 @@ public class AccountSettings extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+
+
+    public void showImageChooser(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"Select profile image"), CHOOSE_IMAGE);
+
     }
 }
