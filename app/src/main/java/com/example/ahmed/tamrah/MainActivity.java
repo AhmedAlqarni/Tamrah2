@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             case R.id.Signup:
                 Log.i("k","signUp");
-                startActivity(new Intent(this,Registration.class));
+                startActivity(new Intent(this,SignupActivity.class));
                 return;
             case R.id.logout:
                 user = new User(this);

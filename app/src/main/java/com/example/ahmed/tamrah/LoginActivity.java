@@ -40,7 +40,7 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
 
        // if(firebaseAuth.getCurrentUser() != null){ To know if the user is logged in or not
             //finish();
-         //   startActivity(new Intent(getApplicationContext(),Registration.class));
+         //   startActivity(new Intent(getApplicationContext(),SignupActivity.class));
           //  finish();
       //  }
 
