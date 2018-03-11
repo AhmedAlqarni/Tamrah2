@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Orders.OnFragmentInteractionListener} interface
+ * {@link ContactUsFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Orders#newInstance} factory method to
+ * Use the {@link ContactUsFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Orders extends Fragment {
+public class ContactUsFrag extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +29,7 @@ public class Orders extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Orders() {
+    public ContactUsFrag() {
         // Required empty public constructor
     }
 
@@ -39,11 +39,11 @@ public class Orders extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Orders.
+     * @return A new instance of fragment ContactUsFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static Orders newInstance(String param1, String param2) {
-        Orders fragment = new Orders();
+    public static ContactUsFrag newInstance(String param1, String param2) {
+        ContactUsFrag fragment = new ContactUsFrag();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +64,7 @@ public class Orders extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_orders, container, false);
+        return inflater.inflate(R.layout.fragment_contact_us, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

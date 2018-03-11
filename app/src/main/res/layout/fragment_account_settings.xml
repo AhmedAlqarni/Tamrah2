@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/light_brown"
-    tools:context="com.example.ahmed.tamrah.AccountSettings">
+    tools:context="com.example.ahmed.tamrah.AccountSettingsFrag">
 
     <ScrollView
         android:layout_width="fill_parent"

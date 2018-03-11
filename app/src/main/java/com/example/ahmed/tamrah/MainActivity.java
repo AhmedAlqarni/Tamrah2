@@ -1,17 +1,10 @@
 package com.example.ahmed.tamrah;
 //Ahmed Alqarni
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,22 +17,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.app.FragmentManager;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.internal.zzdym;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.FirebaseUserMetadata;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.List;
-
-import static com.example.ahmed.tamrah.R.id.search_view;
-import static com.example.ahmed.tamrah.R.id.toolbar_title;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -100,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentClass = null;
         switch(item.getItemId()) {
             case R.id.cartIconeHome:
-                fragmentClass = ShoppingCart.class;
+                fragmentClass = ShoppingCartFrag.class;
                 break;
             case R.id.cameraIconHome:
                 //show message
@@ -133,10 +116,10 @@ public class MainActivity extends AppCompatActivity {
                 fragmentClass = Home.class;
                 break;
             case R.id.ShoppingCart:
-                fragmentClass = ShoppingCart.class;
+                fragmentClass = ShoppingCartFrag.class;
                 break;
             case R.id.UpdateProfile:
-                //fragmentClass = ShoppingCart.class;
+                //fragmentClass = ShoppingCartFrag.class;
                 user = new User(this);
                 //user.updateProfile();
                 //user.getUserProfile();
@@ -144,10 +127,10 @@ public class MainActivity extends AppCompatActivity {
                 return;
 
             case R.id.Account_Settings:
-                fragmentClass = AccountSettings.class;
+                fragmentClass = AccountSettingsFrag.class;
                 break;
             case R.id.Orders:
-                fragmentClass = Orders.class;
+                fragmentClass = OrdersFrag.class;
                 break;
             case R.id.Login:
                 startActivity(new Intent(this,LoginActivity.class));
@@ -192,17 +175,17 @@ public class MainActivity extends AppCompatActivity {
                 */
                 return;
             case R.id.ContactUs:
-                fragmentClass = ContactUs.class;
+                fragmentClass = ContactUsFrag.class;
                 break;
             case R.id.OfferPage:
-                fragmentClass = Offer.class;
+                fragmentClass = OfferFrag.class;
                 break;
             //This is profile page
             case R.id.Profile:
-                fragmentClass = Account.class;
+                fragmentClass = AccountFrag.class;
                 break;
             case R.id.SearchResultPage:
-                fragmentClass = SearchResults.class;
+                fragmentClass = SearchResultsFrag.class;
                 break;
 
 
@@ -258,11 +241,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //this is for the button in profile page "Edit Account"
+    //this is for the button in profile page "Edit AccountFrag"
     public void goToAccountSettings(View view) {
         Fragment myFragment =null;
         Class fragmentClass;
-        fragmentClass = AccountSettings.class;
+        fragmentClass = AccountSettingsFrag.class;
         try{
             myFragment = (Fragment) fragmentClass.newInstance();
         }catch (Exception e){

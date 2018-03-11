@@ -46,6 +46,7 @@ public class User {
     private FirebaseAuth.AuthStateListener firebaseAuthListner;
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
+    private Map<String, Object> x;
 
 
     public User(Context context) {
@@ -223,7 +224,7 @@ public class User {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
-                    Map<String, Object> x = (Map<String, Object>) childSnapshot.getValue();
+                     x = (Map<String, Object>) childSnapshot.getValue();
                     //Log.i("1",);
                     name = x.get("name").toString();
                     region = x.get("region").toString();

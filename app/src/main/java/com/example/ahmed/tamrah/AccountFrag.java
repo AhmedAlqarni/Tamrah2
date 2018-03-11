@@ -1,23 +1,27 @@
 package com.example.ahmed.tamrah;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ShoppingCart.OnFragmentInteractionListener} interface
+ * {@link AccountFrag.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ShoppingCart#newInstance} factory method to
+ * Use the {@link AccountFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ShoppingCart extends Fragment {
+public class AccountFrag extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +33,14 @@ public class ShoppingCart extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public ShoppingCart() {
+    private ImageView imageProfileView;
+    private EditText EditTextName;
+    private EditText EditTextRegion;
+    private EditText EditTextDescription;
+    private EditText EditTextPhoneNum;
+    private String EditTextAddress;
+
+    public AccountFrag() {
         // Required empty public constructor
     }
 
@@ -39,16 +50,39 @@ public class ShoppingCart extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ShoppingCart.
+     * @return A new instance of fragment AccountFrag.
      */
     // TODO: Rename and change types and number of parameters
-    public static ShoppingCart newInstance(String param1, String param2) {
-        ShoppingCart fragment = new ShoppingCart();
+    public static AccountFrag newInstance(String param1, String param2) {
+        AccountFrag fragment = new AccountFrag();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Fragment myFragment =null;
+        Class fragmentClass;
+
+        //home buttons
+        fragmentClass = null;
+        switch(item.getItemId()) {
+            case R.id.EditAccount:
+                fragmentClass = AccountSettingsFrag.class;
+                break;
+
+        }
+        try{
+            myFragment = (Fragment) fragmentClass.newInstance();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -63,8 +97,18 @@ public class ShoppingCart extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        EditTextName = (EditText) getView().findViewById(R.id.FirstName);
+        EditTextRegion = (EditText) getView().findViewById(R.id.textView3);
+        EditTextDescription = (EditText) getView().findViewById(R.id.textView5);
+        EditTextPhoneNum =  (EditText) getView().findViewById(R.id.textView4);
+        //EditTextAddress = (EditText) getView().findViewById(R.id.textView4);
+
+
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shopping_cart, container, false);
+        return inflater.inflate(R.layout.fragment_account, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -88,7 +132,7 @@ public class ShoppingCart extends Fragment {
 
     /**
      * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
+     * fragment to allow an  in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
      * <p>
