@@ -15,17 +15,16 @@
             android:id="@+id/b1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/SettingsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="10dp"
                 android:text="Account Settings"
                 android:textColor="@color/black"
                 android:textSize="30sp"
@@ -36,510 +35,522 @@
                 app:layout_constraintVertical_bias="0.45999998" />
 
 
-                <!--Name-->
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/NameFrame"
-                    android:layout_below="@id/SettingsTitle"
-                    android:layout_width="match_parent"
+            <!--Name-->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/NameFrame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/SettingsTitle"
+                android:layout_marginBottom="2dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/textVi5ew6"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:background="@color/white">
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Name:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/my_switcher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="32dp"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.04"
+                    app:layout_constraintStart_toStartOf="@+id/textVi5ew6"
+                    app:layout_constraintTop_toBottomOf="@+id/textVi5ew6"
+                    app:layout_constraintVertical_bias="0.0">
 
                     <TextView
-                        android:id="@+id/textVi5ew6"
+                        android:id="@+id/nameInput23"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="32dp"
-                        android:layout_marginStart="16dp"
-                        android:text="Name:"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.29000002" />
-
-                    <TextView
-                        android:id="@+id/textVi4ew9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="32dp"
                         android:text="Ahmed Alqarni"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/textVi5ew6"
-                        app:layout_constraintTop_toBottomOf="@+id/textVi5ew6"
-                        app:layout_constraintVertical_bias="0.23000002" />
+                        android:textSize="18sp" />
 
-                    <Button
-                        android:id="@+id/button32"
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/hidden_edit_view"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Edit"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.91"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
+                        android:hint="Enter your name" />
+                </ViewSwitcher>
 
-                <!--Email-->
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/EmailFrame"
-                    android:layout_below="@id/NameFrame"
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/button32"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:background="@color/white">
+                    android:layout_marginStart="8dp"
+                    android:onClick="settingsEditName"
+                    android:text="Edit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.91"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.38" />
+            </android.support.constraint.ConstraintLayout>
 
-                    <TextView
-                        android:id="@+id/Email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="32dp"
-                        android:layout_marginStart="16dp"
-                        android:text="Email:"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.29000002" />
+            <!--Email-->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/EmailFrame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/NameFrame"
+                android:layout_marginBottom="2dp"
+                android:background="@color/white">
 
-                    <TextView
-                        android:id="@+id/EmailInput"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="32dp"
-                        android:text="Alqarni@hotmail.com"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/Email"
-                        app:layout_constraintTop_toBottomOf="@+id/Email"
-                        app:layout_constraintVertical_bias="0.23000002" />
-
-                    <Button
-                        android:id="@+id/buoutn32"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Edit"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.91"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
-
-                <!--Password-->
-                <android.support.constraint.ConstraintLayout
-                    android:layout_below="@id/EmailFrame"
-                    android:id="@+id/PasswordFrame"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/Email"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:background="@color/white">
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Email:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.29000002" />
 
-                    <TextView
-                        android:id="@+id/Password"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="32dp"
-                        android:layout_marginStart="16dp"
-                        android:text="Password:"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.29000002" />
-
-                    <TextView
-                        android:id="@+id/PasswordInput"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="32dp"
-                        android:text="**************"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/Password"
-                        app:layout_constraintTop_toBottomOf="@+id/Password"
-                        app:layout_constraintVertical_bias="0.23000002" />
-
-                    <Button
-                        android:id="@+id/butn32"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Edit"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.91"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
-                <!--Region-->
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/RegionFrame"
-                    android:layout_below="@id/PasswordFrame"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/EmailInput"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="32dp"
+                    android:text="Alqarni@hotmail.com"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/Email"
+                    app:layout_constraintTop_toBottomOf="@+id/Email"
+                    app:layout_constraintVertical_bias="0.23000002" />
 
-                    android:background="@color/white">
-
-                    <TextView
-                        android:id="@+id/Region"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="16dp"
-                        android:text="Region:"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.29000002" />
-
-                    <TextView
-                        android:id="@+id/tex2tVew9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="24dp"
-                        android:text="Makkah"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/Region"
-                        app:layout_constraintTop_toBottomOf="@+id/Region"
-                        app:layout_constraintVertical_bias="0.23000002" />
-
-                    <Spinner
-                        android:id="@+id/spinner3"
-                        android:layout_width="183dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.9"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </android.support.constraint.ConstraintLayout>
-
-                <!--Phone-->
-                <android.support.constraint.ConstraintLayout
-                    android:layout_below="@id/RegionFrame"
-                    android:id="@+id/PhoneFrame"
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/buoutn32"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:background="@color/white">
-
-                    <TextView
-                        android:id="@+id/Phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="32dp"
-                        android:layout_marginStart="16dp"
-                        android:text="Phone:"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.29000002" />
-
-                    <TextView
-                        android:id="@+id/PhoneInput"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="32dp"
-                        android:text="+966544444444"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/Phone"
-                        app:layout_constraintTop_toBottomOf="@+id/Phone"
-                        app:layout_constraintVertical_bias="0.23000002" />
-
-                    <Button
-                        android:id="@+id/bonutn32"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Edit"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.91"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
+                    android:layout_marginStart="8dp"
+                    android:text="Edit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.91"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
 
 
-                <!--Address-->
-                <android.support.constraint.ConstraintLayout
-                    android:layout_below="@id/PhoneFrame"
-                    android:id="@+id/AdressFrame"
-                    android:layout_width="match_parent"
+            <!--Password-->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/PasswordFrame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/EmailFrame"
+                android:layout_marginBottom="2dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/Password"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:background="@color/white">
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Password:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.29000002" />
 
-                    <TextView
-                        android:id="@+id/Adress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="32dp"
-                        android:layout_marginStart="16dp"
-                        android:text="Address:"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.29000002" />
-
-                    <TextView
-                        android:id="@+id/AdressInput"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="32dp"
-                        android:text="Jeddah,Sultan St..."
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/Adress"
-                        app:layout_constraintTop_toBottomOf="@+id/Adress"
-                        app:layout_constraintVertical_bias="0.23000002" />
-
-                    <Button
-                        android:id="@+id/bonut032"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Edit"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.91"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
-                <!--Bio-->
-                <android.support.constraint.ConstraintLayout
-                    android:layout_below="@id/AdressFrame"
-                    android:id="@+id/BioFrame"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/PasswordInput"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:background="@color/white">
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="32dp"
+                    android:text="**************"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/Password"
+                    app:layout_constraintTop_toBottomOf="@+id/Password"
+                    app:layout_constraintVertical_bias="0.23000002" />
 
-                    <TextView
-                        android:id="@+id/Bio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="32dp"
-                        android:layout_marginStart="16dp"
-                        android:text="Bio:"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.29000002" />
-
-                    <TextView
-                        android:id="@+id/BioInput"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="32dp"
-                        android:text="I have the best deals..."
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/Bio"
-                        app:layout_constraintTop_toBottomOf="@+id/Bio"
-                        app:layout_constraintVertical_bias="0.23000002" />
-
-                    <Button
-                        android:id="@+id/bon7ut032"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Edit"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.91"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
-
-
-                <!--Language-->
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/LanguageFrame"
-                    android:layout_below="@id/BioFrame"
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/butn32"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginStart="8dp"
+                    android:text="Edit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.91"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
 
-                    android:background="@color/white">
+            <!--Region-->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/RegionFrame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/PasswordFrame"
+                android:layout_marginBottom="2dp"
 
-                    <TextView
-                        android:id="@+id/Language"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="16dp"
-                        android:text="Language:"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.29000002" />
+                android:background="@color/white">
 
-                    <TextView
-                        android:id="@+id/SelectedLanguage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="24dp"
-                        android:text="English"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/Language"
-                        app:layout_constraintTop_toBottomOf="@+id/Language"
-                        app:layout_constraintVertical_bias="0.23000002" />
-
-                    <Spinner
-                        android:id="@+id/LanguageSpinner"
-                        android:layout_width="183dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.9"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
-
-                <!--Currency-->
-                <android.support.constraint.ConstraintLayout
-                    android:layout_below="@+id/LanguageFrame"
-                    android:id="@+id/CurrencyFrame"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/Region"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Region:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.29000002" />
 
-                    android:background="@color/white">
+                <TextView
+                    android:id="@+id/tex2tVew9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="24dp"
+                    android:text="Makkah"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/Region"
+                    app:layout_constraintTop_toBottomOf="@+id/Region"
+                    app:layout_constraintVertical_bias="0.23000002" />
 
-                    <TextView
-                        android:id="@+id/Currency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="16dp"
-                        android:text="Currency:"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.29000002" />
+                <Spinner
+                    android:id="@+id/spinner3"
+                    android:layout_width="183dp"
+                    android:layout_height="43dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/SelectedCurrency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="24dp"
-                        android:text="Saudi Riyal"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/Currency"
-                        app:layout_constraintTop_toBottomOf="@+id/Currency"
-                        app:layout_constraintVertical_bias="0.23000002" />
+            </android.support.constraint.ConstraintLayout>
 
-                    <Spinner
-                        android:id="@+id/CurrencySpinner"
-                        android:layout_width="183dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.9"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
+            <!--Phone-->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/PhoneFrame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/RegionFrame"
+                android:layout_marginBottom="2dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/Phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Phone:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.29000002" />
+
+                <TextView
+                    android:id="@+id/PhoneInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="32dp"
+                    android:text="+966544444444"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/Phone"
+                    app:layout_constraintTop_toBottomOf="@+id/Phone"
+                    app:layout_constraintVertical_bias="0.23000002" />
+
+                <Button
+                    android:id="@+id/bonutn32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Edit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.91"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+
+            <!--Address-->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/AdressFrame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/PhoneFrame"
+                android:layout_marginBottom="2dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/Adress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Address:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.29000002" />
+
+                <TextView
+                    android:id="@+id/AdressInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="32dp"
+                    android:text="Jeddah,Sultan St..."
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/Adress"
+                    app:layout_constraintTop_toBottomOf="@+id/Adress"
+                    app:layout_constraintVertical_bias="0.23000002" />
+
+                <Button
+                    android:id="@+id/bonut032"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Edit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.91"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+            <!--Bio-->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/BioFrame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/AdressFrame"
+                android:layout_marginBottom="2dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/Bio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Bio:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.29000002" />
+
+                <TextView
+                    android:id="@+id/BioInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="32dp"
+                    android:text="I have the best deals..."
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/Bio"
+                    app:layout_constraintTop_toBottomOf="@+id/Bio"
+                    app:layout_constraintVertical_bias="0.23000002" />
+
+                <Button
+                    android:id="@+id/bon7ut032"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Edit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.91"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+
+            <!--Language-->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/LanguageFrame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/BioFrame"
+                android:layout_marginBottom="2dp"
+
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/Language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Language:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.29000002" />
+
+                <TextView
+                    android:id="@+id/SelectedLanguage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="24dp"
+                    android:text="English"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/Language"
+                    app:layout_constraintTop_toBottomOf="@+id/Language"
+                    app:layout_constraintVertical_bias="0.23000002" />
+
+                <Spinner
+                    android:id="@+id/LanguageSpinner"
+                    android:layout_width="183dp"
+                    android:layout_height="43dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+
+            <!--Currency-->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/CurrencyFrame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/LanguageFrame"
+                android:layout_marginBottom="2dp"
+
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/Currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:text="Currency:"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.29000002" />
+
+                <TextView
+                    android:id="@+id/SelectedCurrency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="24dp"
+                    android:text="Saudi Riyal"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/Currency"
+                    app:layout_constraintTop_toBottomOf="@+id/Currency"
+                    app:layout_constraintVertical_bias="0.23000002" />
+
+                <Spinner
+                    android:id="@+id/CurrencySpinner"
+                    android:layout_width="183dp"
+                    android:layout_height="43dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
 
 
             <Button
-                android:layout_below="@id/CurrencyFrame"
                 android:id="@+id/DoneButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@id/CurrencyFrame"
                 android:layout_margin="10dp"
                 android:background="@color/orange"
                 android:text="Done"

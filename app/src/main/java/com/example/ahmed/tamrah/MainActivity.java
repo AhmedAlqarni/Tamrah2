@@ -26,13 +26,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.app.FragmentManager;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -79,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
         fm.beginTransaction().replace(R.id.flContents, new HomeFrag()).commit();
 
         client=FirebaseAuth.getInstance().getCurrentUser();
+
+
 
 
     }
@@ -134,8 +145,8 @@ public class MainActivity extends AppCompatActivity {
                 fragmentClass = ShoppingCartFrag.class;
                 break;
             case R.id.Account_Settings:
-                fragmentClass = AccountSettingsFrag.class;
-                break;
+                startActivity(new Intent(this,AccountSettingsActivity.class));
+                return;
             case R.id.Orders:
                 fragmentClass = OrdersFrag.class;
                 break;
@@ -328,4 +339,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).addToBackStack( "tag" ).commit();
     }
+
+
+
+
 }

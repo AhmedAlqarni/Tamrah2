@@ -9,6 +9,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class AccountFrag extends Fragment {
@@ -75,6 +80,8 @@ public class AccountFrag extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        //addRateSpinerValues();
+
     }
 
     @Override
@@ -117,4 +124,23 @@ public class AccountFrag extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+/*
+    //to add all Rating [1,2,3,4,5] spinner values
+    public void addRateSpinerValues(){
+        final Spinner spinner = (Spinner) getView().findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter;
+        List<String> list;
+
+        list = new ArrayList<String>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.add("5");
+        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
+                android.R.layout.simple_spinner_item, list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+    }*/
 }

@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ahmed.tamrah.MainActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/AppTheme.PopupOverlay">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tamrah"
+            android:textSize="22sp"
+            android:onClick="goToHome"
+            android:clickable="true"
+            android:textColor="@color/white"
+            android:gravity = "center"
+            android:id="@+id/toolbar_title" />
+
+    </android.support.v7.widget.Toolbar>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/toolBar"
+        android:layout_height="wrap_content"
+        android:background="@color/light_brown"
+        tools:context="com.example.ahmed.tamrah.AccountSettingsFrag">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <RelativeLayout
+                android:id="@+id/b1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/SettingsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Account Settings"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.45999998" />
+
+
+                <!--Name-->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/NameFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/SettingsTitle"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/textVi5ew6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Name:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/my_switcher"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.04"
+                        app:layout_constraintStart_toStartOf="@+id/textVi5ew6"
+                        app:layout_constraintTop_toBottomOf="@+id/textVi5ew6"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <TextView
+                            android:id="@+id/nameInput23"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ahmed Alqarni"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/hidden_edit_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter your name" />
+                    </ViewSwitcher>
+
+                    <Button
+                        android:id="@+id/button32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:onClick="settingsEditName"
+                        android:text="Edit"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.38" />
+                </android.support.constraint.ConstraintLayout>
+
+                <!--Email-->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/EmailFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/NameFrame"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/te3tVi5ew6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Email:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/my_switcher2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.04"
+                        app:layout_constraintStart_toStartOf="@+id/te3tVi5ew6"
+                        app:layout_constraintTop_toBottomOf="@+id/te3tVi5ew6"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <TextView
+                            android:id="@+id/EmailInput"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Alqarni@hotmail.com"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/hidden_edit_email"
+                            android:layout_width="match_parent"
+                            android:autoLink="email"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter your email" />
+                    </ViewSwitcher>
+
+                    <Button
+                        android:id="@+id/editEmailBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:onClick="settingsEditEmail"
+                        android:text="Edit"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.38" />
+                </android.support.constraint.ConstraintLayout>
+
+
+
+
+                <!--Email-->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/PasswordFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/EmailFrame"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/te3tV5ew6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Password:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/my_switcher3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.04"
+                        app:layout_constraintStart_toStartOf="@+id/te3tV5ew6"
+                        app:layout_constraintTop_toBottomOf="@+id/te3tV5ew6"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <TextView
+                            android:id="@+id/PasswordInputField"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:text="***************"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/hidden_edit_password"
+                            android:layout_width="match_parent"
+                            android:inputType="textPassword"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter your password" />
+                    </ViewSwitcher>
+
+                    <Button
+                        android:id="@+id/editPasswordBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:onClick="settingsEditPassword"
+                        android:text="Edit"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.38" />
+                </android.support.constraint.ConstraintLayout>
+
+                <!--Region-->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/RegionFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/PasswordFrame"
+                    android:layout_marginBottom="2dp"
+
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/Region"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="16dp"
+                        android:text="Region:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.29000002" />
+
+                    <TextView
+                        android:id="@+id/regionInputLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="24dp"
+                        android:text="Makkah"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/Region"
+                        app:layout_constraintTop_toBottomOf="@+id/Region"
+                        app:layout_constraintVertical_bias="0.23000002" />
+
+                    <Spinner
+                        android:id="@+id/RegionSpinner"
+                        android:layout_width="183dp"
+                        android:layout_height="43dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.9"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <!--Phone-->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/PhoneFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/RegionFrame"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/te3t5V5ew6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Phone:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/my_switcher4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.04"
+                        app:layout_constraintStart_toStartOf="@+id/te3t5V5ew6"
+                        app:layout_constraintTop_toBottomOf="@+id/te3t5V5ew6"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <TextView
+                            android:id="@+id/PhoneInputField"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+966544444444"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/hidden_edit_phone"
+                            android:layout_width="match_parent"
+                            android:phoneNumber="true"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter phone number" />
+                    </ViewSwitcher>
+
+                    <Button
+                        android:id="@+id/editPhoneBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:onClick="settingsEditPhone"
+                        android:text="Edit"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.38" />
+                </android.support.constraint.ConstraintLayout>
+
+
+                <!--Address-->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/AddressFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/PhoneFrame"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/te3t2V5ew6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Address:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/my_switcher5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.04"
+                        app:layout_constraintStart_toStartOf="@+id/te3t2V5ew6"
+                        app:layout_constraintTop_toBottomOf="@+id/te3t2V5ew6"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <TextView
+                            android:id="@+id/AddressInputField"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jeddah, Sultan St."
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/hidden_edit_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter your address " />
+                    </ViewSwitcher>
+
+                    <Button
+                        android:id="@+id/editAddressBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:onClick="settingsEditAddress"
+                        android:text="Edit"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.38" />
+                </android.support.constraint.ConstraintLayout>
+
+                <!--Bio-->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/BioFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/AddressFrame"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/te3t2V5ew66"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Bio:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/my_switcher6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.04"
+                        app:layout_constraintStart_toStartOf="@+id/te3t2V5ew66"
+                        app:layout_constraintTop_toBottomOf="@+id/te3t2V5ew66"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <TextView
+                            android:id="@+id/BioInputField"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="25 years selling Tamr..."
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/hidden_edit_Bio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter your bio" />
+                    </ViewSwitcher>
+
+                    <Button
+                        android:id="@+id/editBioBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:onClick="settingsEditBio"
+                        android:text="Edit"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.38" />
+                </android.support.constraint.ConstraintLayout>
+
+
+                <!--Language-->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/LanguageFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/BioFrame"
+                    android:layout_marginBottom="2dp"
+
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/Language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="16dp"
+                        android:text="Language:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.29000002" />
+
+                    <TextView
+                        android:id="@+id/SelectedLanguage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="24dp"
+                        android:text="English"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/Language"
+                        app:layout_constraintTop_toBottomOf="@+id/Language"
+                        app:layout_constraintVertical_bias="0.23000002" />
+
+                    <Spinner
+                        android:id="@+id/LanguageSpinner"
+                        android:layout_width="183dp"
+                        android:layout_height="43dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.9"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
+
+                <!--Currency-->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/CurrencyFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/LanguageFrame"
+                    android:layout_marginBottom="2dp"
+
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/Currency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="16dp"
+                        android:text="Currency:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.29000002" />
+
+                    <TextView
+                        android:id="@+id/SelectedCurrency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="24dp"
+                        android:text="Saudi Riyal"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/Currency"
+                        app:layout_constraintTop_toBottomOf="@+id/Currency"
+                        app:layout_constraintVertical_bias="0.23000002" />
+
+                    <Spinner
+                        android:id="@+id/CurrencySpinner"
+                        android:layout_width="183dp"
+                        android:layout_height="43dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.9"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
+
+                <Button
+                    android:id="@+id/DoneButton"
+                    android:layout_width="match_parent"
+                    android:onClick="goToHome"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/CurrencyFrame"
+                    android:layout_margin="10dp"
+                    android:background="@color/orange"
+                    android:text="Done"
+                    android:textAllCaps="false"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+</RelativeLayout>
