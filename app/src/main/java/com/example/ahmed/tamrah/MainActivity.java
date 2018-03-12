@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
     //Button Handler
     //this is for user photo clicked in left drawer
     public void goToUserProfile(View view) {
-        buttonHandeler(AccountActivity.class);
+        startActivity(new Intent(this, AccountActivity.class));
         mDrawerLayout.closeDrawers();
 
     }
@@ -292,11 +292,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //Forreading a picture from the device
+    //For reading a picture from the device
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode){
+        if(requestCode == RESULT_OK && resultCode ==  SELECTED_PICTURE && data != null) {
+            Uri selectedImage = data.getData();
+            ImageView imageView = (ImageView) findViewById(R.id.imageViewAdding);
+            imageView.setImageURI(selectedImage);
+
+        }
+
+        /*switch(requestCode){
             case SELECTED_PICTURE:
                 if(requestCode == RESULT_OK){
                     Uri uri = data.getData();
@@ -318,10 +325,10 @@ public class MainActivity extends AppCompatActivity {
                     imageView.setImageURI(Uri.parse(filePath));
                     //imageView.setImageBitmap(BitmapFactory.decodeFile(filePath));
                 }
-                break;
+               break;
 
 
-        }
+        }*/
     }
 
     //Button Handler main function for all buttons

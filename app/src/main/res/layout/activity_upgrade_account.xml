@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ahmed.tamrah.UpgradeAccountActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/AppTheme.PopupOverlay">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tamrah"
+            android:textSize="22sp"
+            android:onClick="goToHome"
+            android:clickable="true"
+            android:textColor="@color/white"
+            android:gravity = "center"
+            android:id="@+id/toolbar_title" />
+
+    </android.support.v7.widget.Toolbar>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/toolBar"
+        android:layout_height="wrap_content"
+        android:background="@color/light_brown"
+        tools:context="com.example.ahmed.tamrah.AccountSettingsFrag">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <RelativeLayout
+                android:id="@+id/b1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/UpgradeAccountTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Upgrade Account"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.45999998" />
+
+
+
+                <!--City-->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/CityFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/UpgradeAccountTitle"
+                    android:layout_marginBottom="2dp"
+
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/City"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="16dp"
+                        android:text="City:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.29000002" />
+
+                    <TextView
+                        android:id="@+id/CityInputLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="24dp"
+                        android:text="Makkah"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/City"
+                        app:layout_constraintTop_toBottomOf="@+id/City"
+                        app:layout_constraintVertical_bias="0.23000002" />
+
+                    <Spinner
+                        android:id="@+id/CitySpinner"
+                        android:layout_width="183dp"
+                        android:layout_height="43dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.9"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <!--Phone-->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/PhoneFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/CityFrame"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/te3t5V5ew6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Phone:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/my_switcher4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.04"
+                        app:layout_constraintStart_toStartOf="@+id/te3t5V5ew6"
+                        app:layout_constraintTop_toBottomOf="@+id/te3t5V5ew6"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <TextView
+                            android:id="@+id/PhoneInputField"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+966544444444"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/hidden_edit_phone"
+                            android:layout_width="match_parent"
+                            android:phoneNumber="true"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter phone number" />
+                    </ViewSwitcher>
+
+                    <Button
+                        android:id="@+id/editPhoneBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:onClick="settingsEditPhone"
+                        android:text="Edit"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.38" />
+                </android.support.constraint.ConstraintLayout>
+
+
+                <!--Address-->
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/AddressFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/PhoneFrame"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:id="@+id/te3t2V5ew6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Address:"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/my_switcher5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.04"
+                        app:layout_constraintStart_toStartOf="@+id/te3t2V5ew6"
+                        app:layout_constraintTop_toBottomOf="@+id/te3t2V5ew6"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <TextView
+                            android:id="@+id/AddressInputField"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jeddah, Sultan St."
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/hidden_edit_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter your address " />
+                    </ViewSwitcher>
+
+                    <Button
+                        android:id="@+id/editAddressBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:onClick="settingsEditAddress"
+                        android:text="Edit"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.91"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.38" />
+                </android.support.constraint.ConstraintLayout>
+
+
+
+
+                <Button
+                    android:id="@+id/DoneButton"
+                    android:layout_width="match_parent"
+                    android:onClick="goToHome"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/AddressFrame"
+                    android:layout_margin="10dp"
+                    android:background="@color/orange"
+                    android:text="Done"
+                    android:textAllCaps="false"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+</RelativeLayout>

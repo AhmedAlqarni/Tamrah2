@@ -30,24 +30,24 @@ public class AccountSettingsActivity extends AppCompatActivity {
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
 
-        addRegionSpinerValues();
+        addCitySpinerValues();
         addLanguageSpinerValues();
         addCurrencySpinerValues();
     }
 
 
-    //to add all region spinner values
+    //to add all City spinner values
     // add action on selection for the spinner
-    public void addRegionSpinerValues(){
-        final Spinner spinner = (Spinner) findViewById(R.id.RegionSpinner);
+    public void addCitySpinerValues(){
+        final Spinner spinner = (Spinner) findViewById(R.id.CitySpinner);
         ArrayAdapter<String> adapter;
         List<String> list;
 
         list = new ArrayList<String>();
         list.add("Makkah");
         list.add("Riyadh");
-        list.add("Asir");
-        list.add("Qassim");
+        list.add("Jeddah");
+        list.add("Dammam");
         list.add("Tabuk");
         adapter = new ArrayAdapter<String>(getApplicationContext(),
                 android.R.layout.simple_spinner_item, list);
@@ -56,7 +56,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                               @Override
                                               public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                                                  TextView tV = (TextView) findViewById(R.id.regionInputLabel);
+                                                  TextView tV = (TextView) findViewById(R.id.CityInputLabel);
                                                   tV.setText(spinner.getSelectedItem().toString());
                                               }
 

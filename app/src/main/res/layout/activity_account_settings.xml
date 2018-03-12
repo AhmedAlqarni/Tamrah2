@@ -273,9 +273,9 @@
                         app:layout_constraintVertical_bias="0.38" />
                 </android.support.constraint.ConstraintLayout>
 
-                <!--Region-->
+                <!--City-->
                 <android.support.constraint.ConstraintLayout
-                    android:id="@+id/RegionFrame"
+                    android:id="@+id/CityFrame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/PasswordFrame"
@@ -284,13 +284,13 @@
                     android:background="@color/white">
 
                     <TextView
-                        android:id="@+id/Region"
+                        android:id="@+id/City"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="16dp"
-                        android:text="Region:"
+                        android:text="City:"
                         android:textColor="@color/black"
                         android:textSize="24sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -301,7 +301,7 @@
                         app:layout_constraintVertical_bias="0.29000002" />
 
                     <TextView
-                        android:id="@+id/regionInputLabel"
+                        android:id="@+id/CityInputLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
@@ -312,12 +312,12 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/Region"
-                        app:layout_constraintTop_toBottomOf="@+id/Region"
+                        app:layout_constraintStart_toStartOf="@+id/City"
+                        app:layout_constraintTop_toBottomOf="@+id/City"
                         app:layout_constraintVertical_bias="0.23000002" />
 
                     <Spinner
-                        android:id="@+id/RegionSpinner"
+                        android:id="@+id/CitySpinner"
                         android:layout_width="183dp"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
@@ -335,7 +335,7 @@
                     android:id="@+id/PhoneFrame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/RegionFrame"
+                    android:layout_below="@id/CityFrame"
                     android:layout_marginBottom="2dp"
                     android:background="@color/white">
 

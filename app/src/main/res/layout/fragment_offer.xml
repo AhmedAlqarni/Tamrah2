@@ -80,12 +80,12 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/Region"
+                    android:id="@+id/City"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/FirstName"
                     android:layout_below="@+id/SellerRating"
-                    android:text="Makkah Region"
+                    android:text="Makkah City"
                     android:textSize="18sp" />
 
                 <TextView
@@ -102,10 +102,10 @@
                     android:id="@+id/Description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/Region"
-                    android:layout_below="@+id/Region"
+                    android:layout_alignStart="@+id/City"
+                    android:layout_below="@+id/City"
                     android:paddingRight="5dp"
-                    android:text="I have the best dicounted Ajuah in the city , I provide delivery for other regions, thank you for buying."
+                    android:text="I have the best dicounted Ajuah in the city , I provide delivery for other Ccitys, thank you for buying."
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
