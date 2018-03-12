@@ -188,7 +188,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             //This is profile page
             case R.id.Profile:
-                startActivity(new Intent(this, AccountActivity.class));
+                Intent myProfile = new Intent(this, AccountActivity.class);
+                myProfile.putExtra("UID", "myAccount");
+                startActivity(myProfile);
                 return;
             case R.id.SearchResultPage:
                 fragmentClass = SearchResultsFrag.class;
@@ -277,6 +279,8 @@ public class MainActivity extends AppCompatActivity {
     //Button Handler
     //this is for the plus button in searchin for offer page
     public void goToAddOffer(View view) {
+        startActivity(new Intent(this, AddOfferActivity.class));
+
         buttonHandeler(AddOfferFrag.class);
     }
 

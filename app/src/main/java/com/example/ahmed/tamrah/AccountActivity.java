@@ -1,51 +1,45 @@
 package com.example.ahmed.tamrah;
 
-import android.app.FragmentManager;
-import android.os.Bundle;
-import android.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.widget.TextView;
 
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AccountActivity extends AppCompatActivity {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Fragment myFragment =null;
-        Class fragmentClass;
-
-        //home buttons
-        fragmentClass = null;
-        if(item.getItemId() == R.id.EditAccount) {
-                fragmentClass = AccountSettingsFrag.class;
-        }
-        try{
-            myFragment = (Fragment) fragmentClass.newInstance();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).commit();
-        return super.onOptionsItemSelected(item);
-    }
-
+    private User user;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account);
-        MainActivity.user.setContext(this);
 
+        //Setting the content view to a specific XML layout
+        setContentView(R.layout.activity_account);
+
+        //Checking which user to retrieve (Incomplete, needs an 'else' statement
+        String data = getIntent().getStringExtra("UID");
+        if(data.equals("myAccount")) {
+            user = MainActivity.user;
+            user.setContext(this);
+        }
+        //Put 'else' here to retrieve data of another UID
+
+
+        //Filling up the content of the XML view with legitimate information
         TextView usernameView = (TextView) findViewById(R.id.FirstName);
-        usernameView.setText(MainActivity.user.getName());
+        usernameView.setText(user.getName());
 
         TextView regionView = (TextView) findViewById(R.id.Region);
-        regionView.setText(MainActivity.user.getRegion());
+        regionView.setText(user.getRegion());
 
         TextView descriptionView = (TextView) findViewById(R.id.Description);
-        descriptionView.setText(MainActivity.user.getDescription());
+        descriptionView.setText(user.getDescription());
 
         TextView phoneView = (TextView) findViewById(R.id.Phone);
-        phoneView.setText(MainActivity.user.getPhoneNum());
+        phoneView.setText(user.getPhoneNum());
+
+        CircleImageView pictureView = (CircleImageView) findViewById(R.id.profile_image);
+        pictureView.setImageDrawable(user.getProfilePicture());
+
     }
 }
