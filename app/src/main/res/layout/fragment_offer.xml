@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/light_brown"
     android:orientation="vertical"
-    tools:context="com.example.ahmed.tamrah.Account">
+    tools:context="com.example.ahmed.tamrah.MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -111,12 +111,11 @@
 
                 <Spinner
                     android:id="@+id/QuantitiyKG"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/Phone"
                     android:layout_alignEnd="@+id/textView2"
-                    android:layout_alignStart="@+id/SellerRating"
-                    android:layout_below="@+id/Description" />
+                    android:layout_alignTop="@+id/Phone"
+                    android:layout_toEndOf="@+id/FirstName" />
 
             </RelativeLayout>
 
@@ -295,6 +294,7 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:hint="Review title"
+                    android:focusable="false"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -307,6 +307,7 @@
                     android:ems="10"
                     android:inputType="textMultiLine"
                     android:hint="Review description"
+                    android:focusable="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent" />
             </android.support.constraint.ConstraintLayout>

@@ -4,6 +4,7 @@ package com.example.ahmed.tamrah;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -38,8 +39,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.example.ahmed.tamrah.AccountActivity.getCorrectlyOrientedImage;
+import static com.example.ahmed.tamrah.AccountActivity.getOrientation;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -48,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolBar;
     private static final int SELECTED_PICTURE = 1;
     ImageView iV;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
     private SearchView searchView;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth firebaseAuth;
@@ -89,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
         client=FirebaseAuth.getInstance().getCurrentUser();
 
 
-
-
     }
 
     @Override
@@ -111,12 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.cameraIconHome:
                 //show message
-                Context context = getApplicationContext();
-                CharSequence text = "Now you go to Camera...";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                dispatchTakePictureIntent();
                 return true;
         }
         try{
@@ -296,10 +297,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RESULT_OK && resultCode ==  SELECTED_PICTURE && data != null) {
-            Uri selectedImage = data.getData();
-            ImageView imageView = (ImageView) findViewById(R.id.imageViewAdding);
-            imageView.setImageURI(selectedImage);
+        //For reading a picture from the device
+        if(requestCode ==  SELECTED_PICTURE && data!=null) {
+            Uri uri = data.getData();
+            // Show the Selected Image on ImageView
+            ImageView cV = (ImageView) findViewById(R.id.imageViewAdding);
+            getOrientation(this, uri);
+            try {
+                //profile_image
+                Bitmap loadedBitmap = getCorrectlyOrientedImage(this, uri,1000);
+                cV.setImageBitmap(loadedBitmap);
+                //cV.setImageURI(uri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //for the Camera App>>>
+            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                //mImageView.setImageBitmap(imageBitmap); Image result
+            }
+
+        }
 
         }
 
@@ -329,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         }*/
-    }
+
 
     //Button Handler main function for all buttons
     //You can use it in any button page transtions only
@@ -346,6 +366,16 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().replace(R.id.flContents,myFragment).addToBackStack( "tag" ).commit();
     }
 
+
+
+
+    //for the camera
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
 
 
 
