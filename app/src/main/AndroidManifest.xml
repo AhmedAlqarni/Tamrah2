@@ -11,8 +11,6 @@
         android:name="android.hardware.camera.any"
         android:required="true" />
 
-
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -39,9 +37,9 @@
         <activity android:name=".AccountActivity" />
         <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".AccountSettingsActivity" />
-        <activity android:name=".UpgradeAccountActivity"></activity>
+        <activity android:name=".UpgradeAccountActivity" />
+        <activity android:name=".PhoneConfirmationActivity" />
+        <activity android:name=".MessagesListActivity"></activity>
     </application>
-
-
 
 </manifest>

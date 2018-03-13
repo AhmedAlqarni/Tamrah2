@@ -202,6 +202,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.Profile:
                 startActivity(new Intent(this, AccountActivity.class));
                 return;
+            case R.id.Messages:
+                startActivity(new Intent(this, MessagesListActivity.class));
+                return;
             case R.id.SearchResultPage:
                 fragmentClass = SearchResultsFrag.class;
                 break;

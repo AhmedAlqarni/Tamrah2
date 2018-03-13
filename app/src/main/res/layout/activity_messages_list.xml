@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/light_brown"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ahmed.tamrah.MessagesListActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/AppTheme.PopupOverlay">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tamrah"
+            android:textSize="22sp"
+            android:onClick="goToHome"
+            android:clickable="true"
+            android:textColor="@color/white"
+            android:gravity = "center"
+            android:id="@+id/toolbar_title" />
+
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/light_brown"
+        android:layout_below="@id/toolBar">
+        
+        
+        
+        <!--ListBlack-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/fs"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="18dp"
+            android:background="@color/white"
+            android:paddingBottom="10dp">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/white">
+
+            </RelativeLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_imageOfferPage"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/relativeLayout"
+                android:padding="5dp"
+                android:src="@drawable/ahmed_photo"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="3dp" />
+
+            <TextView
+                android:id="@+id/FirstNameOfferPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/LastMsge"
+                android:layout_marginStart="11dp"
+                android:layout_toEndOf="@+id/profile_imageOfferPage"
+                android:text="Ahmed Alqarni"
+                android:textColor="@android:color/black"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/MsgCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/relativeLayout"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="7dp"
+                android:text="64"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="30sp" />
+
+            
+
+            <TextView
+                android:id="@+id/LastMsge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/FirstNameOfferPage"
+                android:layout_below="@+id/MsgCount"
+                android:text="Hello Friend, please answer me"
+                android:textSize="18sp" />
+
+
+        </RelativeLayout>
+        
+        
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>
