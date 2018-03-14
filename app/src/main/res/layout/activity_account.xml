@@ -129,6 +129,17 @@
                     app:backgroundTint="@android:color/darker_gray"
                     android:src="@drawable/ic_menu_camera" />
 
+                <ImageButton
+                    android:id="@+id/MessgeBtnProfile"
+                    android:layout_width="wrap_content"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/SellerRating"
+                    android:layout_alignEnd="@+id/textView2"
+                    android:layout_alignStart="@+id/SellerRating"
+                    android:layout_below="@+id/relativeLayout"
+                    app:srcCompat="@drawable/ic_email_black_24px" />
+
             </RelativeLayout>
 
             <Button
