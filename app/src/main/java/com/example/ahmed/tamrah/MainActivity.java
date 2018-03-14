@@ -19,14 +19,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.FragmentManager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser client ;
     //private FirebaseAuth;
     static User user;
+    FirebaseListAdapter<Message_Activity> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +85,34 @@ public class MainActivity extends AppCompatActivity {
         client=FirebaseAuth.getInstance().getCurrentUser();
 
 
+
+
     }
+    /*private void displayChatMessages() {
+
+        ListView listOfMessages = (ListView) findViewById(R.id.list_of_messages);
+
+        adapter = new FirebaseListAdapter<Message_Activity>(this, Message_Activity.class,
+                R.layout.message, FirebaseDatabase.getInstance().getReference().child("Message")) {
+            @Override
+            protected void populateView(View v, Message_Activity model, int position) {
+                // Get references to the views of message.xml
+                TextView messageText = (TextView) v.findViewById(R.id.message_text);
+                TextView messageUser = (TextView) v.findViewById(R.id.message_user);
+                TextView messageTime = (TextView) v.findViewById(R.id.message_time);
+
+                // Set their text
+                messageText.setText(model.getMessageText());
+                messageUser.setText(model.getMessageUser());
+
+                // Format the date before showing it
+                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
+                        model.getMessageTime()));
+            }
+        };
+
+        listOfMessages.setAdapter(adapter);
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -146,10 +178,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("k","signUp");
                 startActivity(new Intent(this,SignupActivity.class));
                 return;
+            case R.id.acitvity_message:
+               // Log.i("k","signUp");
+                if(client != null){
+                   //displayChatMessages();
+                startActivity(new Intent(this,Message_Activity.class));}
+                return;
             case R.id.logout:
                 User user = new User(this);
-
-                user.logout();
+                //user.logout();
                 mDrawerLayout.closeDrawers();
 
                 /*

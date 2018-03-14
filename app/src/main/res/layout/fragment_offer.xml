@@ -43,7 +43,7 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/FirstName"
+                    android:id="@+id/Username_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -59,8 +59,8 @@
                     android:id="@+id/SellerRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/FirstName"
-                    android:layout_alignBottom="@+id/FirstName"
+                    android:layout_alignBaseline="@+id/Username_view"
+                    android:layout_alignBottom="@+id/Username_view"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="37dp"
                     android:text="4.9"
@@ -83,7 +83,7 @@
                     android:id="@+id/Region"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/FirstName"
+                    android:layout_alignStart="@+id/Username_view"
                     android:layout_below="@+id/SellerRating"
                     android:text="Makkah Region"
                     android:textSize="18sp" />
@@ -192,7 +192,7 @@
                     app:civ_border_width="3dp" />
 
                 <TextView
-                    android:id="@+id/FirstNameOfferPage"
+                    android:id="@+id/Username_viewOfferPage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/textView4OfferPage"
@@ -229,7 +229,7 @@
                     android:id="@+id/textView4OfferPage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/FirstNameOfferPage"
+                    android:layout_alignStart="@+id/Username_viewOfferPage"
                     android:layout_below="@+id/SellerRatingOfferPage"
                     android:text="+9665444444444"
                     android:textColor="@android:color/holo_blue_dark"

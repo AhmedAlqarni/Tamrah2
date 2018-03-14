@@ -100,16 +100,21 @@ public class User {
                         }
                     }
                 });
+        confirmEmail();
+        /*
         if(firebaseAuth.getCurrentUser()!= null){
             myUID = firebaseAuth.getCurrentUser().getUid();
             DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("User").child(myUID);
             Map newPost = new HashMap();
             newPost.put("name", name);
             current_user_db.setValue(newPost);
-        }
+            */
+
     }
 
     public void login(String email, String password) {
+
+        //confirmEmail();
 
         if (TextUtils.isEmpty(email)) {
             //email is empty
@@ -122,6 +127,7 @@ public class User {
             Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
             return;
         }
+
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog.setMessage("Logging in ...");
         progressDialog.show();
@@ -131,8 +137,14 @@ public class User {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if (task.isSuccessful()) { // if logging was successfull (from firebase)
+                            if(firebaseAuth.getCurrentUser().isEmailVerified()){
                             ((Activity) context).finish();
-                            context.startActivity(new Intent(context.getApplicationContext(), MainActivity.class));
+                            context.startActivity(new Intent(context.getApplicationContext(), MainActivity.class));}
+                            else{
+                                Toast.makeText(context.getApplicationContext(), "Email is not verified", Toast.LENGTH_LONG).show();
+
+                            }
+
                         } else {
                             AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                             alertDialog.setTitle("Logging Failed");
@@ -253,6 +265,11 @@ public class User {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Email sent.");
+                            Toast.makeText(context.getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(context.getApplicationContext(), "Failed", Toast.LENGTH_LONG).show();
+
                         }
                     }
                 });

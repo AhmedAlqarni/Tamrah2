@@ -18,7 +18,7 @@ public class AccountActivity extends AppCompatActivity {
         //home buttons
         fragmentClass = null;
         if(item.getItemId() == R.id.EditAccount) {
-                fragmentClass = AccountSettingsFrag.class;
+            fragmentClass = AccountSettingsFrag.class;
         }
         try{
             myFragment = (Fragment) fragmentClass.newInstance();
