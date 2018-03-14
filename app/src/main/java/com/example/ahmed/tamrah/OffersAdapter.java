@@ -28,6 +28,8 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.MyViewHold
     }
 
 
+
+
     public OffersAdapter(List<Offer> offersList) {
         this.offerList = offersList;
     }

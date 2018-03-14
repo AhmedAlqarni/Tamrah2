@@ -6,12 +6,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-feature android:name="android.hardware.camera2" />
     <uses-feature
-        android:name="android.hardware.camera.any"
+        android:name="android.hardware.camera"
         android:required="true" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -36,11 +36,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".ForgetPasswordActivity" />
-        <activity android:name=".AccountSettingsActivity" />
-        <activity android:name=".UpgradeAccountActivity" />
-        <activity android:name=".PhoneConfirmationActivity" />
-        <activity android:name=".MessagesListActivity"></activity>
-        <activity android:name=".AddOfferActivity"/>
+        <activity android:name=".Message_Activity"></activity>
     </application>
 
 </manifest>

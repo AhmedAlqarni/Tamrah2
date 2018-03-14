@@ -6,10 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.media.Image;
-import android.os.AsyncTask;
-import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,14 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.ContentValues.TAG;
 
@@ -41,40 +33,35 @@ import static android.content.ContentValues.TAG;
  * Created by khalidalnamlah on 3/9/18.
  */
 
-public class User extends AsyncTask<String, Void, Drawable> {
+public class User {
     private String name;
     private String region;
     private String description;
     private String phoneNum;
-    private Drawable profilePicture;
     private String address;
+    private Image profileImage;
+    private Context context;
+    private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
+    private FirebaseAuth.AuthStateListener firebaseAuthListner;
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
     private Map<String, Object> userInfo;
     private String myUID;
 
 
-    public User() {
-        /*initiated by anyone who want's to
-        1- Sign up
-        2- Sign in
-        */
-        //getUserProfile("rzjZ4oY3gMOklf2uBfIfJiEIQSn2");
+    public User(Context context) {
+        this.context = context;
+        progressDialog = new ProgressDialog(context);
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        //myUID = user.getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        getUserProfile("VUlTKvNnDKfxPhanW38or1TYQiS2");
     }
 
-
-    public User(Map<String, Object> userInfo) {
-        name = userInfo.get("name").toString();
-        region = userInfo.get("region").toString();
-        description = userInfo.get("description").toString();
-        phoneNum = userInfo.get("phoneNum").toString();
-        profilePicture = doInBackground((String) userInfo.get("profileImage"));
-
-    }
-
-    public void register(String email, String password, String name, final Context context) {
+    public void register(String email, String password, String name) {
         if (TextUtils.isEmpty(email)) {
             //email is empty
             Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
@@ -85,9 +72,7 @@ public class User extends AsyncTask<String, Void, Drawable> {
             //password is empty
             Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
         }
-
         firebaseAuth = FirebaseAuth.getInstance();
-        final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Registering ...");
         progressDialog.show();
         firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -115,16 +100,21 @@ public class User extends AsyncTask<String, Void, Drawable> {
                         }
                     }
                 });
-        if (firebaseAuth.getCurrentUser() != null) {
+        confirmEmail();
+        /*
+        if(firebaseAuth.getCurrentUser()!= null){
             myUID = firebaseAuth.getCurrentUser().getUid();
             DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("User").child(myUID);
             Map newPost = new HashMap();
             newPost.put("name", name);
             current_user_db.setValue(newPost);
-        }
+            */
+
     }
 
-    public void login(String email, String password, final Context context) {
+    public void login(String email, String password) {
+
+        //confirmEmail();
 
         if (TextUtils.isEmpty(email)) {
             //email is empty
@@ -137,8 +127,8 @@ public class User extends AsyncTask<String, Void, Drawable> {
             Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
             return;
         }
+
         firebaseAuth = FirebaseAuth.getInstance();
-        final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Logging in ...");
         progressDialog.show();
         firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -147,8 +137,14 @@ public class User extends AsyncTask<String, Void, Drawable> {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if (task.isSuccessful()) { // if logging was successfull (from firebase)
+                            if(firebaseAuth.getCurrentUser().isEmailVerified()){
                             ((Activity) context).finish();
-                            context.startActivity(new Intent(context.getApplicationContext(), MainActivity.class));
+                            context.startActivity(new Intent(context.getApplicationContext(), MainActivity.class));}
+                            else{
+                                Toast.makeText(context.getApplicationContext(), "Email is not verified", Toast.LENGTH_LONG).show();
+
+                            }
+
                         } else {
                             AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                             alertDialog.setTitle("Logging Failed");
@@ -167,7 +163,7 @@ public class User extends AsyncTask<String, Void, Drawable> {
 
     }
 
-    public void logout(final Context context) {
+    public void logout() {
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
         alertDialog.setTitle("Logout");
         alertDialog.setMessage("You are signed in as: " + user.getEmail());
@@ -198,33 +194,35 @@ public class User extends AsyncTask<String, Void, Drawable> {
 
     }
 
-    public void getUserProfile(final String UID, final Context context) {
-        databaseReference = FirebaseDatabase.getInstance().getReference("User");
-        final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Retrieving Profile . . .");
-        progressDialog.show();
+    public void getUserProfile(final String UID) {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("User");
         databaseReference.addValueEventListener(new ValueEventListener() {
-            //This will locate the user based on the given User ID (UID)
+
+            //This will be called when there is a change in the User child
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dataSnapshot = dataSnapshot.child(UID);
                 userInfo = ((Map<String, Object>) dataSnapshot.getValue());
+                //Log.i("1",);
                 name = userInfo.get("name").toString();
                 region = userInfo.get("region").toString();
                 description = userInfo.get("description").toString();
                 phoneNum = userInfo.get("phoneNum").toString();
-                profilePicture = doInBackground((String) userInfo.get("profileImage"));
-                progressDialog.dismiss();
+                //profileImage = ((Image) userInfo.get("profileImage"));
+
                 Log.i("f", name);
                 Log.i("f", region);
                 Log.i("f", description);
                 Log.i("f", phoneNum);
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
     }
 
     public void updateProfile() {
@@ -267,6 +265,11 @@ public class User extends AsyncTask<String, Void, Drawable> {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Email sent.");
+                            Toast.makeText(context.getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(context.getApplicationContext(), "Failed", Toast.LENGTH_LONG).show();
+
                         }
                     }
                 });
@@ -291,6 +294,10 @@ public class User extends AsyncTask<String, Void, Drawable> {
         return name;
     }
 
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
     public String getRegion() {
         return region;
     }
@@ -301,23 +308,5 @@ public class User extends AsyncTask<String, Void, Drawable> {
 
     public String getPhoneNum() {
         return phoneNum;
-    }
-
-    public Drawable getProfilePicture() {
-        return profilePicture;
-    }
-
-    @Override
-    // This method is to get the image after its URL
-    // has been given from Firebase.
-    protected Drawable doInBackground(String... urls) {
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        try {
-            return Drawable.createFromStream((InputStream) new URL(urls[0]).getContent(), "Firebase");
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 }
