@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,11 +30,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser client ;
     //private FirebaseAuth;
+    FirebaseListAdapter<Message_Activity> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +148,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("k", "signUp");
                 startActivity(new Intent(this, SignupActivity.class));
                 return;
+           /* case R.id.acitvity_message:
+               // Log.i("k","signUp");
+                if(client != null){
+                   //displayChatMessages();
+                startActivity(new Intent(this,Message_Activity.class));}
+                return;*/
             case R.id.logout:
                 mDrawerLayout.closeDrawers();
                 //logout code goes here
@@ -265,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        
+
 
     //Button Handler main function for all buttons
     //You can use it in any button page transtions only

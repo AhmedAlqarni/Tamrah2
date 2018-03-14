@@ -45,9 +45,9 @@ import static android.provider.MediaStore.Images.Media.getBitmap;
 
 
 public class AccountActivity extends AppCompatActivity {
-    private static final int SELECTED_PICTURE = 1;
-    private User user = null;
-    private DatabaseReference databaseReference;
+private static final int SELECTED_PICTURE = 1;
+    private User user =null;
+        private DatabaseReference databaseReference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,10 +96,7 @@ public class AccountActivity extends AppCompatActivity {
         phoneView.setText(user.getPhoneNum());
         pictureView.setImageDrawable(user.getProfilePicture());
     }
-
-
-
-    //Button Handler
+//Button Handler
     //for selecting profile image in the Profile page
     public void changeProfilePictureBtn(View view) {
         Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -243,4 +240,3 @@ public class AccountActivity extends AppCompatActivity {
 
 
 }
-

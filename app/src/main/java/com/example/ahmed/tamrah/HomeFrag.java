@@ -4,9 +4,18 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+//import com.firebase.ui.database.FirebaseRecyclerAdapter;
+
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 /**
@@ -26,6 +35,11 @@ public class HomeFrag extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    //Createted by Khalid
+    private SearchView searchView ;
+    private Button searchButton;
+    private DatabaseReference offerRef;
 
 
     private OnFragmentInteractionListener mListener;
@@ -63,6 +77,19 @@ public class HomeFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        //Created by Khalid ...
+        View view  = inflater.inflate(R.layout.fragment_home, container, false);
+        searchView = (SearchView)  view.findViewById(R.id.search_view);
+        searchButton = (Button) view.findViewById(R.id.search_button);
+        offerRef = FirebaseDatabase.getInstance().getReference().child("Offer");
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+               // firebaseOfferSearch();
+            }
+
+        });
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
@@ -72,6 +99,21 @@ public class HomeFrag extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
+
+    //Created by Khalid ...
+    /*
+    public void firebaseOfferSearch(){
+        FirebaseRecyclerAdapter<Offer,OffersAdapter> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Offer, OffersAdapter>(
+                Offer.class,
+                R.layout.search_result_format,
+                OffersAdapter.class,
+        ) {
+            @Override
+            protected void populateViewHolder(OffersAdapter viewHolder, Offer model, int position) {
+
+            }
+        };
+    }*/
 
     @Override
     public void onAttach(Context context) {

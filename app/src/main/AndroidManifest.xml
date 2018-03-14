@@ -8,7 +8,9 @@
 
     <uses-feature android:name="android.hardware.camera2" />
     <uses-feature
-        android:name="android.hardware.camera.any"
+        android:name="android.hardware.camera.any"></uses-feature>
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -41,6 +43,7 @@
         <activity android:name=".PhoneConfirmationActivity" />
         <activity android:name=".MessagesListActivity"></activity>
         <activity android:name=".AddOfferActivity"/>
+        <activity android:name=".Message_Activity"></activity>
     </application>
 
 </manifest>
