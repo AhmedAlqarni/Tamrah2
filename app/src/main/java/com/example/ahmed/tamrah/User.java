@@ -61,56 +61,6 @@ public class User {
         getUserProfile("VUlTKvNnDKfxPhanW38or1TYQiS2");
     }
 
-    public void register(String email, String password, String name) {
-        if (TextUtils.isEmpty(email)) {
-            //email is empty
-            Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (TextUtils.isEmpty(password)) {
-            //password is empty
-            Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
-        }
-        firebaseAuth = FirebaseAuth.getInstance();
-        progressDialog.setMessage("Registering ...");
-        progressDialog.show();
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) { //CASTING
-                        if (task.isSuccessful()) {
-                            progressDialog.dismiss();
-                            Toast.makeText(context.getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-
-                            // Later
-                            //loginAfterRegister(email,password);
-                        } else {
-                            progressDialog.dismiss();
-                            AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-                            alertDialog.setTitle("Registering Failed");
-                            alertDialog.setMessage("Invalid email or password");
-                            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                            alertDialog.show();
-                        }
-                    }
-                });
-        confirmEmail();
-        /*
-        if(firebaseAuth.getCurrentUser()!= null){
-            myUID = firebaseAuth.getCurrentUser().getUid();
-            DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("User").child(myUID);
-            Map newPost = new HashMap();
-            newPost.put("name", name);
-            current_user_db.setValue(newPost);
-            */
-
-    }
 
     public void login(String email, String password) {
 
@@ -240,20 +190,6 @@ public class User {
 
     }
 
-    public void confirmEmail() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
-
-        user.sendEmailVerification()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "Email sent.");
-                        }
-                    }
-                });
-    }
 
     public void resetPassword(String emailAddress) {
         firebaseAuth = FirebaseAuth.getInstance();

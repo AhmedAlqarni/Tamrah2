@@ -1,7 +1,9 @@
 package com.example.ahmed.tamrah;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -20,6 +22,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import static android.content.ContentValues.TAG;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -35,6 +40,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser FBUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,51 +63,42 @@ public class SignupActivity extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                registerUser();
+                register(editTextEmail.getText().toString().trim(), editTextPassword.getText().toString().trim(),
+                        textViewName.getText().toString().trim());
             }
 
         });
 
     }
 
-    private void registerUser(){
-        User user = new User();
-        user.register(editTextEmail.getText().toString().trim(),
-                editTextPassword.getText().toString().trim(),
-                textViewName.getText().toString().trim(),
-                this);
-
-        /*
-        Log.i("q","160");
-        String email, password;
-        email = editTextEmail.getText().toString().trim();
-        password = editTextPassword.getText().toString().trim();
-
-        if(TextUtils.isEmpty(email)){
+    public void register(String email, String password, String name) {
+        final Context context = this;
+        if (TextUtils.isEmpty(email)) {
             //email is empty
-            Toast.makeText(getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Please enter your email ", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if(TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(password)) {
             //password is empty
-            Toast.makeText(getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
         }
-
+        firebaseAuth = FirebaseAuth.getInstance();
         progressDialog.setMessage("Registering ...");
         progressDialog.show();
-        firebaseAuth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener( this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(@NonNull Task<AuthResult> task) { //CASTING
                         if (task.isSuccessful()) {
                             progressDialog.dismiss();
-                            Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                            loginAfterRegister();
-                        }
-                        else{
+                            Toast.makeText(context.getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+
+                            // Later
+                            //loginAfterRegister(email,password);
+                        } else {
                             progressDialog.dismiss();
-                            AlertDialog alertDialog = new AlertDialog.Builder(SignupActivity.this).create();
+                            AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                             alertDialog.setTitle("Registering Failed");
                             alertDialog.setMessage("Invalid email or password");
                             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -114,25 +111,24 @@ public class SignupActivity extends AppCompatActivity {
                         }
                     }
                 });
-                */
-
-
+        confirmEmail();
     }
-    /*
-    public void  loginAfterRegister(){ // After the user has registered, he will be signed in automatically
-        String email = editTextEmail.getText().toString().trim(); //convert editText object to string
-        String password = editTextPassword.getText().toString().trim();//convert editText object to string
-        firebaseAuth.signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
+    public void confirmEmail() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        FBUser = firebaseAuth.getCurrentUser();
+
+        FBUser.sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        finish();
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Email sent.");
+                        }
                     }
                 });
-
     }
-    */
+
 
     public void hasAccount(View view) {
         finish();
