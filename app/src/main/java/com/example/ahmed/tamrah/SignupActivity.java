@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,8 @@ public class SignupActivity extends AppCompatActivity {
     private Button buttonRegister;
     private EditText editTextEmail;
     private EditText editTextPassword;
+    private Toolbar toolBar;
+
     private TextView textViewSignIn;
     private TextView textViewName;
 
@@ -37,6 +40,10 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+        //ToolBar
+        toolBar = (Toolbar) findViewById(R.id.toolBar);
+        setSupportActionBar(toolBar);
 
         //Auth code (khalid)
         firebaseAuth = FirebaseAuth.getInstance();
@@ -129,5 +136,11 @@ public class SignupActivity extends AppCompatActivity {
     public void hasAccount(View view) {
         finish();
         startActivity(new Intent(this,LoginActivity.class));
+    }
+
+    //Button Handler
+    //This is to make the app title clickable
+    public void goToHome(View view) {
+        finish();
     }
 }

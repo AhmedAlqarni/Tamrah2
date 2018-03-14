@@ -9,10 +9,8 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -35,6 +33,9 @@
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".AccountActivity" />
+        <activity android:name=".ForgetPasswordActivity" />
+        <activity android:name=".AccountSettingsActivity" />
+        <activity android:name=".UpgradeAccountActivity"></activity>
         <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".AddOfferActivity"></activity>
     </application>
