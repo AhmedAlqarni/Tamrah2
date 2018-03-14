@@ -1,6 +1,7 @@
 package com.example.ahmed.tamrah;
 
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,9 +13,9 @@ import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.media.Image;
 import android.net.Uri;
-
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,7 +26,14 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.File;
+import java.util.Map;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -35,64 +43,67 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.provider.MediaStore.Images.Media.getBitmap;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AccountActivity extends AppCompatActivity {
     private static final int SELECTED_PICTURE = 1;
-    ImageView iV;
-    CircleImageView cV ;
+    private User user = null;
+    private DatabaseReference databaseReference;
 
-
-
-    private User user;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //Setting the content view to a specific XML layout
-        setContentView(R.layout.activity_account);
-        MainActivity.user.setContext(this);
+        setContentView(R.layout.activity_account);//Setting the content view to a specific XML layout
+        retrieveProfile(getIntent().getStringExtra("UID"));
 
         //add spinner values
         addRateSpinerValues();
-
-
-        // profile image area
-        CircleImageView cV = (CircleImageView) findViewById(R.id.profile_image);
-
-        //Checking which user to retrieve (Incomplete, needs an 'else' statement
-        String data = getIntent().getStringExtra("UID");
-        if(data.equals("myAccount")) {
-            user = MainActivity.user;
-            user.setContext(this);
-        }
-        //Put 'else' here to retrieve data of another UID
-
-
-        //Filling up the content of the XML view with legitimate information
-        TextView usernameView = (TextView) findViewById(R.id.FirstName);
-        usernameView.setText(user.getName());
-
-        TextView regionView = (TextView) findViewById(R.id.Region);
-        regionView.setText(user.getRegion());
-
-        TextView descriptionView = (TextView) findViewById(R.id.Description);
-        descriptionView.setText(user.getDescription());
-
-        TextView phoneView = (TextView) findViewById(R.id.Phone);
-        phoneView.setText(user.getPhoneNum());
-
-        CircleImageView pictureView = (CircleImageView) findViewById(R.id.profile_image);
-        pictureView.setImageDrawable(user.getProfilePicture());
-
     }
+
+
+    public void retrieveProfile(final String UID) {
+        databaseReference = FirebaseDatabase.getInstance().getReference("User");
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Retrieving Profile . . .");
+        progressDialog.show();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            //This will locate the user based on the given User ID (UID)
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                dataSnapshot = dataSnapshot.child(UID);
+                Map<String, Object> userInfo;
+                userInfo = ((Map<String, Object>) dataSnapshot.getValue());
+                user = new User(userInfo);
+                updateContext();
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+    private void updateContext() {
+        TextView usernameView = (TextView) findViewById(R.id.FirstName);
+        TextView regionView = (TextView) findViewById(R.id.Region);
+        TextView descriptionView = (TextView) findViewById(R.id.Description);
+        TextView phoneView = (TextView) findViewById(R.id.Phone);
+        CircleImageView pictureView = (CircleImageView) findViewById(R.id.profile_image);
+
+        usernameView.setText(user.getName());
+        regionView.setText(user.getRegion());
+        descriptionView.setText(user.getDescription());
+        phoneView.setText(user.getPhoneNum());
+        pictureView.setImageDrawable(user.getProfilePicture());
+    }
+
+
 
     //Button Handler
     //for selecting profile image in the Profile page
-    public void changeProfilePictureBtn(View view){
+    public void changeProfilePictureBtn(View view) {
         Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(i,SELECTED_PICTURE);
-
+        startActivityForResult(i, SELECTED_PICTURE);
 
 
     }
@@ -102,7 +113,7 @@ public class AccountActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //For reading a picture from the device
-        if(requestCode ==  SELECTED_PICTURE && data!=null) {
+        if (requestCode == SELECTED_PICTURE && data != null) {
             Uri uri = data.getData();
             // Show the Selected Image on ImageView
             CircleImageView cV = (CircleImageView) findViewById(R.id.profile_image);
@@ -226,6 +237,7 @@ public class AccountActivity extends AppCompatActivity {
 
 
     }
+
 
 
 

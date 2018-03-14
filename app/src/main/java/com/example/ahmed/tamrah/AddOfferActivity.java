@@ -1,7 +1,11 @@
 package com.example.ahmed.tamrah;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.google.android.gms.common.SignInButton;
@@ -23,9 +28,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import static com.example.ahmed.tamrah.AccountActivity.getCorrectlyOrientedImage;
+import static com.example.ahmed.tamrah.AccountActivity.getOrientation;
+
 public class AddOfferActivity extends AppCompatActivity {
 
     private Offer offer;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int SELECTED_PICTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +77,42 @@ public class AddOfferActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    //For reading a picture from the device
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //For reading a picture from the deviceif(requestCode ==   SELECTED_PICTURE && data != null) {
+        Uri uri = data.getData();
+        // Show the Selected Image onImageView ImageView cV = (ImageView) findViewById(R.id.imageViewAdding);
+        ImageView cV = (ImageView) findViewById(R.id.imageViewAdding);
+        getOrientation(this, uri);
+        try {
+            //profile_image
+            Bitmap loadedBitmap = getCorrectlyOrientedImage(this, uri,1000);
+            cV.setImageBitmap(loadedBitmap);
+            //cV.setImageURI(uri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //for the Camera App>>>
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            //mImageView.setImageBitmap(imageBitmap); Image result
+        }
+
+    }
+
+
+    //Button Handler
+    //for selecting image in the Add OfferFrag page
+    public void selectPictureBtn(View view) {
+        Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(i, SELECTED_PICTURE);
 
     }
 }

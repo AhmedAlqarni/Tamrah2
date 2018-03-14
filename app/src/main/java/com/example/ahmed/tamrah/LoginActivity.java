@@ -42,19 +42,11 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //ToolBar
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
 
-
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
-
-       // if(firebaseAuth.getCurrentUser() != null){ To know if the user is logged in or not
-            //finish();
-         //   startActivity(new Intent(getApplicationContext(),SignupActivity.class));
-          //  finish();
-      //  }
 
         editTextEmail = (EditText) findViewById(R.id.input_email);
         editTextpassword = (EditText) findViewById(R.id.input_password);
@@ -67,73 +59,11 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
         if (view == loginButton){
             login();
         }
-
-    }
-
-
-    public void  loginAfterRegister(String email,String password){
-
-        firebaseAuth.signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        finish();
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    }
-                });
-
     }
 
     private void login() {
-        User user = new User(this);
-        user.login(editTextEmail.getText().toString().trim(),editTextpassword.getText().toString().trim());
-
-        /*
-        String email = editTextEmail.getText().toString().trim(); //convert editText object to string
-        String password = editTextpassword.getText().toString().trim();//convert editText object to string
-
-        if(TextUtils.isEmpty(email)){
-            //email is empty
-            Toast.makeText(getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if(TextUtils.isEmpty(password)){
-            //password is empty
-            Toast.makeText(getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
-        }
-
-        progressDialog.setMessage("Logging in ...");
-        progressDialog.show();
-        firebaseAuth.signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
-                        if(task.isSuccessful()){ // if logging was successfull (from firebase)
-                            finish();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        }
-                        else{
-                            AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
-                            alertDialog.setTitle("Logging Failed");
-                            alertDialog.setMessage("Invalid email or password");
-                            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                            alertDialog.show();
-                            Log.i("g","faile"); // failure in logging in
-                        }
-                    }
-                });*/
-
-
-    }
-    public FirebaseAuth getFirebaseAuth(){
-        return firebaseAuth;
+        User user = (User) getIntent().getSerializableExtra("User");
+        user.login(editTextEmail.getText().toString().trim(),editTextpassword.getText().toString().trim(), this);
     }
 
     public void noAccount(View view) {
@@ -151,12 +81,5 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
     public void goToHome(View view) {
         finish();
     }
-
-
-
-
-
-
-
 
 }

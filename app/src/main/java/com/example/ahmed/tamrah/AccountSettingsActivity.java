@@ -38,7 +38,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
     //to add all City spinner values
     // add action on selection for the spinner
-    public void addCitySpinerValues(){
+    public void addCitySpinerValues() {
         final Spinner spinner = (Spinner) findViewById(R.id.CitySpinner);
         ArrayAdapter<String> adapter;
         List<String> list;
@@ -54,24 +54,24 @@ public class AccountSettingsActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                              @Override
-                                              public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                                                  TextView tV = (TextView) findViewById(R.id.CityInputLabel);
-                                                  tV.setText(spinner.getSelectedItem().toString());
-                                              }
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                TextView tV = (TextView) findViewById(R.id.CityInputLabel);
+                tV.setText(spinner.getSelectedItem().toString());
+            }
 
-                                              @Override
-                                              public void onNothingSelected(AdapterView<?> parent) {
-                                                  return;
-                                              }
-                                          });
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                return;
+            }
+        });
 
     }
 
 
     //to add all Language spinner values
     // add action on selection for the spinner
-    public void addLanguageSpinerValues(){
+    public void addLanguageSpinerValues() {
         final Spinner spinner = (Spinner) findViewById(R.id.LanguageSpinner);
         ArrayAdapter<String> adapter;
         List<String> list;
@@ -99,10 +99,9 @@ public class AccountSettingsActivity extends AppCompatActivity {
     }
 
 
-
     //to add all Currency spinner values
     // add action on selection for the spinner
-    public void addCurrencySpinerValues(){
+    public void addCurrencySpinerValues() {
         final Spinner spinner = (Spinner) findViewById(R.id.CurrencySpinner);
         ArrayAdapter<String> adapter;
         List<String> list;
@@ -135,17 +134,17 @@ public class AccountSettingsActivity extends AppCompatActivity {
     //Settings page text switcher
     //Name editing
     public void settingsEditName(View view) {
-        Button b =  (Button) findViewById(R.id.button32);
-        if(b.getText().equals("DONE")){
+        Button b = (Button) findViewById(R.id.button32);
+        if (b.getText().equals("DONE")) {
             b.setText("EDIT");
-            EditText edit =  (EditText) findViewById(R.id.hidden_edit_view);
+            EditText edit = (EditText) findViewById(R.id.hidden_edit_view);
             TextView tV = (TextView) findViewById(R.id.nameInput23);
             tV.setText(edit.getText().toString());
 
-        }else{
+        } else {
             b.setText("DONE");
             TextView tV = (TextView) findViewById(R.id.nameInput23);
-            EditText edit =  (EditText) findViewById(R.id.hidden_edit_view);
+            EditText edit = (EditText) findViewById(R.id.hidden_edit_view);
             edit.setText(tV.getText());
 
 
@@ -159,17 +158,17 @@ public class AccountSettingsActivity extends AppCompatActivity {
     //Settings page text switcher
     //Email editing
     public void settingsEditEmail(View view) {
-        Button b =  (Button) findViewById(R.id.editEmailBtn);
-        if(b.getText().equals("DONE")){
+        Button b = (Button) findViewById(R.id.editEmailBtn);
+        if (b.getText().equals("DONE")) {
             b.setText("EDIT");
-            EditText edit =  (EditText) findViewById(R.id.hidden_edit_email);
+            EditText edit = (EditText) findViewById(R.id.hidden_edit_email);
             TextView tV = (TextView) findViewById(R.id.EmailInput);
             tV.setText(edit.getText().toString());
 
-        }else{
+        } else {
             b.setText("DONE");
             TextView tV = (TextView) findViewById(R.id.EmailInput);
-            EditText edit =  (EditText) findViewById(R.id.hidden_edit_email);
+            EditText edit = (EditText) findViewById(R.id.hidden_edit_email);
             edit.setText(tV.getText());
 
         }
@@ -182,14 +181,14 @@ public class AccountSettingsActivity extends AppCompatActivity {
     //Settings page text switcher
     //password editing
     public void settingsEditPassword(View view) {
-        Button b =  (Button) findViewById(R.id.editPasswordBtn);
-        if(b.getText().equals("DONE")){
+        Button b = (Button) findViewById(R.id.editPasswordBtn);
+        if (b.getText().equals("DONE")) {
             b.setText("EDIT");
-            EditText edit =  (EditText) findViewById(R.id.hidden_edit_password);
+            EditText edit = (EditText) findViewById(R.id.hidden_edit_password);
             TextView tV = (TextView) findViewById(R.id.PasswordInputField);
             tV.setText(edit.getText().toString());
 
-        }else{
+        } else {
             b.setText("DONE");
 
         }
@@ -202,17 +201,17 @@ public class AccountSettingsActivity extends AppCompatActivity {
     //Settings page text switcher
     //phone editing
     public void settingsEditPhone(View view) {
-        Button b =  (Button) findViewById(R.id.editPhoneBtn);
-        if(b.getText().equals("DONE")){
+        Button b = (Button) findViewById(R.id.editPhoneBtn);
+        if (b.getText().equals("DONE")) {
             b.setText("EDIT");
-            EditText edit =  (EditText) findViewById(R.id.hidden_edit_phone);
+            EditText edit = (EditText) findViewById(R.id.hidden_edit_phone);
             TextView tV = (TextView) findViewById(R.id.PhoneInputField);
             tV.setText(edit.getText().toString());
 
-        }else{
+        } else {
             b.setText("DONE");
             TextView tV = (TextView) findViewById(R.id.PhoneInputField);
-            EditText edit =  (EditText) findViewById(R.id.hidden_edit_phone);
+            EditText edit = (EditText) findViewById(R.id.hidden_edit_phone);
             edit.setText(tV.getText());
 
         }
@@ -225,18 +224,18 @@ public class AccountSettingsActivity extends AppCompatActivity {
     //Settings page text switcher
     //address editing
     public void settingsEditAddress(View view) {
-        Button b =  (Button) findViewById(R.id.editAddressBtn);
-        if(b.getText().equals("DONE")){
+        Button b = (Button) findViewById(R.id.editAddressBtn);
+        if (b.getText().equals("DONE")) {
             b.setText("EDIT");
-            EditText edit =  (EditText) findViewById(R.id.hidden_edit_address);
+            EditText edit = (EditText) findViewById(R.id.hidden_edit_address);
             TextView tV = (TextView) findViewById(R.id.AddressInputField);
             tV.setText(edit.getText().toString());
 
 
-        }else{
+        } else {
             b.setText("DONE");
             TextView tV = (TextView) findViewById(R.id.AddressInputField);
-            EditText edit =  (EditText) findViewById(R.id.hidden_edit_address);
+            EditText edit = (EditText) findViewById(R.id.hidden_edit_address);
             edit.setText(tV.getText());
 
         }
@@ -249,18 +248,18 @@ public class AccountSettingsActivity extends AppCompatActivity {
     //Settings page text switcher
     //bio editing
     public void settingsEditBio(View view) {
-        Button b =  (Button) findViewById(R.id.editBioBtn);
-        if(b.getText().equals("DONE")){
+        Button b = (Button) findViewById(R.id.editBioBtn);
+        if (b.getText().equals("DONE")) {
             b.setText("EDIT");
-            EditText edit =  (EditText) findViewById(R.id.hidden_edit_Bio);
+            EditText edit = (EditText) findViewById(R.id.hidden_edit_Bio);
             TextView tV = (TextView) findViewById(R.id.BioInputField);
             tV.setText(edit.getText().toString());
 
 
-        }else{
+        } else {
             b.setText("DONE");
             TextView tV = (TextView) findViewById(R.id.BioInputField);
-            EditText edit =  (EditText) findViewById(R.id.hidden_edit_Bio);
+            EditText edit = (EditText) findViewById(R.id.hidden_edit_Bio);
             edit.setText(tV.getText());
 
         }
@@ -269,10 +268,6 @@ public class AccountSettingsActivity extends AppCompatActivity {
         TextView myTV = (TextView) switcher.findViewById(R.id.BioInputField);
 
     }
-
-
-
-
 
 
     //Button Handler

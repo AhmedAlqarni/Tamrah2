@@ -65,10 +65,11 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void registerUser(){
-        User user = new User(this);
+        User user = new User();
         user.register(editTextEmail.getText().toString().trim(),
                 editTextPassword.getText().toString().trim(),
-                textViewName.getText().toString().trim());
+                textViewName.getText().toString().trim(),
+                this);
 
         /*
         Log.i("q","160");
