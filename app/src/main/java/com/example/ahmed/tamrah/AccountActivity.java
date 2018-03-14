@@ -54,7 +54,6 @@ private static final int SELECTED_PICTURE = 1;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);//Setting the content view to a specific XML layout
         retrieveProfile(getIntent().getStringExtra("UID"));
-
         //add spinner values
         addRateSpinerValues();
     }
@@ -72,7 +71,7 @@ private static final int SELECTED_PICTURE = 1;
                 dataSnapshot = dataSnapshot.child(UID);
                 Map<String, Object> userInfo;
                 userInfo = ((Map<String, Object>) dataSnapshot.getValue());
-                user = new User(userInfo);
+                user = new User();
                 updateContext();
                 progressDialog.dismiss();
             }
@@ -94,7 +93,7 @@ private static final int SELECTED_PICTURE = 1;
         regionView.setText(user.getRegion());
         descriptionView.setText(user.getDescription());
         phoneView.setText(user.getPhoneNum());
-        pictureView.setImageDrawable(user.getProfilePicture());
+        //pictureView.setImageDrawable(user.getProfilePicture());
     }
 //Button Handler
     //for selecting profile image in the Profile page

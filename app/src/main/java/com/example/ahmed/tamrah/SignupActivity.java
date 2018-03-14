@@ -23,6 +23,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
@@ -38,7 +43,6 @@ public class SignupActivity extends AppCompatActivity {
     private TextView textViewSignIn;
     private TextView textViewName;
 
-    private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser FBUser;
 
@@ -51,18 +55,13 @@ public class SignupActivity extends AppCompatActivity {
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
 
-        //Auth code (khalid)
-        firebaseAuth = FirebaseAuth.getInstance();
-        progressDialog = new ProgressDialog(this);
         buttonRegister = (Button) findViewById(R.id.btn_signup);
         editTextEmail = (EditText) findViewById(R.id.input_email);
         editTextPassword = (EditText) findViewById(R.id.input_password);
         textViewSignIn = (TextView) findViewById(R.id.link_login); //???
         textViewName = (TextView) findViewById(R.id.input_name);
-        Log.i("k","108");
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Code here executes on main thread after user presses button
                 register(editTextEmail.getText().toString().trim(), editTextPassword.getText().toString().trim(),
                         textViewName.getText().toString().trim());
             }
@@ -71,7 +70,8 @@ public class SignupActivity extends AppCompatActivity {
 
     }
 
-    public void register(String email, String password, String name) {
+    public void register(String email, String password, final String name) {
+
         final Context context = this;
         if (TextUtils.isEmpty(email)) {
             //email is empty
@@ -83,16 +83,20 @@ public class SignupActivity extends AppCompatActivity {
             //password is empty
             Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
         }
+
         firebaseAuth = FirebaseAuth.getInstance();
+        final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Registering ...");
         progressDialog.show();
         firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) { //CASTING
                         if (task.isSuccessful()) {
                             progressDialog.dismiss();
                             Toast.makeText(context.getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                            confirmEmail();
+                            makeUserNode(name);
 
                             // Later
                             //loginAfterRegister(email,password);
@@ -111,13 +115,11 @@ public class SignupActivity extends AppCompatActivity {
                         }
                     }
                 });
-        confirmEmail();
     }
 
     public void confirmEmail() {
         firebaseAuth = FirebaseAuth.getInstance();
         FBUser = firebaseAuth.getCurrentUser();
-
         FBUser.sendEmailVerification()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -129,6 +131,13 @@ public class SignupActivity extends AppCompatActivity {
                 });
     }
 
+    public void makeUserNode(String name){
+        String UID = firebaseAuth.getCurrentUser().getUid();
+        DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference().child("User").child(UID);
+        Map userNode = new HashMap();
+        userNode.put("name", name);
+        DBRef.setValue(userNode);
+    }
 
     public void hasAccount(View view) {
         finish();

@@ -1,9 +1,11 @@
 package com.example.ahmed.tamrah;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -35,18 +37,16 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
     private Toolbar toolBar;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth ;
-
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        user = (User) getIntent().getSerializableExtra("User");
 
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
-
-        firebaseAuth = FirebaseAuth.getInstance();
-        progressDialog = new ProgressDialog(this);
 
         editTextEmail = (EditText) findViewById(R.id.input_email);
         editTextpassword = (EditText) findViewById(R.id.input_password);
@@ -57,13 +57,58 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if (view == loginButton){
-            login();
+            login(editTextEmail.getText().toString().trim(),editTextpassword.getText().toString().trim());
         }
     }
 
-    private void login() {
-        User user = (User) getIntent().getSerializableExtra("User");
-        user.login(editTextEmail.getText().toString().trim(),editTextpassword.getText().toString().trim(), this);
+    public void login(String email, String password) {
+        final Context context= this;
+        if (TextUtils.isEmpty(email)) {
+            //email is empty
+            Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            //password is empty
+            Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Logging in ...");
+        progressDialog.show();
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressDialog.dismiss();
+                        if (task.isSuccessful()) { // if logging was successfull (from firebase)
+                            if(firebaseAuth.getCurrentUser().isEmailVerified()){
+                                ((Activity) context).finish();
+                                context.startActivity(new Intent(context.getApplicationContext(), MainActivity.class));}
+                            else{
+                                Toast.makeText(context.getApplicationContext(), "Email is not verified", Toast.LENGTH_LONG).show();
+
+                            }
+
+                        } else {
+                            AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+                            alertDialog.setTitle("Logging Failed");
+                            alertDialog.setMessage("Invalid email or password");
+                            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            alertDialog.show();
+                            Log.i("g", "faile"); // failure in logging in
+                        }
+                    }
+                });
+
     }
 
     public void noAccount(View view) {

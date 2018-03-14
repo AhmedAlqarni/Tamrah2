@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.Login:
                 Intent LoginActInt = new Intent(this, LoginActivity.class);
+                LoginActInt.putExtra("User", (Serializable) this.user);
                 startActivity(LoginActInt);
                 return;
             case R.id.Signup:
@@ -170,9 +171,10 @@ public class MainActivity extends AppCompatActivity {
                 myProfile.putExtra("UID", "rzjZ4oY3gMOklf2uBfIfJiEIQSn2");
                 startActivity(myProfile);
                 return;
-            case R.id.Messages:
+           case R.id.Messages:
                 startActivity(new Intent(this, MessagesListActivity.class));
                 return;
+
             case R.id.SearchResultPage:
                 fragmentClass = SearchResultsFrag.class;
                 break;

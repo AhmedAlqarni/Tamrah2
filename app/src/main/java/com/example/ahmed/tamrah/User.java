@@ -51,67 +51,10 @@ public class User {
     private String myUID;
 
 
-    public User(Context context) {
-        this.context = context;
-        progressDialog = new ProgressDialog(context);
-        firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
-        //myUID = user.getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        getUserProfile("VUlTKvNnDKfxPhanW38or1TYQiS2");
+    public User() {
     }
 
 
-    public void login(String email, String password) {
-
-        //confirmEmail();
-
-        if (TextUtils.isEmpty(email)) {
-            //email is empty
-            Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (TextUtils.isEmpty(password)) {
-            //password is empty
-            Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        firebaseAuth = FirebaseAuth.getInstance();
-        progressDialog.setMessage("Logging in ...");
-        progressDialog.show();
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
-                        if (task.isSuccessful()) { // if logging was successfull (from firebase)
-                            if(firebaseAuth.getCurrentUser().isEmailVerified()){
-                            ((Activity) context).finish();
-                            context.startActivity(new Intent(context.getApplicationContext(), MainActivity.class));}
-                            else{
-                                Toast.makeText(context.getApplicationContext(), "Email is not verified", Toast.LENGTH_LONG).show();
-
-                            }
-
-                        } else {
-                            AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-                            alertDialog.setTitle("Logging Failed");
-                            alertDialog.setMessage("Invalid email or password");
-                            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                            alertDialog.show();
-                            Log.i("g", "faile"); // failure in logging in
-                        }
-                    }
-                });
-
-    }
 
     public void logout() {
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
