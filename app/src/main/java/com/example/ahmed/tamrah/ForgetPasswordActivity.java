@@ -24,7 +24,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                MainActivity.user.resetPassword(editTextEmail.getText().toString().trim());
+                //MainActivity.user.resetPassword(editTextEmail.getText().toString().trim());
 
 
             }
