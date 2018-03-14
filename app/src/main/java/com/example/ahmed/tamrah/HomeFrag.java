@@ -78,6 +78,7 @@ public class HomeFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        /*
         //Created by Khalid ...
         View view  = inflater.inflate(R.layout.fragment_home, container, false);
         searchView = (SearchView)  view.findViewById(R.id.search_view);
@@ -89,7 +90,7 @@ public class HomeFrag extends Fragment {
                // firebaseOfferSearch();
             }
 
-        });
+        });*/
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
