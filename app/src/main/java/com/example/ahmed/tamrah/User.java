@@ -6,7 +6,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.os.AsyncTask;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,9 +26,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.ContentValues.TAG;
 
@@ -33,7 +41,7 @@ import static android.content.ContentValues.TAG;
  * Created by khalidalnamlah on 3/9/18.
  */
 
-public class User {
+public class User extends AsyncTask<String, Void, Void> {
     private String name;
     private String region;
     private String description;
@@ -44,11 +52,11 @@ public class User {
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
-    private FirebaseAuth.AuthStateListener firebaseAuthListner;
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
     private Map<String, Object> userInfo;
     private String myUID;
+    private Drawable profilePicture;
 
 
     public User(Context context) {
@@ -58,7 +66,7 @@ public class User {
         user = firebaseAuth.getCurrentUser();
         //myUID = user.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        getUserProfile("VUlTKvNnDKfxPhanW38or1TYQiS2");
+        getUserProfile("rzjZ4oY3gMOklf2uBfIfJiEIQSn2");
     }
 
     public void register(String email, String password, String name) {
@@ -197,7 +205,7 @@ public class User {
                 region = userInfo.get("region").toString();
                 description = userInfo.get("description").toString();
                 phoneNum = userInfo.get("phoneNum").toString();
-                //profileImage = ((Image) userInfo.get("profileImage"));
+                doInBackground((String) userInfo.get("profileImage"));
 
                 Log.i("f", name);
                 Log.i("f", region);
@@ -291,5 +299,23 @@ public class User {
 
     public String getPhoneNum() {
         return phoneNum;
+    }
+
+    public Drawable getProfilePicture() {
+        return profilePicture;
+    }
+
+    @Override
+    // This method is to get the image after its URL
+    // has been given from Firebase.
+    protected Void doInBackground(String... urls) {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            profilePicture = Drawable.createFromStream((InputStream) new URL(urls[0]).getContent(), "Firebase");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -10,7 +10,6 @@
     <uses-feature
         android:name="android.hardware.camera.any"
         android:required="true" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -40,6 +39,7 @@
         <activity android:name=".UpgradeAccountActivity" />
         <activity android:name=".PhoneConfirmationActivity" />
         <activity android:name=".MessagesListActivity"></activity>
+        <activity android:name=".AddOfferActivity"></activity>
     </application>
 
 </manifest>
