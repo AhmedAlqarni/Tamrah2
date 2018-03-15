@@ -17,12 +17,16 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -45,39 +49,52 @@ import static android.provider.MediaStore.Images.Media.getBitmap;
 
 
 public class AccountActivity extends AppCompatActivity {
-private static final int SELECTED_PICTURE = 1;
-    private User user =null;
-        private DatabaseReference databaseReference;
+        private static final int SELECTED_PICTURE = 1;
+        private User user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account);//Setting the content view to a specific XML layout
-        retrieveProfile(getIntent().getStringExtra("UID"));
-        //add spinner values
-        addRateSpinerValues();
+        setContentView(R.layout.activity_account);
+        setResult(-1, null);
+        String UID = getIntent().getStringExtra("UID");
+        if(UID.equals("myProfile")) {
+            user = (User) getIntent().getSerializableExtra("User");
+            LinearLayout reviewSection = (LinearLayout) findViewById(R.id.AddReviewSection);
+            LinearLayout msgBtn = (LinearLayout) findViewById(R.id.MessgeBtnLayout);
+            reviewSection.removeAllViewsInLayout();
+            msgBtn.removeAllViewsInLayout();
+            updateContext();
+        }
+        else {
+            FloatingActionButton picChanger = (FloatingActionButton) findViewById(R.id.changeProfilePic);
+            picChanger.hide();
+            LinearLayout editAccount = (LinearLayout) findViewById(R.id.EditAccountLayout);
+            editAccount.removeAllViewsInLayout();
+            user = new User();
+            fetchProfile(UID);
+            addRateSpinerValues();
+        }
+
     }
 
 
-    public void retrieveProfile(final String UID) {
-        databaseReference = FirebaseDatabase.getInstance().getReference("User");
+    private void fetchProfile(final String UID) {
+        DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference("User");
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Retrieving Profile . . .");
+        progressDialog.setMessage("Retrieving Profile ...");
         progressDialog.show();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            //This will locate the user based on the given User ID (UID)
+        DBRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dataSnapshot = dataSnapshot.child(UID);
-                Map<String, Object> userInfo;
-                userInfo = ((Map<String, Object>) dataSnapshot.getValue());
-                user = new User();
-                updateContext();
+                user.setProfileValues((Map<String, Object>)dataSnapshot.getValue());
                 progressDialog.dismiss();
+                updateContext();
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }
@@ -93,7 +110,8 @@ private static final int SELECTED_PICTURE = 1;
         regionView.setText(user.getRegion());
         descriptionView.setText(user.getDescription());
         phoneView.setText(user.getPhoneNum());
-        //pictureView.setImageDrawable(user.getProfilePicture());
+        if(!user.getProfilePic().equals(""))
+            pictureView.setImageDrawable(new ImageFetcher().fetch(user.getProfilePic()));
     }
 //Button Handler
     //for selecting profile image in the Profile page
@@ -122,9 +140,7 @@ private static final int SELECTED_PICTURE = 1;
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
 

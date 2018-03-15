@@ -129,19 +129,28 @@
                     app:backgroundTint="@android:color/darker_gray"
                     android:src="@drawable/ic_menu_camera" />
 
-                <ImageButton
-                    android:id="@+id/MessgeBtnProfile"
+                <LinearLayout
+                    android:id="@+id/MessgeBtnLayout"
                     android:layout_width="wrap_content"
                     android:background="@color/white"
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/SellerRating"
                     android:layout_alignEnd="@+id/textView2"
                     android:layout_alignStart="@+id/SellerRating"
-                    android:layout_below="@+id/relativeLayout"
-                    app:srcCompat="@drawable/ic_email_black_24px" />
+                    android:layout_below="@+id/relativeLayout">
+                    <ImageButton
+                        android:id="@+id/MessgeBtnProfile"
+                        android:layout_width="match_parent"
+                        android:background="@color/white"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/ic_email_black_24px" />
+                </LinearLayout>
 
             </RelativeLayout>
-
+            <LinearLayout
+                android:id="@+id/EditAccountLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <Button
                 android:id="@+id/EditAccount"
                 android:layout_width="match_parent"
@@ -156,81 +165,87 @@
                 android:text="Edit Account"
                 android:textAllCaps="false"
                 android:textSize="18sp" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:text="Add review"
-                android:paddingLeft="10dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="5dp"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.45999998"
-                >
-            </TextView>
-
-            <android.support.constraint.ConstraintLayout
+            <LinearLayout
+                android:id="@+id/AddReviewSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="18dp"
-                android:background="@color/white"
-                android:minHeight="150dp">
-
-
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="104dp"
-                    android:layout_height="39dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/sendReview"
-                    app:layout_constraintRight_toRightOf="parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:text="Add review"
+                    android:paddingLeft="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.00999999" />
+                    app:layout_constraintVertical_bias="0.45999998"
+                    >
+                </TextView>
 
-                <Button
-                    android:id="@+id/sendReview"
-                    android:layout_width="wrap_content"
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginRight="16dp"
-                    android:text="Add Review"
-                    android:textAllCaps="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="parent" />
+                    android:layout_marginBottom="18dp"
+                    android:background="@color/white"
+                    android:minHeight="150dp">
 
-                <EditText
-                    android:id="@+id/editText"
-                    android:layout_width="265dp"
-                    android:layout_height="42dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:focusable="false"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:hint="Review title"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
-                    android:id="@+id/ReviewDescription"
-                    android:layout_width="263dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:focusable="false"
-                    android:ems="10"
-                    android:inputType="textMultiLine"
-                    android:hint="Review description"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent" />
-            </android.support.constraint.ConstraintLayout>
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="104dp"
+                        android:layout_height="39dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/sendReview"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.00999999" />
 
+                    <Button
+                        android:id="@+id/sendReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="Add Review"
+                        android:textAllCaps="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent" />
+
+                    <EditText
+                        android:id="@+id/editText"
+                        android:layout_width="265dp"
+                        android:layout_height="42dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:focusable="false"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:hint="Review title"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/ReviewDescription"
+                        android:layout_width="263dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:focusable="false"
+                        android:ems="10"
+                        android:inputType="textMultiLine"
+                        android:hint="Review description"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
             <TextView
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"

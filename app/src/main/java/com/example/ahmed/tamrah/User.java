@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.os.AsyncTask;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,7 +26,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,22 +46,15 @@ public class User implements Serializable{
     private String region;
     private String description;
     private String phoneNum;
+    private String profilePic;
     private String address;
     private double rate;
     private boolean isSeller;
     private ArrayList<Offer> cart;
     private ArrayList<Offer> order;
-    private Drawable profilePic;
+
     private boolean isLoggedIn;
 
-
-    private Context context;
-    private ProgressDialog progressDialog;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseUser user;
-    private DatabaseReference databaseReference;
-    private FirebaseDatabase firebaseDatabase;
-    private Map<String, Object> userInfo;
 
 
     public User() {
@@ -65,101 +63,97 @@ public class User implements Serializable{
         region = "";
         description = "";
         phoneNum = "";
+        profilePic = "";
         address = "";
         rate = 0;
         isSeller = false;
         isLoggedIn = false;
     }
 
-    public void logout() {
-        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle("Logout");
-        alertDialog.setMessage("You are signed in as: " + user.getEmail());
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Logout",
-                new DialogInterface.OnClickListener() {
-                    //firebase logout
-                    public void onClick(DialogInterface dialog, int which) {
-                        //firebaseAuth = FirebaseAuth.getInstance();
-                        firebaseAuth.signOut();
-                        dialog.dismiss();
-                        if (user == null) {
-                            Log.i("1", "right");
+    /*
+        public void logout() {
+            AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+            alertDialog.setTitle("Logout");
+            alertDialog.setMessage("You are signed in as: " + user.getEmail());
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Logout",
+                    new DialogInterface.OnClickListener() {
+                        //firebase logout
+                        public void onClick(DialogInterface dialog, int which) {
+                            //firebaseAuth = FirebaseAuth.getInstance();
+                            firebaseAuth.signOut();
+                            dialog.dismiss();
+                            if (user == null) {
+                                Log.i("1", "right");
+                            }
+                            //startActivity(new Intent(this,MainActivity.class));
+                            Log.i("1", "logged out");
+                            Toast.makeText(context.getApplicationContext(), "LoggedOut", Toast.LENGTH_LONG).show();
+                            //mDrawerLayout.closeDrawers();
                         }
-                        //startActivity(new Intent(this,MainActivity.class));
-                        Log.i("1", "logged out");
-                        Toast.makeText(context.getApplicationContext(), "LoggedOut", Toast.LENGTH_LONG).show();
-                        //mDrawerLayout.closeDrawers();
-                    }
-                });
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        //FirebaseAuth.getInstance().signOut();
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
-
-    }
-    
-
-    public void updateProfile() {
-
-        String userId = firebaseAuth.getCurrentUser().getUid();
-        DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("User").child(userId);
-        Map newPost = new HashMap();
-        newPost.put("name", "khalid");
-        newPost.put("phoneNum", "966565684101");
-        newPost.put("region", "Riyadh");
-        newPost.put("description", "Fuck you MotherFucker...");
-        newPost.put("profileImage", "http://justfood.nawa3em.com/subimg/106376015231.jpg");
-
-        current_user_db.setValue(newPost);
-
-    }
-
-
-    public void resetPassword(String emailAddress) {
-        firebaseAuth = FirebaseAuth.getInstance();
-        //String emailAddress = "user@example.com";
-
-        firebaseAuth.sendPasswordResetEmail(emailAddress)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "Email sent.");
-                            Toast.makeText(context.getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                    });
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            //FirebaseAuth.getInstance().signOut();
+                            dialog.dismiss();
                         }
-                        else{
-                            Toast.makeText(context.getApplicationContext(), "Failed", Toast.LENGTH_LONG).show();
+                    });
+            alertDialog.show();
 
+        }
+
+        public void updateProfile() {
+
+            String userId = firebaseAuth.getCurrentUser().getUid();
+            DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("User").child(userId);
+            Map newPost = new HashMap();
+            newPost.put("name", "khalid");
+            newPost.put("phoneNum", "966565684101");
+            newPost.put("region", "Riyadh");
+            newPost.put("description", "Fuck you MotherFucker...");
+            newPost.put("profileImage", "http://justfood.nawa3em.com/subimg/106376015231.jpg");
+
+            current_user_db.setValue(newPost);
+
+        }
+
+        public void resetPassword(String emailAddress) {
+            firebaseAuth = FirebaseAuth.getInstance();
+            //String emailAddress = "user@example.com";
+
+            firebaseAuth.sendPasswordResetEmail(emailAddress)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "Email sent.");
+                                Toast.makeText(context.getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                            }
+                            else{
+                                Toast.makeText(context.getApplicationContext(), "Failed", Toast.LENGTH_LONG).show();
+
+                            }
                         }
-                    }
-                });
-    }
+                    });
+        }
 
-    public void setPassword(String newPassword) {
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        //String newPassword = "SOME-SECURE-PASSWORD";
+        public void setPassword(String newPassword) {
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            //String newPassword = "SOME-SECURE-PASSWORD";
 
-        user.updatePassword(newPassword)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "User password updated.");
+            user.updatePassword(newPassword)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "User password updated.");
+                            }
                         }
-                    }
-                });
-    }
-
+                    });
+        }
+    */
     public String getName() {
         return name;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
     }
 
     public String getRegion() {
@@ -174,6 +168,10 @@ public class User implements Serializable{
         return phoneNum;
     }
 
+    public String getProfilePic() {
+        return profilePic;
+    }
+
     public void setProfileValues(Map<String,Object> profileValues) {
         name = profileValues.get("name").toString();
         region = profileValues.get("region").toString();
@@ -182,9 +180,8 @@ public class User implements Serializable{
         address = profileValues.get("address").toString();
         rate = Double.parseDouble(profileValues.get("rate").toString());
         isSeller = Boolean.parseBoolean(profileValues.get("isSeller").toString());
+        profilePic = profileValues.get("profileImage").toString();
+
     }
 
-    public void setFirebaseAuth(FirebaseAuth firebaseAuth) {
-        this.firebaseAuth = firebaseAuth;
-    }
 }

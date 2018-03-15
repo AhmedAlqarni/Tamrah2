@@ -51,7 +51,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         user = (User) getIntent().getSerializableExtra("User");
-
+        setResult(-1, null);
         //ToolBar
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
@@ -121,8 +121,6 @@ public class SignupActivity extends AppCompatActivity {
                 });
     }
 
-
-
     public void confirmEmail() {
         firebaseAuth = FirebaseAuth.getInstance();
         FBUser = firebaseAuth.getCurrentUser();
@@ -145,17 +143,23 @@ public class SignupActivity extends AppCompatActivity {
         userNode.put("region","");
         userNode.put("description","");
         userNode.put("phoneNum","");
-        userNode.put("profieImage","");
+        userNode.put("profileImage","");
         userNode.put("address","");
         userNode.put("rate",-1);
         userNode.put("isSeller",false);
         DBRef.setValue(userNode);
         DBRef.child("cart");
         DBRef.child("order");
+        DBRef.child("review");
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        user = (User) intent.getSerializableExtra("User");
+        if(resultCode == 0) {
+            user = (User) intent.getSerializableExtra("User");
+            Intent intent = new Intent();
+            intent.putExtra("User",  user);
+            setResult(0, intent);
+        }
         finish();
     }
 

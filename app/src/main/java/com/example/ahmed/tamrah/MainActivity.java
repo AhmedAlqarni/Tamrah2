@@ -176,6 +176,7 @@ public class MainActivity extends AppCompatActivity{
             //This is profile page
             case R.id.Profile:
                 intent = new Intent(this, AccountActivity.class);
+                intent.putExtra("UID", "rzjZ4oY3gMOklf2uBfIfJiEIQSn2");
                 intent.putExtra("User", user);
                 startActivityForResult(intent, 0);
                 return;
@@ -263,6 +264,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 0) {
+            if(resultCode == -1) return;
             user = (User) data.getSerializableExtra("User");
             updateMenuItems();
         }

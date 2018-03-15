@@ -39,7 +39,7 @@ public class  LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         user = (User) getIntent().getSerializableExtra("User");
-
+        setResult(-1, null);
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
 
@@ -56,15 +56,12 @@ public class  LoginActivity extends AppCompatActivity{
 
     public void login(String email, String password) {
         final Context context= this;
+        //Email field or Password field is empty
         if (TextUtils.isEmpty(email)) {
-            //email is empty
             Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
             return;
-        }
-
-        if (TextUtils.isEmpty(password)) {
-            //password is empty
-            Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(password)) {
+            Toast.makeText(context.getApplicationContext(), "Please enter your password ", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -80,7 +77,6 @@ public class  LoginActivity extends AppCompatActivity{
                         if (task.isSuccessful()) { // if logging was successfull (from firebase)
                             if(firebaseAuth.getCurrentUser().isEmailVerified()){
                                 fetchProfile(firebaseAuth.getCurrentUser().getUid());
-                                user.setFirebaseAuth(firebaseAuth);
                             }
                             else{
                                 Toast.makeText(context, "Please verify your email", Toast.LENGTH_LONG).show();
@@ -114,11 +110,11 @@ public class  LoginActivity extends AppCompatActivity{
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dataSnapshot = dataSnapshot.child(UID);
                 user.setProfileValues((Map<String, Object>)dataSnapshot.getValue());
-                progressDialog.dismiss();
-                Toast.makeText(context, "Welcome Back, " + user.getName() , Toast.LENGTH_LONG).show();
                 Intent intent = new Intent();
-                intent.putExtra("User",  user); //value should be your string from the edittext
+                intent.putExtra("User",  user);
                 setResult(0, intent);
+                Toast.makeText(context, "Welcome Back, " + user.getName() , Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
                 finish();
             }
             @Override
