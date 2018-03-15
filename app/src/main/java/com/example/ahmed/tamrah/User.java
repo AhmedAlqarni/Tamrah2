@@ -47,6 +47,7 @@ public class User implements Serializable{
     private String description;
     private String phoneNum;
     private String profilePic;
+    private String email;
     private String address;
     private double rate;
     private boolean isSeller;
@@ -71,37 +72,6 @@ public class User implements Serializable{
     }
 
     /*
-        public void logout() {
-            AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-            alertDialog.setTitle("Logout");
-            alertDialog.setMessage("You are signed in as: " + user.getEmail());
-            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Logout",
-                    new DialogInterface.OnClickListener() {
-                        //firebase logout
-                        public void onClick(DialogInterface dialog, int which) {
-                            //firebaseAuth = FirebaseAuth.getInstance();
-                            firebaseAuth.signOut();
-                            dialog.dismiss();
-                            if (user == null) {
-                                Log.i("1", "right");
-                            }
-                            //startActivity(new Intent(this,MainActivity.class));
-                            Log.i("1", "logged out");
-                            Toast.makeText(context.getApplicationContext(), "LoggedOut", Toast.LENGTH_LONG).show();
-                            //mDrawerLayout.closeDrawers();
-                        }
-                    });
-            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            //FirebaseAuth.getInstance().signOut();
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
-
-        }
-
         public void updateProfile() {
 
             String userId = firebaseAuth.getCurrentUser().getUid();
@@ -172,6 +142,14 @@ public class User implements Serializable{
         return profilePic;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void loggedIn(boolean isLoggedIn){this.isLoggedIn = isLoggedIn;}
+
+    public boolean isLoggedIn(){ return isLoggedIn;}
+
     public void setProfileValues(Map<String,Object> profileValues) {
         name = profileValues.get("name").toString();
         region = profileValues.get("region").toString();
@@ -181,6 +159,7 @@ public class User implements Serializable{
         rate = Double.parseDouble(profileValues.get("rate").toString());
         isSeller = Boolean.parseBoolean(profileValues.get("isSeller").toString());
         profilePic = profileValues.get("profileImage").toString();
+        email = profileValues.get("email").toString();
 
     }
 

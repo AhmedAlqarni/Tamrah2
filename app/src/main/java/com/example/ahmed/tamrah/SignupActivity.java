@@ -43,7 +43,6 @@ public class SignupActivity extends AppCompatActivity {
     private TextView textViewSignIn;
     private TextView textViewName;
     private User user;
-    private FirebaseAuth firebaseAuth;
     private FirebaseUser FBUser;
 
     @Override
@@ -85,11 +84,11 @@ public class SignupActivity extends AppCompatActivity {
             Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
         }
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        Auth.fbAuth = FirebaseAuth.getInstance();
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Registering ...");
         progressDialog.show();
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+        Auth.fbAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) { //CASTING
@@ -101,9 +100,6 @@ public class SignupActivity extends AppCompatActivity {
                             intent = new Intent(context,LoginActivity.class);
                             intent.putExtra("User", temp);
                             startActivityForResult(intent, 0);
-
-                            // Later
-                            //loginAfterRegister(email,password);
                         } else {
                             progressDialog.dismiss();
                             AlertDialog alertDialog = new AlertDialog.Builder(context).create();
@@ -122,9 +118,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void confirmEmail() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        FBUser = firebaseAuth.getCurrentUser();
-        FBUser.sendEmailVerification()
+        Auth.fbAuth.getCurrentUser().sendEmailVerification()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -136,7 +130,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void makeUserNode(String name){
-        String UID = firebaseAuth.getCurrentUser().getUid();
+        String UID = Auth.fbAuth.getCurrentUser().getUid();
         DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference().child("User").child(UID);
         Map userNode = new HashMap();
         userNode.put("name", name);
@@ -147,6 +141,7 @@ public class SignupActivity extends AppCompatActivity {
         userNode.put("address","");
         userNode.put("rate",-1);
         userNode.put("isSeller",false);
+        userNode.put("email",Auth.fbAuth.getCurrentUser().getEmail());
         DBRef.setValue(userNode);
         DBRef.child("cart");
         DBRef.child("order");

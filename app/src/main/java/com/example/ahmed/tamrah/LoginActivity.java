@@ -65,18 +65,20 @@ public class  LoginActivity extends AppCompatActivity{
             return;
         }
 
-        final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
         final ProgressDialog progressDialog = new ProgressDialog(this);
+        Auth.fbAuth = FirebaseAuth.getInstance();
         progressDialog.setMessage("Logging in ...");
         progressDialog.show();
-        firebaseAuth.signInWithEmailAndPassword(email, password)
+        Auth.fbAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if (task.isSuccessful()) { // if logging was successfull (from firebase)
-                            if(firebaseAuth.getCurrentUser().isEmailVerified()){
-                                fetchProfile(firebaseAuth.getCurrentUser().getUid());
+                            if(Auth.fbAuth.getCurrentUser().isEmailVerified()){
+                                fetchProfile(Auth.fbAuth.getCurrentUser().getUid());
+                                user.loggedIn(true);
                             }
                             else{
                                 Toast.makeText(context, "Please verify your email", Toast.LENGTH_LONG).show();
@@ -84,7 +86,7 @@ public class  LoginActivity extends AppCompatActivity{
 
                         } else {
                             AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-                            alertDialog.setTitle("Logging Failed");
+                            alertDialog.setTitle("Login Failed");
                             alertDialog.setMessage("Invalid email or password");
                             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                                     new DialogInterface.OnClickListener() {
@@ -112,8 +114,8 @@ public class  LoginActivity extends AppCompatActivity{
                 user.setProfileValues((Map<String, Object>)dataSnapshot.getValue());
                 Intent intent = new Intent();
                 intent.putExtra("User",  user);
-                setResult(0, intent);
-                Toast.makeText(context, "Welcome Back, " + user.getName() , Toast.LENGTH_LONG).show();
+                setResult(2, intent);
+                Toast.makeText(context, "Welcome Back, " + user.getName() + " \ud83d\ude09", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
                 finish();
             }
