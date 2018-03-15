@@ -39,10 +39,10 @@ public class SignupActivity extends AppCompatActivity {
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Toolbar toolBar;
-
+    private Intent intent;
     private TextView textViewSignIn;
     private TextView textViewName;
-
+    private User user;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser FBUser;
 
@@ -50,6 +50,7 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        user = (User) getIntent().getSerializableExtra("User");
 
         //ToolBar
         toolBar = (Toolbar) findViewById(R.id.toolBar);
@@ -71,7 +72,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void register(String email, String password, final String name) {
-
+        final User temp = user;
         final Context context = this;
         if (TextUtils.isEmpty(email)) {
             //email is empty
@@ -94,9 +95,12 @@ public class SignupActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) { //CASTING
                         if (task.isSuccessful()) {
                             progressDialog.dismiss();
-                            Toast.makeText(context.getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context.getApplicationContext(), "Registered Successfully\nPlease verify your email", Toast.LENGTH_SHORT).show();
                             confirmEmail();
                             makeUserNode(name);
+                            intent = new Intent(context,LoginActivity.class);
+                            intent.putExtra("User", temp);
+                            startActivityForResult(intent, 0);
 
                             // Later
                             //loginAfterRegister(email,password);
@@ -117,6 +121,8 @@ public class SignupActivity extends AppCompatActivity {
                 });
     }
 
+
+
     public void confirmEmail() {
         firebaseAuth = FirebaseAuth.getInstance();
         FBUser = firebaseAuth.getCurrentUser();
@@ -136,7 +142,21 @@ public class SignupActivity extends AppCompatActivity {
         DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference().child("User").child(UID);
         Map userNode = new HashMap();
         userNode.put("name", name);
+        userNode.put("region","");
+        userNode.put("description","");
+        userNode.put("phoneNum","");
+        userNode.put("profieImage","");
+        userNode.put("address","");
+        userNode.put("rate",-1);
+        userNode.put("isSeller",false);
         DBRef.setValue(userNode);
+        DBRef.child("cart");
+        DBRef.child("order");
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        user = (User) intent.getSerializableExtra("User");
+        finish();
     }
 
     public void hasAccount(View view) {

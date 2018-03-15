@@ -11,6 +11,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -54,25 +56,22 @@ import static com.example.ahmed.tamrah.AccountActivity.getCorrectlyOrientedImage
 import static com.example.ahmed.tamrah.AccountActivity.getOrientation;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar toolBar;
     private User user;
     ImageView iV;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    private SearchView searchView;
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    private FirebaseAuth firebaseAuth;
-    private FirebaseUser client ;
+    private Intent intent;
     //private FirebaseAuth;
-    FirebaseListAdapter<Message_Activity> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        user = new User();
+        retrieveUserFromCache();
         //ToolBar
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
@@ -90,6 +89,14 @@ public class MainActivity extends AppCompatActivity {
         //set the Default page to HomeFrag fragment
         FragmentManager fm = getFragmentManager();
         fm.beginTransaction().replace(R.id.flContents, new HomeFrag()).commit();
+    }
+
+    public void updateMenuItems(){
+        return;
+    }
+
+    private void retrieveUserFromCache() {
+        return ; //STUB. To be implemented soon, insha'a allah
     }
 
     @Override
@@ -141,13 +148,14 @@ public class MainActivity extends AppCompatActivity {
                 fragmentClass = OrdersFrag.class;
                 break;
             case R.id.Login:
-                Intent LoginActInt = new Intent(this, LoginActivity.class);
-                LoginActInt.putExtra("User", (Serializable) this.user);
-                startActivity(LoginActInt);
+                intent = new Intent(this, LoginActivity.class);
+                intent.putExtra("User", this.user);
+                startActivityForResult(intent, 0);
                 return;
             case R.id.Signup:
-                Log.i("k", "signUp");
-                startActivity(new Intent(this, SignupActivity.class));
+                intent = new Intent(this, SignupActivity.class);
+                intent.putExtra("User", this.user);
+                startActivityForResult(intent, 0);
                 return;
            /* case R.id.acitvity_message:
                // Log.i("k","signUp");
@@ -167,9 +175,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             //This is profile page
             case R.id.Profile:
-                Intent myProfile = new Intent(this, AccountActivity.class);
-                myProfile.putExtra("UID", "rzjZ4oY3gMOklf2uBfIfJiEIQSn2");
-                startActivity(myProfile);
+                intent = new Intent(this, AccountActivity.class);
+                intent.putExtra("User", user);
+                startActivityForResult(intent, 0);
                 return;
            case R.id.Messages:
                 startActivity(new Intent(this, MessagesListActivity.class));
@@ -254,12 +262,16 @@ public class MainActivity extends AppCompatActivity {
     //For reading a picture from the device
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //For reading a picture from the deviceif(requestCode ==   SELECTED_PICTURE && data != null) {
+        if(requestCode == 0) {
+            user = (User) data.getSerializableExtra("User");
+            updateMenuItems();
+        }
+        else if(requestCode == REQUEST_IMAGE_CAPTURE){
+            //For reading a picture from the deviceif(requestCode ==   SELECTED_PICTURE && data != null) {
             Uri uri = data.getData();
             // Show the Selected Image onImageView ImageView cV = (ImageView) findViewById(R.id.imageViewAdding);
-        ImageView cV = (ImageView) findViewById(R.id.imageViewAdding);
-        getOrientation(this, uri);
+            ImageView cV = (ImageView) findViewById(R.id.imageViewAdding);
+            getOrientation(this, uri);
             try {
                 //profile_image
                 Bitmap loadedBitmap = getCorrectlyOrientedImage(this, uri,1000);
@@ -270,13 +282,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             //for the Camera App>>>
-            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            if (resultCode == RESULT_OK) {
                 Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
                 //mImageView.setImageBitmap(imageBitmap); Image result
             }
-
         }
+    }
 
 
 
@@ -295,14 +307,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().replace(R.id.flContents, myFragment).addToBackStack("tag").commit();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        user = (User) getIntent().getSerializableExtra("user");
-    }
-
-
-
     //for the camera
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -310,7 +314,4 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
-
-
-
 }

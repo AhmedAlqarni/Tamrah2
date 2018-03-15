@@ -2,23 +2,15 @@ package com.example.ahmed.tamrah;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,15 +20,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class  LoginActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.Map;
 
-    private Button loginButton;
-    private EditText editTextEmail;
-    private EditText editTextpassword;
+
+public class  LoginActivity extends AppCompatActivity{
+
     private Toolbar toolBar;
-    private ProgressDialog progressDialog;
-    private FirebaseAuth firebaseAuth ;
     private User user;
 
     @Override
@@ -48,17 +43,15 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
 
-        editTextEmail = (EditText) findViewById(R.id.input_email);
-        editTextpassword = (EditText) findViewById(R.id.input_password);
-        loginButton = (Button) findViewById(R.id.btn_login);
-        loginButton.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (view == loginButton){
-            login(editTextEmail.getText().toString().trim(),editTextpassword.getText().toString().trim());
-        }
+        final EditText email = (EditText) findViewById(R.id.input_email);
+        final EditText password = (EditText) findViewById(R.id.input_password);
+        Button loginButton = (Button) findViewById(R.id.btn_login);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                login(email.getText().toString().trim(),password.getText().toString().trim());
+            }
+        });
     }
 
     public void login(String email, String password) {
@@ -75,8 +68,8 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        progressDialog = new ProgressDialog(this);
+        final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Logging in ...");
         progressDialog.show();
         firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -86,11 +79,11 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
                         progressDialog.dismiss();
                         if (task.isSuccessful()) { // if logging was successfull (from firebase)
                             if(firebaseAuth.getCurrentUser().isEmailVerified()){
-                                ((Activity) context).finish();
-                                context.startActivity(new Intent(context.getApplicationContext(), MainActivity.class));}
+                                fetchProfile(firebaseAuth.getCurrentUser().getUid());
+                                user.setFirebaseAuth(firebaseAuth);
+                            }
                             else{
-                                Toast.makeText(context.getApplicationContext(), "Email is not verified", Toast.LENGTH_LONG).show();
-
+                                Toast.makeText(context, "Please verify your email", Toast.LENGTH_LONG).show();
                             }
 
                         } else {
@@ -104,11 +97,35 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
                                         }
                                     });
                             alertDialog.show();
-                            Log.i("g", "faile"); // failure in logging in
                         }
                     }
                 });
 
+    }
+
+    private void fetchProfile(final String UID) {
+        final Context context = this;
+        DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference("User");
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Retrieving Profile ...");
+        progressDialog.show();
+        DBRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                dataSnapshot = dataSnapshot.child(UID);
+                user.setProfileValues((Map<String, Object>)dataSnapshot.getValue());
+                progressDialog.dismiss();
+                Toast.makeText(context, "Welcome Back, " + user.getName() , Toast.LENGTH_LONG).show();
+                Intent intent = new Intent();
+                intent.putExtra("User",  user); //value should be your string from the edittext
+                setResult(0, intent);
+                finish();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void noAccount(View view) {
@@ -121,8 +138,6 @@ public class  LoginActivity extends AppCompatActivity implements View.OnClickLis
         startActivity(new Intent(this,ForgetPasswordActivity.class));
     }
 
-    //Button Handler
-    //This is to make the app title clickable
     public void goToHome(View view) {
         finish();
     }

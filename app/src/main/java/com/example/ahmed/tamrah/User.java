@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -23,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,28 +35,41 @@ import static android.content.ContentValues.TAG;
  * Created by khalidalnamlah on 3/9/18.
  */
 
-public class User {
+public class User implements Serializable{
+    private String UID;
     private String name;
     private String region;
     private String description;
     private String phoneNum;
     private String address;
-    private Image profileImage;
+    private double rate;
+    private boolean isSeller;
+    private ArrayList<Offer> cart;
+    private ArrayList<Offer> order;
+    private Drawable profilePic;
+    private boolean isLoggedIn;
+
+
     private Context context;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
-    private FirebaseAuth.AuthStateListener firebaseAuthListner;
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
     private Map<String, Object> userInfo;
-    private String myUID;
 
 
     public User() {
+        UID = "";
+        name = "";
+        region = "";
+        description = "";
+        phoneNum = "";
+        address = "";
+        rate = 0;
+        isSeller = false;
+        isLoggedIn = false;
     }
-
-
 
     public void logout() {
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
@@ -86,37 +101,7 @@ public class User {
         alertDialog.show();
 
     }
-
-    public void getUserProfile(final String UID) {
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("User");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-
-            //This will be called when there is a change in the User child
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                dataSnapshot = dataSnapshot.child(UID);
-                userInfo = ((Map<String, Object>) dataSnapshot.getValue());
-                //Log.i("1",);
-                name = userInfo.get("name").toString();
-                region = userInfo.get("region").toString();
-                description = userInfo.get("description").toString();
-                phoneNum = userInfo.get("phoneNum").toString();
-                //profileImage = ((Image) userInfo.get("profileImage"));
-
-                Log.i("f", name);
-                Log.i("f", region);
-                Log.i("f", description);
-                Log.i("f", phoneNum);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
-    }
+    
 
     public void updateProfile() {
 
@@ -187,5 +172,19 @@ public class User {
 
     public String getPhoneNum() {
         return phoneNum;
+    }
+
+    public void setProfileValues(Map<String,Object> profileValues) {
+        name = profileValues.get("name").toString();
+        region = profileValues.get("region").toString();
+        description = profileValues.get("description").toString();
+        phoneNum = profileValues.get("phoneNum").toString();
+        address = profileValues.get("address").toString();
+        rate = Double.parseDouble(profileValues.get("rate").toString());
+        isSeller = Boolean.parseBoolean(profileValues.get("isSeller").toString());
+    }
+
+    public void setFirebaseAuth(FirebaseAuth firebaseAuth) {
+        this.firebaseAuth = firebaseAuth;
     }
 }
