@@ -33,8 +33,6 @@ public class  LoginActivity extends AppCompatActivity{
 
     private Toolbar toolBar;
     private User user;
-    boolean bool = true;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +69,6 @@ public class  LoginActivity extends AppCompatActivity{
 
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        final Intent intent = new Intent(context,MainActivity.class);
-        Auth.fbAuth = FirebaseAuth.getInstance();
         progressDialog.setMessage("Logging in ...");
         progressDialog.show();
         Auth.fbAuth.signInWithEmailAndPassword(email, password)
@@ -107,13 +103,13 @@ public class  LoginActivity extends AppCompatActivity{
     }
 
     private void fetchProfile(final String UID) {
-        bool = true;
         final Context context = this;
+        final Intent intent = new Intent(context,MainActivity.class);
         DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference("User");
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Retrieving Profile ...");
         progressDialog.show();
-        DBRef.addValueEventListener(new ValueEventListener() {
+        DBRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dataSnapshot = dataSnapshot.child(UID);
@@ -122,10 +118,8 @@ public class  LoginActivity extends AppCompatActivity{
                 intent.putExtra("User",  user);
                 setResult(2, intent);
                 progressDialog.dismiss();
-                if(bool)
                 Toast.makeText(context, "Welcome Back, " + user.getName() + " \ud83d\ude09", Toast.LENGTH_LONG).show();
                 finish();
-                bool=false;
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

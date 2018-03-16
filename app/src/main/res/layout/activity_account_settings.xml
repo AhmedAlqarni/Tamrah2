@@ -17,23 +17,24 @@
         android:theme="@style/AppTheme.PopupOverlay">
 
         <TextView
+            android:id="@+id/toolbar_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tamrah"
-            android:textSize="22sp"
-            android:onClick="goToHome"
             android:clickable="true"
+            android:gravity="center"
+            android:onClick="goToHome"
+            android:text="Tamrah"
             android:textColor="@color/white"
-            android:gravity = "center"
-            android:id="@+id/toolbar_title" />
+            android:textSize="22sp" />
 
     </android.support.v7.widget.Toolbar>
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_below="@+id/toolBar"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/toolBar"
         android:background="@color/light_brown"
         tools:context="com.example.ahmed.tamrah.AccountSettingsFrag">
 
@@ -137,10 +138,11 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/EmailFrame"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_below="@id/NameFrame"
                     android:layout_marginBottom="2dp"
-                    android:background="@color/white">
+                    android:background="@color/white"
+                    android:minWidth="0dp">
 
                     <TextView
                         android:id="@+id/te3tVi5ew6"
@@ -181,8 +183,8 @@
                         <EditText
                             android:id="@+id/hidden_edit_email"
                             android:layout_width="match_parent"
-                            android:autoLink="email"
                             android:layout_height="wrap_content"
+                            android:autoLink="email"
                             android:hint="Enter your email" />
                     </ViewSwitcher>
 
@@ -200,8 +202,6 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.38" />
                 </android.support.constraint.ConstraintLayout>
-
-
 
 
                 <!--Email-->
@@ -253,9 +253,9 @@
                         <EditText
                             android:id="@+id/hidden_edit_password"
                             android:layout_width="match_parent"
-                            android:inputType="textPassword"
                             android:layout_height="wrap_content"
-                            android:hint="Enter your password" />
+                            android:hint="Enter your password"
+                            android:inputType="textPassword" />
                     </ViewSwitcher>
 
                     <Button
@@ -300,26 +300,11 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.29000002" />
 
-                    <TextView
-                        android:id="@+id/CityInputLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="24dp"
-                        android:text="Makkah"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/City"
-                        app:layout_constraintTop_toBottomOf="@+id/City"
-                        app:layout_constraintVertical_bias="0.23000002" />
-
                     <Spinner
                         android:id="@+id/CitySpinner"
                         android:layout_width="183dp"
                         android:layout_height="43dp"
+                        android:layout_margin="12dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -373,14 +358,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="+966544444444"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            tools:layout_editor_absoluteX="97dp"
+                            tools:layout_editor_absoluteY="18dp" />
 
                         <EditText
                             android:id="@+id/hidden_edit_phone"
                             android:layout_width="match_parent"
-                            android:phoneNumber="true"
                             android:layout_height="wrap_content"
-                            android:hint="Enter phone number" />
+                            android:hint="Enter phone number"
+                            android:phoneNumber="true" />
                     </ViewSwitcher>
 
                     <Button
@@ -538,7 +525,6 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/LanguageFrame"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_below="@id/BioFrame"
                     android:layout_marginBottom="2dp"
 
@@ -595,7 +581,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/CurrencyFrame"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_below="@+id/LanguageFrame"
                     android:layout_marginBottom="2dp"
 
@@ -651,11 +637,11 @@
                 <Button
                     android:id="@+id/DoneButton"
                     android:layout_width="match_parent"
-                    android:onClick="goToHome"
                     android:layout_height="match_parent"
                     android:layout_below="@id/CurrencyFrame"
                     android:layout_margin="10dp"
                     android:background="@color/orange"
+                    android:onClick="goToHome"
                     android:text="Done"
                     android:textAllCaps="false"
                     android:textSize="18sp" />

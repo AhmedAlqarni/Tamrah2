@@ -46,9 +46,6 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     public void resetPassword(String emailAddress) {
         final Context context = this;
-        Auth.fbAuth = FirebaseAuth.getInstance();
-        //String emailAddress = "user@example.com";
-
         Auth.fbAuth.sendPasswordResetEmail(emailAddress)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

@@ -84,7 +84,7 @@ public class AccountActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Retrieving Profile ...");
         progressDialog.show();
-        DBRef.addValueEventListener(new ValueEventListener() {
+        DBRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 dataSnapshot = dataSnapshot.child(UID);

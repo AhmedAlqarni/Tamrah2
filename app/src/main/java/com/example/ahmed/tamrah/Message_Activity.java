@@ -76,7 +76,7 @@ public class Message_Activity extends AppCompatActivity {
         final String messageValue = editTextMessage.getText().toString().trim();
         if(!TextUtils.isEmpty(messageValue)){
             final DatabaseReference newPost = databaseReference.push();
-            databaseReference2.addValueEventListener(new ValueEventListener() {
+            databaseReference2.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     newPost.child("content").setValue(messageValue);

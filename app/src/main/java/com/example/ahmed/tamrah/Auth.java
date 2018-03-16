@@ -11,5 +11,5 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 
 public class Auth {
-    public static FirebaseAuth fbAuth;
+    public static final FirebaseAuth fbAuth = FirebaseAuth.getInstance();
 }

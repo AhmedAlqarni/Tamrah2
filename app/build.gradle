@@ -45,10 +45,8 @@ dependencies {
     compile 'com.google.firebase:firebase-auth:11.8.0'
     compile 'com.firebaseui:firebase-ui:0.6.2'
 
-
-
 // FirebaseUI for Firebase Realtime Database
-   // implementation 'com.firebaseui:firebase-ui-database:3.2.2'
+    // implementation 'com.firebaseui:firebase-ui-database:3.2.2'
 
 // FirebaseUI for Cloud Firestore
     //implementation 'com.firebaseui:firebase-ui-firestore:3.2.2'
@@ -60,5 +58,7 @@ dependencies {
     //implementation 'com.firebaseui:firebase-ui-storage:3.2.2'
 
 
+
+    compile 'com.google.android.gms:play-services:11.8.0'
 }
 apply plugin: 'com.google.gms.google-services'

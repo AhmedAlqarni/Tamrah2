@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(nvDrawer);
 
-
         //set the Default page to HomeFrag fragment
         FragmentManager fm = getFragmentManager();
         fm.beginTransaction().replace(R.id.flContents, new HomeFrag()).commit();
@@ -265,7 +264,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Auth.fbAuth.signOut();
                         user = new User();
-                        Auth.fbAuth = FirebaseAuth.getInstance();
                         updateMenuBar();
                         dialog.dismiss();
                         Toast.makeText(context, "Logged Out", Toast.LENGTH_LONG).show();
@@ -308,9 +306,6 @@ public class MainActivity extends AppCompatActivity {
 
     //Button Handler
     //this is for the button in profile page "Edit Account"
-    public void goToAccountSettings(View view) {
-        buttonHandeler(AccountSettingsFrag.class);
-    }
 
     //Button Handler
     //this is for the button in shopping cart page "shopping cart"

@@ -71,57 +71,6 @@ public class User implements Serializable{
         isLoggedIn = false;
     }
 
-    /*
-        public void updateProfile() {
-
-            String userId = firebaseAuth.getCurrentUser().getUid();
-            DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("User").child(userId);
-            Map newPost = new HashMap();
-            newPost.put("name", "khalid");
-            newPost.put("phoneNum", "966565684101");
-            newPost.put("region", "Riyadh");
-            newPost.put("description", "Fuck you MotherFucker...");
-            newPost.put("profileImage", "http://justfood.nawa3em.com/subimg/106376015231.jpg");
-
-            current_user_db.setValue(newPost);
-
-        }
-
-        public void resetPassword(String emailAddress) {
-            firebaseAuth = FirebaseAuth.getInstance();
-            //String emailAddress = "user@example.com";
-
-            firebaseAuth.sendPasswordResetEmail(emailAddress)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Log.d(TAG, "Email sent.");
-                                Toast.makeText(context.getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
-                            }
-                            else{
-                                Toast.makeText(context.getApplicationContext(), "Failed", Toast.LENGTH_LONG).show();
-
-                            }
-                        }
-                    });
-        }
-
-        public void setPassword(String newPassword) {
-            user = FirebaseAuth.getInstance().getCurrentUser();
-            //String newPassword = "SOME-SECURE-PASSWORD";
-
-            user.updatePassword(newPassword)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Log.d(TAG, "User password updated.");
-                            }
-                        }
-                    });
-        }
-    */
     public String getName() {
         return name;
     }
@@ -146,6 +95,7 @@ public class User implements Serializable{
         Log.i("",this.email);
         return email;
     }
+
     public String getAddress(){ return address; }
 
     //Created by Khalid ...
@@ -171,7 +121,10 @@ public class User implements Serializable{
     }
 
     public void setBio(String bio){
-
+        UID = Auth.fbAuth.getCurrentUser().getUid();
+        DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference().child("User").child(UID);
+        DBRef.child("description").setValue(bio);
+        this.description = bio;
     }
 
     //Created by Khalid ...

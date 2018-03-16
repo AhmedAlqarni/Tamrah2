@@ -85,7 +85,6 @@ public class SignupActivity extends AppCompatActivity {
             Toast.makeText(context.getApplicationContext(), "Please enter your email ", Toast.LENGTH_SHORT).show();
         }
 
-        Auth.fbAuth = FirebaseAuth.getInstance();
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Registering ...");
         progressDialog.show();

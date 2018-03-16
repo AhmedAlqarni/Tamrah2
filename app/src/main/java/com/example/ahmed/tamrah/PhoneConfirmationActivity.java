@@ -70,6 +70,7 @@ public class PhoneConfirmationActivity extends AppCompatActivity {
                 //mResendToken = token;
 
                 // ...
+                Log.i("73","kkkkk");
             }
 
         };
@@ -82,7 +83,7 @@ public class PhoneConfirmationActivity extends AppCompatActivity {
     public void verifyPhone(String phoneNumber, PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks){
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phoneNumber,        // Phone number to verify
-                60,                 // Timeout duration
+                15,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
                 this,               // Activity (for callback binding)
                 mCallbacks);        // OnVerificationStateChangedCallbac
