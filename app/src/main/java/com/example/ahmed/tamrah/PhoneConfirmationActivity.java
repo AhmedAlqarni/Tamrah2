@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -22,30 +23,18 @@ import java.util.concurrent.TimeUnit;
 public class PhoneConfirmationActivity extends AppCompatActivity {
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
+    private EditText phoneEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_confirmation);
 
-        final EditText phoneEditText = (EditText) findViewById(R.id.input_sms_confirmation);
+        //FirebaseUser f = FirebaseAuth.
+
+        phoneEditText = (EditText) findViewById(R.id.input_sms_confirmation);
         //should have EditText for code verification num
         Button confirmButton = (Button) findViewById(R.id.btn_Cnfrm);
-
-        mCallBacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-            @Override
-            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                //signInWithPhoneAuthCredential(phoneAuthCredential);
-
-            }
-
-            @Override
-            public void onVerificationFailed(FirebaseException e) {
-                Log.i("q","42");
-
-            }
-        };
-
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,11 +45,39 @@ public class PhoneConfirmationActivity extends AppCompatActivity {
 
         });
 
+        mCallBacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            @Override
+            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+                //signInWithPhoneAuthCredential(phoneAuthCredential);
+                Log.i("q","49");
 
+            }
+
+            @Override
+            public void onVerificationFailed(FirebaseException e) {
+                Log.i("q","55");
+
+            }
+            public void onCodeSent(String verificationId,
+                                   PhoneAuthProvider.ForceResendingToken token) {
+                // The SMS verification code has been sent to the provided phone number, we
+                // now need to ask the user to enter the code and then construct a credential
+                // by combining the code with a verification ID.
+               // Log.d(TAG, "onCodeSent:" + verificationId);
+
+                // Save verification ID and resending token so we can use them later
+                //mVerificationId = verificationId;
+                //mResendToken = token;
+
+                // ...
+            }
+
+        };
 
         //Auth.fbAuth = FirebaseAuth.getInstance();
 
     }
+
 
     public void verifyPhone(String phoneNumber, PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks){
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
