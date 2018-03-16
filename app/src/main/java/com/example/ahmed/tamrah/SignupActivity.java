@@ -49,6 +49,7 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        //?????
         user = (User) getIntent().getSerializableExtra("User");
         setResult(-1, null);
         //ToolBar

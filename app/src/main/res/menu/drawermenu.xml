@@ -18,6 +18,9 @@
     <item android:id="@+id/Signup" android:title="Signup" android:icon="@drawable/ic_if_sign_out_298869"/>
     <item android:id="@+id/SearchResultPage" android:title="SearchResultPage" android:icon="@drawable/ic_if_sign_out_298869"/>
     <item android:id="@+id/logout" android:title="Logout" android:icon="@drawable/ic_visibility_black_24dp"/>
+    <item android:id="@+id/phoneConfrm" android:title="aaa" android:icon="@drawable/ic_visibility_black_24dp"/>
+
+
 
 
 

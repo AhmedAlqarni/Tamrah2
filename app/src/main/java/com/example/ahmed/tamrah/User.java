@@ -143,7 +143,52 @@ public class User implements Serializable{
     }
 
     public String getEmail() {
+        Log.i("",this.email);
         return email;
+    }
+    public String getAddress(){ return address; }
+
+    //Created by Khalid ...
+    public void setName(String name){
+        UID = Auth.fbAuth.getCurrentUser().getUid();
+        DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference().child("User").child(UID);
+        DBRef.child("name").setValue(name);
+        this.name = name;
+    }
+
+    public void setRegion(String region){
+        UID = Auth.fbAuth.getCurrentUser().getUid();
+        DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference().child("User").child(UID);
+        DBRef.child("region").setValue(region);
+        this.region = region;
+    }
+
+    public void setAddress(String address){
+        UID = Auth.fbAuth.getCurrentUser().getUid();
+        DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference().child("User").child(UID);
+        DBRef.child("address").setValue(address);
+        this.address = address;
+    }
+
+    public void setBio(String bio){
+
+    }
+
+    //Created by Khalid ...
+    public void setEmail(String email){
+        UID = Auth.fbAuth.getCurrentUser().getUid();
+        DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference().child("User").child(UID);
+        DBRef.child("email").setValue(email);
+
+        Auth.fbAuth.getCurrentUser().sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Email sent.");
+                        }
+                    }
+                });
     }
 
     public void loggedIn(boolean isLoggedIn){this.isLoggedIn = isLoggedIn;}

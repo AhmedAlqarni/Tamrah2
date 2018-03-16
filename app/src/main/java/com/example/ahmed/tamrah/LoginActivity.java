@@ -33,12 +33,16 @@ public class  LoginActivity extends AppCompatActivity{
 
     private Toolbar toolBar;
     private User user;
+    boolean bool = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         user = (User) getIntent().getSerializableExtra("User");
+        if(user==null)
+            user = new User();
         setResult(-1, null);
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
@@ -67,6 +71,7 @@ public class  LoginActivity extends AppCompatActivity{
 
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
+        final Intent intent = new Intent(context,MainActivity.class);
         Auth.fbAuth = FirebaseAuth.getInstance();
         progressDialog.setMessage("Logging in ...");
         progressDialog.show();
@@ -102,6 +107,7 @@ public class  LoginActivity extends AppCompatActivity{
     }
 
     private void fetchProfile(final String UID) {
+        bool = true;
         final Context context = this;
         DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference("User");
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -115,15 +121,18 @@ public class  LoginActivity extends AppCompatActivity{
                 Intent intent = new Intent();
                 intent.putExtra("User",  user);
                 setResult(2, intent);
-                Toast.makeText(context, "Welcome Back, " + user.getName() + " \ud83d\ude09", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
+                if(bool)
+                Toast.makeText(context, "Welcome Back, " + user.getName() + " \ud83d\ude09", Toast.LENGTH_LONG).show();
                 finish();
+                bool=false;
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
+
     }
 
     public void noAccount(View view) {
@@ -132,7 +141,7 @@ public class  LoginActivity extends AppCompatActivity{
     }
 
     public void goToForgetPassword(View view) {
-        finish();
+        //finish();
         startActivity(new Intent(this,ForgetPasswordActivity.class));
     }
 

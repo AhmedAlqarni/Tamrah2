@@ -72,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//Created by Khalid
+        user = (User) getIntent().getSerializableExtra("User");
+        setResult(-1, null);
         user = new User();
         retrieveUserFromCache();
         //ToolBar
@@ -181,7 +185,10 @@ public class MainActivity extends AppCompatActivity {
                 fragmentClass = ShoppingCartFrag.class;
                 break;
             case R.id.Account_Settings:
-                startActivity(new Intent(this, AccountSettingsActivity.class));
+                Log.i("......",user.getName());
+                intent = new Intent(this, AccountSettingsActivity.class);
+                intent.putExtra("User", this.user);
+                startActivityForResult(intent, 0);
                 return;
             case R.id.Orders:
                 fragmentClass = OrdersFrag.class;
@@ -189,6 +196,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.Login:
                 intent = new Intent(this, LoginActivity.class);
                 intent.putExtra("User", this.user);
+                startActivityForResult(intent, 0);
+                return;
+            case R.id.phoneConfrm:
+                intent = new Intent(this, PhoneConfirmationActivity.class);
+                //intent.putExtra("User", this.user);
                 startActivityForResult(intent, 0);
                 return;
             case R.id.Signup:
