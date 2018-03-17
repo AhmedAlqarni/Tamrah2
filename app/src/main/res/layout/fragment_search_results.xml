@@ -9,7 +9,7 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/search_result_format"
-    tools:context=".SearchResultsFrag">
+    tools:context=".SearchResultActivity">
 
     <LinearLayout
         android:id="@+id/search_layout"

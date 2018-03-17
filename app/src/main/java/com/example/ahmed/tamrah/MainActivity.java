@@ -67,8 +67,11 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolBar;
     private User user;
     private NavigationView nvDrawer;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
     private Intent intent;
+    private final int RECIEVE_NOTHING = -1;
+    private final int PASS_USER_OBJECT = 0;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,7 +189,6 @@ public class MainActivity extends AppCompatActivity {
                 fragmentClass = ShoppingCartFrag.class;
                 break;
             case R.id.Account_Settings:
-                Log.i("......",user.getName());
                 intent = new Intent(this, AccountSettingsActivity.class);
                 intent.putExtra("User", this.user);
                 startActivityForResult(intent, 0);
@@ -334,18 +336,20 @@ public class MainActivity extends AppCompatActivity {
     //Button Handler
     //this is for the plus button in searchin for offer page
     public void goToAddOffer(View view) {
-        startActivity(new Intent(this, AddOfferActivity.class));
+        intent = new Intent(this, AccountActivity.class);
+        intent.putExtra("User", user);
+        startActivityForResult(intent, 0);
     }
 
 
     //For reading a picture from the device
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 0) {
-            if (resultCode == -1) return;
+        if (requestCode == PASS_USER_OBJECT) {
+            if (resultCode == RECIEVE_NOTHING) return;
             else
                 user = (User) data.getSerializableExtra("User");
-            updateMenuBar();
+                updateMenuBar();
         } else if (requestCode == REQUEST_IMAGE_CAPTURE) {
             //For reading a picture from the deviceif(requestCode ==   SELECTED_PICTURE && data != null) {
             Uri uri = data.getData();

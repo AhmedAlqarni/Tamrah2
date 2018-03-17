@@ -43,7 +43,7 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/Username_view"
+                    android:id="@+id/text_offer_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -56,11 +56,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/SellerRating"
+                    android:id="@+id/text_offer_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/Username_view"
-                    android:layout_alignBottom="@+id/Username_view"
+                    android:layout_alignBaseline="@+id/text_offer_title"
+                    android:layout_alignBottom="@+id/text_offer_title"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="37dp"
                     android:text="4.9"
@@ -72,49 +72,49 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_alignBaseline="@+id/SellerRating"
-                    android:layout_alignBottom="@+id/SellerRating"
+                    android:layout_alignBaseline="@+id/text_offer_rating"
+                    android:layout_alignBottom="@+id/text_offer_rating"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="20dp"
                     android:text="/5"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/City"
+                    android:id="@+id/text_offer_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/Username_view"
-                    android:layout_below="@+id/SellerRating"
+                    android:layout_alignStart="@+id/text_offer_title"
+                    android:layout_below="@+id/text_offer_rating"
                     android:text="Makkah City"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/Phone"
+                    android:id="@+id/text_offer_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/Description"
-                    android:layout_below="@+id/Description"
+                    android:layout_alignStart="@+id/text_offer_description"
+                    android:layout_below="@+id/text_offer_description"
                     android:text="35 SAR"
                     android:textColor="@android:color/holo_red_dark"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/Description"
+                    android:id="@+id/text_offer_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/City"
-                    android:layout_below="@+id/City"
+                    android:layout_alignStart="@+id/text_offer_city"
+                    android:layout_below="@+id/text_offer_city"
                     android:paddingRight="5dp"
                     android:text="I have the best dicounted Ajuah in the city , I provide delivery for other Ccitys, thank you for buying."
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
                 <Spinner
-                    android:id="@+id/QuantitiyKG"
+                    android:id="@+id/spinner_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignEnd="@+id/textView2"
-                    android:layout_alignTop="@+id/Phone"
+                    android:layout_alignTop="@+id/text_offer_price"
                     android:layout_toEndOf="@+id/FirstName" />
 
             </RelativeLayout>
@@ -194,7 +194,7 @@
                     android:id="@+id/Username_viewOfferPage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/textView4OfferPage"
+                    android:layout_above="@+id/text_seller_mobile"
                     android:layout_marginStart="11dp"
                     android:layout_toEndOf="@+id/profile_imageOfferPage"
                     android:text="Ahmed Alqarni"
@@ -225,7 +225,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView4OfferPage"
+                    android:id="@+id/text_seller_mobile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/Username_viewOfferPage"

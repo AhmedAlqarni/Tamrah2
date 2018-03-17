@@ -126,14 +126,11 @@ public class OfferFrag extends Fragment {
                 android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
-
     }
 
     //to add all Quantity spinner values
     public void addQuantitySpinerValues(View view){
-        final Spinner spinner = (Spinner) view.findViewById(R.id.QuantitiyKG);
-
+        final Spinner spinner = (Spinner) view.findViewById(R.id.spinner_quantity);
         ArrayAdapter<String> adapter;
         List<String> list;
         list = new ArrayList<String>();
@@ -145,7 +142,5 @@ public class OfferFrag extends Fragment {
                 android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
-
     }
 }

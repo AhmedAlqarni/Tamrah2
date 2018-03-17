@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.google.android.gms.common.SignInButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,6 +29,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.ahmed.tamrah.AccountActivity.getCorrectlyOrientedImage;
 import static com.example.ahmed.tamrah.AccountActivity.getOrientation;
@@ -36,25 +41,44 @@ public class AddOfferActivity extends AppCompatActivity {
     private Offer offer;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int SELECTED_PICTURE = 1;
+    final Spinner citySpinner = (Spinner) findViewById(R.id.Region);
+    private User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_offer);
-
+        user = (User) getIntent().getSerializableExtra("User");
+        setResult(-1,null);
         final TextInputEditText title = (TextInputEditText) findViewById(R.id.OfferTitleInput);
         EditText descView = (EditText) findViewById(R.id.OfferDiscInput);
         final EditText priceView = (EditText) findViewById(R.id.OfferPriceInput);
         final EditText typeView = (EditText) findViewById(R.id.OfferTypeInput);
-        final Spinner citySpinner = (Spinner) findViewById(R.id.Region);
         Button submitBtn = (Button) findViewById(R.id.PublishOfferBtn);
 
+        addCitySpinnerValues();
+        submitBtn.setOnClickListener(new View.OnClickListener()
 
+        {
+            @Override
+            public void onClick(View view) {
+                offer = new Offer(title.getText().toString(), typeView.getText().toString(),
+                        citySpinner.getSelectedItem().toString(), Double.parseDouble(priceView.getText().toString()),-1);
+                offer.setDesc("No Desc. in the ADD OFFER activity. Modify that");
+                publish();
+            }
+        });
+
+
+    }
+
+    private void addCitySpinnerValues() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(this.getResources().openRawResource(R.raw.cities_en)));
-        String[] citiesArray = new String[118];
+        String[] citiesArray = new String[119];
 
         try {
-            for(int i = 0; i < 118; i++) {
+            for(int i = 0; i < 119; i++) {
                 citiesArray[i] = reader.readLine();
             }
             reader.close();
@@ -65,19 +89,6 @@ public class AddOfferActivity extends AppCompatActivity {
         ArrayAdapter<String> adp2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, citiesArray);
         adp2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         citySpinner.setAdapter(adp2);
-
-        submitBtn.setOnClickListener(new View.OnClickListener()
-
-        {
-            @Override
-            public void onClick(View view) {
-                offer = new Offer(title.getText().toString(), typeView.getText().toString(),
-                        citySpinner.getSelectedItem().toString(), Double.parseDouble(priceView.getText().toString()),-1);
-                offer.publish();
-            }
-        });
-
-
     }
 
     //For reading a picture from the device
@@ -104,7 +115,6 @@ public class AddOfferActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             //mImageView.setImageBitmap(imageBitmap); Image result
         }
-
     }
 
 
@@ -114,5 +124,27 @@ public class AddOfferActivity extends AppCompatActivity {
         Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, SELECTED_PICTURE);
 
+    }
+
+
+    public void publish() {
+        DatabaseReference FBofferNode = FirebaseDatabase.getInstance().getReference().child("Offer");
+        Map offerPost = new HashMap();
+        offerPost.put("SellerUID", Auth.fbAuth.getUid());
+        offerPost.put("Title", offer.getTitle());
+        offerPost.put("Description", offer.getDesc());
+        offerPost.put("Price", new DecimalFormat(".##").format(offer.getPrice()));
+        offerPost.put("Type", offer.getType());
+        offerPost.put("Rate", offer.getRate());
+        offerPost.put("City", offer.getCity());
+        FBofferNode.push().setValue(offerPost);
+        String OID = FBofferNode.getKey();
+
+        FBofferNode = FirebaseDatabase.getInstance().getReference().child("User").
+                child(Auth.fbAuth.getUid()).child("offer");
+        FBofferNode.push().setValue(new HashMap().put("OID", OID));
+        Intent intent = new Intent();
+        intent.putExtra("User",  user);
+        setResult(0, intent);
     }
 }

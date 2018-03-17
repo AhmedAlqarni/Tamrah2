@@ -1,6 +1,5 @@
 package com.example.ahmed.tamrah;
 
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -8,24 +7,14 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.ExifInterface;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,7 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.File;
 import java.util.Map;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,8 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-
-import static android.provider.MediaStore.Images.Media.getBitmap;
 
 
 public class AccountActivity extends AppCompatActivity {
@@ -71,8 +57,8 @@ public class AccountActivity extends AppCompatActivity {
             picChanger.hide();
             LinearLayout editAccount = (LinearLayout) findViewById(R.id.EditAccountLayout);
             editAccount.removeAllViewsInLayout();
-            user = new User();
-            fetchProfile(UID);
+            user = (User) getIntent().getSerializableExtra("Seller");
+            updateContext();
             addRateSpinerValues();
         }
 
@@ -102,8 +88,8 @@ public class AccountActivity extends AppCompatActivity {
     private void updateContext() {
         TextView usernameView = (TextView) findViewById(R.id.FirstName);
         TextView regionView = (TextView) findViewById(R.id.Region);
-        TextView descriptionView = (TextView) findViewById(R.id.Description);
-        TextView phoneView = (TextView) findViewById(R.id.Phone);
+        TextView descriptionView = (TextView) findViewById(R.id.text_offer_description);
+        TextView phoneView = (TextView) findViewById(R.id.text_offer_price);
         CircleImageView pictureView = (CircleImageView) findViewById(R.id.profile_image);
 
         usernameView.setText(user.getName());
@@ -119,27 +105,35 @@ public class AccountActivity extends AppCompatActivity {
         Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, SELECTED_PICTURE);
 
-
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //For reading a picture from the device
-        if (requestCode == SELECTED_PICTURE && data != null) {
-            Uri uri = data.getData();
-            // Show the Selected Image on ImageView
-            CircleImageView cV = (CircleImageView) findViewById(R.id.profile_image);
-            getOrientation(this, uri);
-            try {
-                //profile_image
-                Bitmap loadedBitmap = getCorrectlyOrientedImage(this, uri,1000);
-                cV.setImageBitmap(loadedBitmap);
-                //cV.setImageURI(uri);
-            } catch (IOException e) {
-                e.printStackTrace();
+        if(requestCode == SELECTED_PICTURE) {
+            super.onActivityResult(requestCode, resultCode, data);
+            //For reading a picture from the device
+            if (requestCode == SELECTED_PICTURE && data != null) {
+                Uri uri = data.getData();
+                // Show the Selected Image on ImageView
+                CircleImageView cV = (CircleImageView) findViewById(R.id.profile_image);
+                getOrientation(this, uri);
+                try {
+                    //profile_image
+                    Bitmap loadedBitmap = getCorrectlyOrientedImage(this, uri, 1000);
+                    cV.setImageBitmap(loadedBitmap);
+                    //cV.setImageURI(uri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+        }
+        else{
+            user = (User) getIntent().getSerializableExtra("User");
+            Intent intent = new Intent();
+            intent.putExtra("User",  user);
+            setResult(0, intent);
+            updateContext();
         }
     }
 
@@ -227,7 +221,9 @@ public class AccountActivity extends AppCompatActivity {
     //Button Handler
     //this is for the button in profile page "Edit Account"
     public void goToAccountSettings(View view) {
-        startActivity( new Intent(this,AccountSettingsActivity.class));
+        Intent intent = new Intent(this, AccountSettingsActivity.class);
+        intent.putExtra("User", user);
+        startActivityForResult(intent, 0);
     }
 
     //to add all rating 1...5 spinner values
@@ -249,9 +245,5 @@ public class AccountActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
 
 }

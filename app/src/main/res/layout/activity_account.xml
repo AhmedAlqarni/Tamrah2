@@ -67,7 +67,7 @@
                     android:textSize="30dp" />
 
                 <TextView
-                    android:id="@+id/SellerRating"
+                    android:id="@+id/text_offer_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@+id/textView2"
@@ -93,22 +93,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/FirstName"
-                    android:layout_below="@+id/SellerRating"
+                    android:layout_below="@+id/text_offer_rating"
                     android:text="Makkah Region"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/Phone"
+                    android:id="@+id/text_offer_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/Description"
-                    android:layout_below="@+id/Description"
+                    android:layout_alignStart="@+id/text_offer_description"
+                    android:layout_below="@+id/text_offer_description"
                     android:text="+9665444444444"
                     android:textColor="@android:color/holo_blue_dark"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/Description"
+                    android:id="@+id/text_offer_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/Region"
@@ -134,9 +134,9 @@
                     android:layout_width="wrap_content"
                     android:background="@color/white"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/SellerRating"
+                    android:layout_above="@+id/text_offer_rating"
                     android:layout_alignEnd="@+id/textView2"
-                    android:layout_alignStart="@+id/SellerRating"
+                    android:layout_alignStart="@+id/text_offer_rating"
                     android:layout_below="@+id/relativeLayout">
                     <ImageButton
                         android:id="@+id/MessgeBtnProfile"

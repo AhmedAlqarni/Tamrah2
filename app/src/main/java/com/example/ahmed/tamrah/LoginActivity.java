@@ -38,9 +38,7 @@ public class  LoginActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        user = (User) getIntent().getSerializableExtra("User");
-        if(user==null)
-            user = new User();
+        user = new User();
         setResult(-1, null);
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
@@ -116,7 +114,7 @@ public class  LoginActivity extends AppCompatActivity{
                 user.setProfileValues((Map<String, Object>)dataSnapshot.getValue());
                 Intent intent = new Intent();
                 intent.putExtra("User",  user);
-                setResult(2, intent);
+                setResult(0, intent);
                 progressDialog.dismiss();
                 Toast.makeText(context, "Welcome Back, " + user.getName() + " \ud83d\ude09", Toast.LENGTH_LONG).show();
                 finish();

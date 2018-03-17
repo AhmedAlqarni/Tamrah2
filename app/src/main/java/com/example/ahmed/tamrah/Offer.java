@@ -3,6 +3,7 @@ package com.example.ahmed.tamrah;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,8 +12,8 @@ import java.util.Map;
  * Created by Warsh on 3/7/2018.
  */
 
-public class Offer {
-    private String mTitle, mDesc, mType, mCity, mSellerUID;
+public class Offer implements Serializable{
+    private String mTitle, mDesc, mType, mCity, mSellerUID, mOID; // OID = Offer ID
     private double mPrice, mRate;
 
     public Offer() {}
@@ -23,19 +24,6 @@ public class Offer {
         setCity(city);
         setPrice(price);
         setRate(rate);
-    }
-
-    public void publish() {
-        DatabaseReference FBofferNode = FirebaseDatabase.getInstance().getReference().child("Offer");
-        Map offerPost = new HashMap();
-        offerPost.put("Seller", "N\\A"); //STUB
-        offerPost.put("Title", getTitle());
-        offerPost.put("Description", getDesc());
-        offerPost.put("Price", new DecimalFormat(".##").format(getPrice()));
-        offerPost.put("Type", getType());
-        offerPost.put("Rate", getRate());
-        //FBofferNode.setValue(offerPost);
-        FBofferNode.push().setValue(offerPost);
     }
 
     //Setters & Getters:
@@ -85,6 +73,14 @@ public class Offer {
 
     public void setDesc(String Desc) {
         this.mDesc = Desc;
+    }
+
+    public String getOID() {
+        return mOID;
+    }
+
+    public void setOID(String OID) {
+        this.mOID = OID;
     }
 
     public String getSellerUID() {

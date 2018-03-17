@@ -78,7 +78,7 @@
                     android:background="@color/white">
 
                     <TextView
-                        android:id="@+id/City"
+                        android:id="@+id/text_offer_city"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
@@ -106,8 +106,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/City"
-                        app:layout_constraintTop_toBottomOf="@+id/City"
+                        app:layout_constraintStart_toStartOf="@+id/text_offer_city"
+                        app:layout_constraintTop_toBottomOf="@+id/text_offer_city"
                         app:layout_constraintVertical_bias="0.23000002" />
 
                     <Spinner

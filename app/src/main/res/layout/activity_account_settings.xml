@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ahmed.tamrah.MainActivity">
+    tools:context="com.example.ahmed.tamrah.AccountSettingsActivity">
 
 
     <android.support.v7.widget.Toolbar
@@ -17,26 +17,25 @@
         android:theme="@style/AppTheme.PopupOverlay">
 
         <TextView
-            android:id="@+id/toolbar_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:gravity="center"
-            android:onClick="goToHome"
             android:text="Tamrah"
+            android:textSize="22sp"
+            android:onClick="goToHome"
+            android:clickable="true"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:gravity = "center"
+            android:id="@+id/toolbar_title" />
 
     </android.support.v7.widget.Toolbar>
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/toolBar"
+        android:layout_height="wrap_content"
         android:background="@color/light_brown"
-        tools:context="com.example.ahmed.tamrah.AccountSettingsFrag">
+        tools:context="com.example.ahmed.tamrah.AccountSettingsActivity">
 
         <ScrollView
             android:layout_width="fill_parent"
@@ -134,82 +133,12 @@
                         app:layout_constraintVertical_bias="0.38" />
                 </android.support.constraint.ConstraintLayout>
 
-                <!--Email-->
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/EmailFrame"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_below="@id/NameFrame"
-                    android:layout_marginBottom="2dp"
-                    android:background="@color/white"
-                    android:minWidth="0dp">
-
-                    <TextView
-                        android:id="@+id/te3tVi5ew6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="32dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:text="Email:"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:id="@+id/my_switcher2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="32dp"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.04"
-                        app:layout_constraintStart_toStartOf="@+id/te3tVi5ew6"
-                        app:layout_constraintTop_toBottomOf="@+id/te3tVi5ew6"
-                        app:layout_constraintVertical_bias="0.0">
-
-                        <TextView
-                            android:id="@+id/EmailInput"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Alqarni@hotmail.com"
-                            android:textSize="18sp" />
-
-                        <EditText
-                            android:id="@+id/hidden_edit_email"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autoLink="email"
-                            android:hint="Enter your email" />
-                    </ViewSwitcher>
-
-                    <Button
-                        android:id="@+id/editEmailBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:onClick="settingsEditEmail"
-                        android:text="Edit"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.91"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.38" />
-                </android.support.constraint.ConstraintLayout>
-
-
-                <!--Email-->
+                               <!--Email-->
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/PasswordFrame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/EmailFrame"
+                    android:layout_below="@id/NameFrame"
                     android:layout_marginBottom="2dp"
                     android:background="@color/white">
 
@@ -253,9 +182,9 @@
                         <EditText
                             android:id="@+id/hidden_edit_password"
                             android:layout_width="match_parent"
+                            android:inputType="textPassword"
                             android:layout_height="wrap_content"
-                            android:hint="Enter your password"
-                            android:inputType="textPassword" />
+                            android:hint="Enter your password" />
                     </ViewSwitcher>
 
                     <Button
@@ -300,11 +229,26 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.29000002" />
 
+                    <TextView
+                        android:id="@+id/CityInputLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="24dp"
+                        android:text="Makkah"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/City"
+                        app:layout_constraintTop_toBottomOf="@+id/City"
+                        app:layout_constraintVertical_bias="0.23000002" />
+
                     <Spinner
                         android:id="@+id/CitySpinner"
                         android:layout_width="183dp"
                         android:layout_height="43dp"
-                        android:layout_margin="12dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -358,16 +302,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="+966544444444"
-                            android:textSize="18sp"
-                            tools:layout_editor_absoluteX="97dp"
-                            tools:layout_editor_absoluteY="18dp" />
+                            android:textSize="18sp" />
 
                         <EditText
                             android:id="@+id/hidden_edit_phone"
                             android:layout_width="match_parent"
+                            android:phoneNumber="true"
                             android:layout_height="wrap_content"
-                            android:hint="Enter phone number"
-                            android:phoneNumber="true" />
+                            android:hint="Enter phone number" />
                     </ViewSwitcher>
 
                     <Button
@@ -496,6 +438,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="25 years selling Tamr..."
+                            android:maxLength="18"
                             android:textSize="18sp" />
 
                         <EditText
@@ -506,6 +449,8 @@
                     </ViewSwitcher>
 
                     <Button
+
+
                         android:id="@+id/editBioBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -521,127 +466,14 @@
                 </android.support.constraint.ConstraintLayout>
 
 
-                <!--Language-->
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/LanguageFrame"
-                    android:layout_width="match_parent"
-                    android:layout_below="@id/BioFrame"
-                    android:layout_marginBottom="2dp"
-
-                    android:background="@color/white">
-
-                    <TextView
-                        android:id="@+id/Language"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="16dp"
-                        android:text="Language:"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.29000002" />
-
-                    <TextView
-                        android:id="@+id/SelectedLanguage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="24dp"
-                        android:text="English"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/Language"
-                        app:layout_constraintTop_toBottomOf="@+id/Language"
-                        app:layout_constraintVertical_bias="0.23000002" />
-
-                    <Spinner
-                        android:id="@+id/LanguageSpinner"
-                        android:layout_width="183dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.9"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
-
-                <!--Currency-->
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/CurrencyFrame"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_below="@+id/LanguageFrame"
-                    android:layout_marginBottom="2dp"
-
-                    android:background="@color/white">
-
-                    <TextView
-                        android:id="@+id/Currency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="16dp"
-                        android:text="Currency:"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.29000002" />
-
-                    <TextView
-                        android:id="@+id/SelectedCurrency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="24dp"
-                        android:text="Saudi Riyal"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/Currency"
-                        app:layout_constraintTop_toBottomOf="@+id/Currency"
-                        app:layout_constraintVertical_bias="0.23000002" />
-
-                    <Spinner
-                        android:id="@+id/CurrencySpinner"
-                        android:layout_width="183dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.9"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
-
                 <Button
                     android:id="@+id/DoneButton"
                     android:layout_width="match_parent"
+                    android:onClick="goToHome"
                     android:layout_height="match_parent"
-                    android:layout_below="@id/CurrencyFrame"
+                    android:layout_below="@id/BioFrame"
                     android:layout_margin="10dp"
                     android:background="@color/orange"
-                    android:onClick="goToHome"
                     android:text="Done"
                     android:textAllCaps="false"
                     android:textSize="18sp" />

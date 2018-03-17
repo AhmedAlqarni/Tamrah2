@@ -134,7 +134,7 @@ public class SignupActivity extends AppCompatActivity {
         DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference().child("User").child(UID);
         Map userNode = new HashMap();
         userNode.put("name", name);
-        userNode.put("region","");
+        userNode.put("region","Dammam");
         userNode.put("description","");
         userNode.put("phoneNum","");
         userNode.put("profileImage","");
@@ -143,14 +143,15 @@ public class SignupActivity extends AppCompatActivity {
         userNode.put("isSeller",false);
         userNode.put("email",Auth.fbAuth.getCurrentUser().getEmail());
         DBRef.setValue(userNode);
-        DBRef.child("cart");
-        DBRef.child("order");
-        DBRef.child("review");
+        DBRef.child("offer").push();
+        DBRef.child("cart").push();
+        DBRef.child("order").push();
+        DBRef.child("review").push();
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == 0) {
-            user = (User) intent.getSerializableExtra("User");
+            user = (User) data.getSerializableExtra("User");
             Intent intent = new Intent();
             intent.putExtra("User",  user);
             setResult(0, intent);
