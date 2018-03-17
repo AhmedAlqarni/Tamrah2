@@ -1,5 +1,7 @@
 package com.example.ahmed.tamrah;
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -12,12 +14,12 @@ import java.util.Map;
  */
 
 public class Offer {
-    private String mTitle, mDesc, mType, mCity, mSellerUID;
-    private double mPrice, mRate;
+    private String Title, mDesc, Type, mCity, Seller;
+    private String Price, Rate;
 
     public Offer() {}
 
-    public Offer(String title, String type, String city, double price, double rate) {
+    public Offer(String title, String type, String city, String price, String rate) {
         setTitle(title);
         setType(type);
         setCity(city);
@@ -40,19 +42,21 @@ public class Offer {
 
     //Setters & Getters:
     public String getTitle() {
-        return mTitle;
+//        Log.i("", mType);
+        return Title;
+
     }
 
     public void setTitle(String title) {
-        this.mTitle = title;
+        this.Title = title;
     }
 
     public String getType() {
-        return mType;
+        return Type;
     }
 
     public void setType(String type) {
-        this.mType = type;
+        this.Type = type;
     }
 
     public String getCity() {
@@ -63,20 +67,20 @@ public class Offer {
         this.mCity = city;
     }
 
-    public double getPrice() {
-        return mPrice;
+    public String getPrice() {
+        return Price;
     }
 
-    public void setPrice(double price) {
-        this.mPrice = price;
+    public void setPrice(String price) {
+        this.Price = price;
     }
 
-    public double getRate() {
-        return mRate;
+    public String getRate() {
+        return Rate;
     }
 
-    public void setRate(double rate) {
-        this.mRate = rate;
+    public void setRate(String rate) {
+        this.Rate = rate;
     }
 
     public String getDesc() {
@@ -88,11 +92,11 @@ public class Offer {
     }
 
     public String getSellerUID() {
-        return mSellerUID;
+        return Seller;
     }
 
     public void setSellerUID(String SellerUID) {
-        this.mSellerUID = SellerUID;
+        this.Seller = SellerUID;
     }
 
 }

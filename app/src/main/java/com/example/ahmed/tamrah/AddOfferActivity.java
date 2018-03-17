@@ -72,7 +72,7 @@ public class AddOfferActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 offer = new Offer(title.getText().toString(), typeView.getText().toString(),
-                        citySpinner.getSelectedItem().toString(), Double.parseDouble(priceView.getText().toString()),-1);
+                        citySpinner.getSelectedItem().toString(), (priceView.getText().toString()),"-1");
                 offer.publish();
             }
         });

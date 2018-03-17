@@ -1,6 +1,7 @@
 package com.example.ahmed.tamrah;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.MyViewHold
     private List<Offer> offerList;
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, type, city, price, rate;
         private View view;
 
@@ -24,16 +25,17 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.MyViewHold
             //Created by Khalid
             this.view = view;
 
-            title = (TextView) view.findViewById(R.id.OfferTitle);
-            type = (TextView) view.findViewById(R.id.TamrahType);
-            city = (TextView) view.findViewById(R.id.city);
-            price = (TextView) view.findViewById(R.id.OfferPrice);
-            rate = (TextView) view.findViewById(R.id.Rating);
+//            title = (TextView) view.findViewById(R.id.OfferTitle);
+//            type = (TextView) view.findViewById(R.id.TamrahType);
+//            city = (TextView) view.findViewById(R.id.city);
+//            price = (TextView) view.findViewById(R.id.OfferPrice);
+//            rate = (TextView) view.findViewById(R.id.Rating);
 
         }
 
-        public void setDetails(String title, String type, double price, String city,
-                               double rate){
+        public void setDetails(String title, String type, String price, String city,
+                               String rate){
+//            Log.i("38",type);
             TextView textViewTitle = (TextView) view.findViewById(R.id.OfferTitle);
             TextView textViewType = (TextView)view.findViewById(R.id.TamrahType);
             TextView textViewPrice = (TextView)view.findViewById(R.id.OfferPrice);

@@ -96,12 +96,30 @@ public class HomeFrag extends Fragment {
 //            }
 //        });
 
-//        Intent intent = new Intent(getActivity(), SearchResultActivity.class);
-//        intent.putExtra("text",searchView.getQuery().toString().trim());
-//        startActivity(intent);
-        searchView.setOnSearchClickListener(new View.OnClickListener listener) {
+//
+        searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
 
-        }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //Log.e("onQueryTextChange", "called");
+                Log.i("","xxxxxxxx");
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent intent = new Intent(getActivity(), SearchResultActivity.class);
+                intent.putExtra("text",searchView.getQuery().toString().trim());
+                startActivity(intent);
+
+                return false;
+            }
+
+        });
+
+
+
+
         //offerRef = FirebaseDatabase.getInstance().getReference().child("Offer");
 //        searchButton.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View v) {

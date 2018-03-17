@@ -90,33 +90,33 @@ public class SearchResultsFrag extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        prepareOffers(); //STUB
+        //prepareOffers(); //STUB
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search_results, container, false);
     }
 
     //Stub Method
-    public void prepareOffers(){
-
-        for(int i = 0; i< 100; i++) {
-            switch (i%4) {
-                case 0:
-                    offerList.add(new Offer("Best of the best" + i, "Ajuah", "Riyadh", 39.99 + i, 4.5));
-                    break;
-                case 1:
-                    offerList.add(new Offer("Not for sale .. lolol" + i, "Sukkari", "Riyadh", 39.99 + i, 4.5));
-                    break;
-                case 2:
-                    offerList.add(new Offer("You want tamr? come and get it ... if you can" + i, "Khulass", "Riyadh", 39.99 + i, 4.5));
-                    break;
-                case 3:
-                    offerList.add(new Offer("Just filling space to check if every thing works smoothly ... whats up guys?" + i, "MEOWWWWW", "Riyadh", 39.99 + i, 4.5));
-                    break;
-            }
-        }
-        mAdapter.notifyDataSetChanged();
-    }
+//    public void prepareOffers(){
+//
+//        for(int i = 0; i< 100; i++) {
+//            switch (i%4) {
+//                case 0:
+//                    offerList.add(new Offer("Best of the best" + i, "Ajuah", "Riyadh", 39.99 + i, 4.5));
+//                    break;
+//                case 1:
+//                    offerList.add(new Offer("Not for sale .. lolol" + i, "Sukkari", "Riyadh", 39.99 + i, 4.5));
+//                    break;
+//                case 2:
+//                    offerList.add(new Offer("You want tamr? come and get it ... if you can" + i, "Khulass", "Riyadh", 39.99 + i, 4.5));
+//                    break;
+//                case 3:
+//                    offerList.add(new Offer("Just filling space to check if every thing works smoothly ... whats up guys?" + i, "MEOWWWWW", "Riyadh", 39.99 + i, 4.5));
+//                    break;
+//            }
+//        }
+//        mAdapter.notifyDataSetChanged();
+//    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
