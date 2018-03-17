@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -33,13 +34,14 @@ public class SearchResultsFrag extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static DatabaseReference databaseReference ;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private List<Offer> offerList = new ArrayList<>();
-    private RecyclerView recyclerView;
-    private OffersAdapter mAdapter;
+    private static RecyclerView recyclerView; //static by Khalid
+    private static OffersAdapter mAdapter;//static by Khalid
 
 
     private OnFragmentInteractionListener mListener;
@@ -78,10 +80,13 @@ public class SearchResultsFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mAdapter = new OffersAdapter(offerList);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Offer");
 
         View rootView = inflater.inflate(R.layout.fragment_search_results, container, true);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setHasFixedSize(true);//Created by Khalid
+
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
@@ -145,5 +150,22 @@ public class SearchResultsFrag extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public static void firebaseOfferSearch(){
+        FirebaseRecyclerAdapter<Offer,OffersAdapter.MyViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Offer, OffersAdapter.MyViewHolder>(
+                Offer.class,
+                R.layout.search_result_format,
+                OffersAdapter.MyViewHolder.class,
+                databaseReference
+                ) {
+            @Override
+            protected void populateViewHolder(OffersAdapter.MyViewHolder viewHolder, Offer model, int position) {
+
+                viewHolder.setDetails(model.getTitle(), model.getType(), model.getPrice(), model.getCity(), model.getRate());
+
+            }
+        };
+        recyclerView.setAdapter(mAdapter);
     }
 }

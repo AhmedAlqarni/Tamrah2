@@ -13,16 +13,40 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.MyViewHold
 
     private List<Offer> offerList;
 
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, type, city, price, rate;
+        private View view;
 
         public MyViewHolder(View view) {
             super(view);
+
+            //Created by Khalid
+            this.view = view;
+
             title = (TextView) view.findViewById(R.id.OfferTitle);
             type = (TextView) view.findViewById(R.id.TamrahType);
             city = (TextView) view.findViewById(R.id.city);
             price = (TextView) view.findViewById(R.id.OfferPrice);
             rate = (TextView) view.findViewById(R.id.Rating);
+
+        }
+
+        public void setDetails(String title, String type, double price, String city,
+                               double rate){
+            TextView textViewTitle = (TextView) view.findViewById(R.id.OfferTitle);
+            TextView textViewType = (TextView)view.findViewById(R.id.TamrahType);
+            TextView textViewPrice = (TextView)view.findViewById(R.id.OfferPrice);
+            TextView textViewCity = (TextView)view.findViewById(R.id.city);
+            //TextView textViewDescription = (TextView)view.findViewById(R.id.);
+            TextView textViewRate = (TextView)view.findViewById(R.id.Rating);
+           // TextView textViewImg = view.findViewById(R.id.);
+
+            textViewTitle.setText(title);
+            textViewType.setText(type);
+            textViewPrice.setText(price+"");
+            textViewCity.setText(city);
+            textViewRate.setText(rate+"");
 
         }
     }

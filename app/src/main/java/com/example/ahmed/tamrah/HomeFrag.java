@@ -1,14 +1,20 @@
 package com.example.ahmed.tamrah;
 
 import android.content.Context;
+import android.content.Intent;
+import android.inputmethodservice.KeyboardView;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+//
+
 
 //import com.firebase.ui.database.FirebaseRecyclerAdapter;
 
@@ -16,6 +22,8 @@ import android.widget.Button;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import static com.example.ahmed.tamrah.SearchResultsFrag.firebaseOfferSearch;
 
 
 /**
@@ -37,7 +45,7 @@ public class HomeFrag extends Fragment {
     private String mParam2;
 
     //Createted by Khalid
-    private SearchView searchView ;
+    private android.widget.SearchView searchView ;
     private Button searchButton;
     private DatabaseReference offerRef;
 
@@ -77,6 +85,31 @@ public class HomeFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view  = inflater.inflate(R.layout.fragment_home, container, false);
+
+        searchView = (android.widget.SearchView) view.findViewById(R.id.search_view);
+//        searchView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), SearchResultActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+//        Intent intent = new Intent(getActivity(), SearchResultActivity.class);
+//        intent.putExtra("text",searchView.getQuery().toString().trim());
+//        startActivity(intent);
+        searchView.setOnSearchClickListener(new View.OnClickListener listener) {
+
+        }
+        //offerRef = FirebaseDatabase.getInstance().getReference().child("Offer");
+//        searchButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                 //Code here executes on main thread after user presses button
+//                 SearchResultsFrag.firebaseOfferSearch();
+//            }
+//
+//        });
 
         /*
         //Created by Khalid ...
@@ -91,7 +124,7 @@ public class HomeFrag extends Fragment {
             }
 
         });*/
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -102,19 +135,7 @@ public class HomeFrag extends Fragment {
     }
 
     //Created by Khalid ...
-    /*
-    public void firebaseOfferSearch(){
-        FirebaseRecyclerAdapter<Offer,OffersAdapter> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Offer, OffersAdapter>(
-                Offer.class,
-                R.layout.search_result_format,
-                OffersAdapter.class,
-        ) {
-            @Override
-            protected void populateViewHolder(OffersAdapter viewHolder, Offer model, int position) {
 
-            }
-        };
-    }*/
 
     @Override
     public void onAttach(Context context) {
@@ -142,6 +163,8 @@ public class HomeFrag extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 
 
 }

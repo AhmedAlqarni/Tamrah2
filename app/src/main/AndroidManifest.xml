@@ -43,7 +43,8 @@
         <activity android:name=".PhoneConfirmationActivity" />
         <activity android:name=".MessagesListActivity" />
         <activity android:name=".AddOfferActivity" />
-        <activity android:name=".OfferActivity"></activity>
+        <activity android:name=".OfferActivity" />
+        <activity android:name=".SearchResultActivity"></activity>
     </application>
 
 </manifest>
