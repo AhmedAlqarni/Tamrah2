@@ -1,6 +1,8 @@
 package com.example.ahmed.tamrah;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -8,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -31,12 +34,27 @@ public class SearchResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
+        final SearchView searchView = (android.widget.SearchView) findViewById(R.id.search_view);
+        final Context context = this;
+        searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //Log.e("onQueryTextChange", "called");
+                Log.i("", "xxxxxxxx");
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                firebaseOfferSearch(query);
 
-        //mAdapter = new OffersAdapter(offerList);
+                return false;
+            }
 
+            //mAdapter = new OffersAdapter(offerList);
 
+        });
 
     }
 
@@ -46,7 +64,7 @@ public class SearchResultActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Offer");
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);//Created by Khalid
+        //recyclerView.setHasFixedSize(true);//Created by Khalid
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //recyclerView.setAdapter(mAdapter);
 
@@ -63,6 +81,7 @@ public class SearchResultActivity extends AppCompatActivity {
         Query firebaseQuerySearch = databaseReference.orderByChild("Type").startAt(query).endAt(query+"\uf8ff");
         Log.i("asasasasasasasasasasasas",firebaseQuerySearch.toString());
 
+
         FirebaseRecyclerAdapter<Offer,MyViewHolder1> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Offer, MyViewHolder1>(
                 Offer.class,
                 R.layout.search_result_format,
@@ -72,10 +91,11 @@ public class SearchResultActivity extends AppCompatActivity {
             protected void populateViewHolder(MyViewHolder1 viewHolder, Offer model, int position) {
                 //Log.i("", model.getType());
                 viewHolder.setDetails(model.getTitle(), model.getType(), model.getPrice(), model.getCity(), model.getRate());
-                pd.dismiss();
+
             }
 
         };
+        pd.dismiss();
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 

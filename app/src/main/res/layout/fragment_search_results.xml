@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/search_result_format"
     tools:context=".SearchResultsFrag">
 
     <LinearLayout
@@ -40,6 +39,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/search_layout"
         android:scrollbars="vertical"/>
 
     <android.support.design.widget.FloatingActionButton
@@ -47,7 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:onClick="goToAddOffer"
         android:padding="10dp"
         android:layout_marginBottom="30dp"
         android:layout_marginEnd="21dp"
