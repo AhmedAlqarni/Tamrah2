@@ -43,7 +43,7 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/Username_view"
+                    android:id="@+id/OfferTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -56,11 +56,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/SellerRating"
+                    android:id="@+id/OfferRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/Username_view"
-                    android:layout_alignBottom="@+id/Username_view"
+                    android:layout_alignBaseline="@+id/OfferTitle"
+                    android:layout_alignBottom="@+id/OfferTitle"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="37dp"
                     android:text="4.9"
@@ -72,8 +72,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_alignBaseline="@+id/SellerRating"
-                    android:layout_alignBottom="@+id/SellerRating"
+                    android:layout_alignBaseline="@+id/OfferRating"
+                    android:layout_alignBottom="@+id/OfferRating"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="20dp"
                     android:text="/5"
@@ -83,9 +83,22 @@
                     android:id="@+id/City"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/Username_view"
-                    android:layout_below="@+id/SellerRating"
+                    android:layout_alignStart="@+id/OfferTitle"
+                    android:layout_below="@+id/OfferRating"
                     android:text="Makkah City"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/TamrahTypeOfferPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/QuantitiyKG"
+                    android:layout_alignTop="@+id/City"
+                    android:background="@color/colorPrimary"
+                    android:padding="4dp"
+                    android:radius="10dp"
+                    android:text="Ajuah"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <TextView
@@ -103,7 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/City"
-                    android:layout_below="@+id/City"
+                    android:layout_below="@+id/TamrahTypeOfferPage"
                     android:paddingRight="5dp"
                     android:text="I have the best dicounted Ajuah in the city , I provide delivery for other Ccitys, thank you for buying."
                     android:textColor="@android:color/black"
@@ -191,7 +204,7 @@
                     app:civ_border_width="3dp" />
 
                 <TextView
-                    android:id="@+id/Username_viewOfferPage"
+                    android:id="@+id/OfferTitleOfferPage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/textView4OfferPage"
@@ -202,7 +215,7 @@
                     android:textSize="30dp" />
 
                 <TextView
-                    android:id="@+id/SellerRatingOfferPage"
+                    android:id="@+id/SellerrRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -217,8 +230,8 @@
                     android:id="@+id/textView2OfferPage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/SellerRatingOfferPage"
-                    android:layout_alignBottom="@+id/SellerRatingOfferPage"
+                    android:layout_alignBaseline="@+id/SellerrRating"
+                    android:layout_alignBottom="@+id/SellerrRating"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="6dp"
                     android:text="/5"
@@ -228,8 +241,8 @@
                     android:id="@+id/textView4OfferPage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/Username_viewOfferPage"
-                    android:layout_below="@+id/SellerRatingOfferPage"
+                    android:layout_alignStart="@+id/OfferTitleOfferPage"
+                    android:layout_below="@+id/SellerrRating"
                     android:text="+9665444444444"
                     android:textColor="@android:color/holo_blue_dark"
                     android:textSize="18sp" />

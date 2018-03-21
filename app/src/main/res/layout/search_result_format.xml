@@ -9,8 +9,8 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
     android:background="@color/white"
-    android:onClick="goToOffer"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:onClick="goToOffer">
 
     <ImageView
         android:layout_width="164dp"
@@ -38,7 +38,7 @@
             android:layout_marginStart="7dp"
             android:layout_marginTop="6dp"
             android:background="@color/colorPrimary"
-            android:padding="2dp"
+            android:padding="4dp"
             android:radius="10dp"
             android:text="Ajuah"
             android:textColor="@color/white"
@@ -97,6 +97,14 @@
             android:text="35 SAR"
             android:textColor="@color/darkgrey"
             android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/OID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/TamrahType"
+            android:layout_alignEnd="@+id/OfferTitle"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 

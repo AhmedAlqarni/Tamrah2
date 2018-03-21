@@ -9,6 +9,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -64,10 +65,7 @@ public class SearchResultActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Offer");
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //recyclerView.setHasFixedSize(true);//Created by Khalid
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        //recyclerView.setAdapter(mAdapter);
-
         query = getIntent().getStringExtra("text");
         Log.i("44",query);
         firebaseOfferSearch(query);
@@ -90,7 +88,8 @@ public class SearchResultActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(MyViewHolder1 viewHolder, Offer model, int position) {
                 //Log.i("", model.getType());
-                viewHolder.setDetails(model.getTitle(), model.getType(), model.getPrice(), model.getCity(), model.getRate());
+                viewHolder.setDetails(model.getTitle(), model.getType(), model.getPrice(),
+                        model.getCity(), model.getRate());
 
             }
 
@@ -102,6 +101,8 @@ public class SearchResultActivity extends AppCompatActivity {
     public static class MyViewHolder1 extends RecyclerView.ViewHolder {
         public TextView title, type, city, price, rate;
         private View view;
+
+
 
         public MyViewHolder1(View view) {
             super(view);
@@ -127,14 +128,33 @@ public class SearchResultActivity extends AppCompatActivity {
             //TextView textViewDescription = (TextView)view.findViewById(R.id.);
             TextView textViewRate = (TextView)view.findViewById(R.id.Rating);
             // TextView textViewImg = view.findViewById(R.id.);
+            TextView textViewOID = (TextView)view.findViewById(R.id.OID);
+
 
             textViewTitle.setText(title);
             textViewType.setText(type);
             textViewPrice.setText(price+"");
             textViewCity.setText(city);
             textViewRate.setText(rate+"");
+            //textViewOID.setText()
 
         }
+    }
+
+    //Button Handler
+    //this is for any clicked offer in any page
+    public void goToOffer(View view) {
+        Offer offer = new Offer();
+        TextView tv = (TextView) findViewById(R.id.OfferTitle);
+        Log.i("the title is :             ",tv.getText().toString());
+
+        Intent intent = new Intent(this, OfferActivity.class);
+//        intent.putExtra("OID", );
+        startActivity(intent);
+    }
+
+    public void goToAddOffer(View view) {
+        startActivity(new Intent(this, AddOfferActivity.class));
     }
 
 }

@@ -1,5 +1,11 @@
 package com.example.ahmed.tamrah;
 
+import android.text.format.DateFormat;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by khalidalnamlah on 3/13/18.
  */
@@ -7,10 +13,12 @@ package com.example.ahmed.tamrah;
 public class Message {
 
     private String content,name;
+    private String date;
 
     public void setContent(String content,String name) {
         this.content = content;
         this.name = name;
+
     }
 
     public String getContent() {
@@ -35,5 +43,15 @@ public class Message {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setDate(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
+        date = dateFormat.format(cal.getTime());
+    }
+
+    public String getDate(){
+        return date;
     }
 }

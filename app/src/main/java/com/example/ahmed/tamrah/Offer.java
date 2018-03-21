@@ -15,7 +15,8 @@ import java.util.Map;
 
 public class Offer {
     private String Title, mDesc, Type, mCity, Seller;
-    private String Price, Rate;
+    private String Price, Rate, OID;
+
 
     public Offer() {}
 
@@ -26,25 +27,29 @@ public class Offer {
         setPrice(price);
         setRate(rate);
     }
-
-    public void publish() {
-        DatabaseReference FBofferNode = FirebaseDatabase.getInstance().getReference().child("Offer");
-        Map offerPost = new HashMap();
-        offerPost.put("Seller", "N\\A"); //STUB
-        offerPost.put("Title", getTitle());
-        offerPost.put("Description", getDesc());
-        offerPost.put("Price", new DecimalFormat(".##").format(getPrice()));
-        offerPost.put("Type", getType());
-        offerPost.put("Rate", getRate());
-        //FBofferNode.setValue(offerPost);
-        FBofferNode.push().setValue(offerPost);
+    public Offer(String title, String type, String city, String price, String rate,String mDesc) {
+        setTitle(title);
+        setType(type);
+        setCity(city);
+        setPrice(price);
+        setRate(rate);
+        setDesc(mDesc);
     }
+
+
 
     //Setters & Getters:
     public String getTitle() {
 //        Log.i("", mType);
         return Title;
 
+    }
+
+    public String getOID(){
+        return OID;
+    }
+    public void setOID(String OID){
+        this.OID = OID;
     }
 
     public void setTitle(String title) {
@@ -97,6 +102,19 @@ public class Offer {
 
     public void setSellerUID(String SellerUID) {
         this.Seller = SellerUID;
+    }
+
+    public void setValues(Map<String,Object> offerValues) {
+        Title = offerValues.get("Title").toString();
+        //mDesc = offerValues.get("region").toString();
+        Type = offerValues.get("Type").toString();
+        //phoneNum = offerValues.get("phoneNum").toString();
+        Seller = offerValues.get("Seller").toString();
+        Rate = offerValues.get("Rate").toString();
+        //isSeller = Boolean.parseBoolean(profileValues.get("isSeller").toString());
+        //profilePic = offerValues.get("profileImage").toString();
+        Price = offerValues.get("Price").toString();
+
     }
 
 }

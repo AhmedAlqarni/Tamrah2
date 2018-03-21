@@ -38,25 +38,44 @@ public class Message_Activity extends AppCompatActivity {
     private FirebaseUser mCurrentUser;
     private DatabaseReference databaseReference2;
 
-    private String messageText;
-    private String messageUser;
-    private long messageTime;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_);
 
+        final String Ahmed = "LKfnVWXXIHUvlP5kcaR1N2tpiOC2";
+        final String khalid="sZeFU6Rtc2clNl8O2jqER98Rfek1";
+        mCurrentUser = Auth.fbAuth.getCurrentUser();
         editTextMessage = (EditText) findViewById(R.id.TextToSend);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("messages");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild(Ahmed+"_"+khalid)){
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("messages").child(khalid+"_"+Ahmed);
+                }
+                else if(dataSnapshot.hasChild(khalid+"_"+Ahmed)){
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("messages").child(Ahmed+"_"+khalid);
+                }
+                else{
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("messages").child(khalid+"_"+Ahmed);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
         mMessageList=(RecyclerView)findViewById(R.id.messageRec);
         mMessageList.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
         mMessageList.setLayoutManager(linearLayoutManager);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        //firebaseAuth = FirebaseAuth.getInstance();
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -67,11 +86,30 @@ public class Message_Activity extends AppCompatActivity {
             }
         };
 
+        FirebaseRecyclerAdapter<Message,MessageViewHolder> firebaseRecyclerAdapter =
+                new FirebaseRecyclerAdapter<Message, MessageViewHolder>(
+                        Message.class,
+                        R.layout.message,
+                        MessageViewHolder.class,
+                        databaseReference
+                ){
+
+
+                    @Override
+                    protected void populateViewHolder(MessageViewHolder viewHolder, Message model, int position) {
+                        Log.i("","the name is kdjfkldsjdjldsjfksjdfklsjdklsjlsdjflsd:"+model.getName());
+                        viewHolder.setContent(model.getContent());
+                        viewHolder.setName(model.getName());
+                    }
+                };
+        mMessageList.setAdapter(firebaseRecyclerAdapter);
+
+
 
     }
 
     public void sendMessage(View view){
-        mCurrentUser = firebaseAuth.getCurrentUser();
+        mCurrentUser = Auth.fbAuth.getCurrentUser();
         databaseReference2=FirebaseDatabase.getInstance().getReference().child("User").child(mCurrentUser.getUid());
         final String messageValue = editTextMessage.getText().toString().trim();
         if(!TextUtils.isEmpty(messageValue)){
@@ -98,34 +136,6 @@ public class Message_Activity extends AppCompatActivity {
         }mMessageList.scrollToPosition(mMessageList.getAdapter().getItemCount());
     }
 
-
-        /*public Message_Activity(String messageText, String messageUser) {
-            this.messageText = messageText;
-            this.messageUser = messageUser;
-
-            // Initialize to current time
-            messageTime = new Date().getTime();
-        }*/
-
-
-        /*public void sendMessage(View view){
-            EditText input = (EditText)findViewById(R.id.input);
-
-                    // Read the input field and push a new instance
-                    // of ChatMessage to the Firebase database
-            FirebaseDatabase.getInstance()
-                    .getReference()
-                    .push()
-                    .setValue(new Message_Activity(input.getText().toString(),
-                            FirebaseAuth.getInstance()
-                                    .getCurrentUser()
-                                    .getEmail())
-                    );
-
-            // Clear the input
-            input.setText("");
-        }*/
-
         public Message_Activity(){
 
         }
@@ -143,35 +153,12 @@ public class Message_Activity extends AppCompatActivity {
 
                 @Override
                 protected void populateViewHolder(MessageViewHolder viewHolder, Message model, int position) {
+                    Log.i("","the name is kdjfkldsjdjldsjfksjdfklsjdklsjlsdjflsd:"+model.getName());
                     viewHolder.setContent(model.getContent());
                     viewHolder.setName(model.getName());
                 }
             };
             mMessageList.setAdapter(firebaseRecyclerAdapter);
-        }
-
-        public String getMessageText() {
-            return messageText;
-        }
-
-        public void setMessageText(String messageText) {
-            this.messageText = messageText;
-        }
-
-        public String getMessageUser() {
-            return messageUser;
-        }
-
-        public void setMessageUser(String messageUser) {
-            this.messageUser = messageUser;
-        }
-
-        public long getMessageTime() {
-            return messageTime;
-        }
-
-        public void setMessageTime(long messageTime) {
-            this.messageTime = messageTime;
         }
 
         public static class MessageViewHolder extends RecyclerView.ViewHolder{
@@ -184,7 +171,7 @@ public class Message_Activity extends AppCompatActivity {
             }
 
             public void setContent(String content){
-                Log.i("193",content);
+//                Log.i("193",content);
 
                 TextView message_content = (TextView) mView.findViewById(R.id.ChatMessg);
                 message_content.setText(content);

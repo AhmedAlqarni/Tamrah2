@@ -41,7 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/search_layout"
-        android:scrollbars="vertical">
+        android:scrollbars="vertical"
+        >
 
 
 

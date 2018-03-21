@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.google.android.gms.common.SignInButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,6 +29,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.ahmed.tamrah.AccountActivity.getCorrectlyOrientedImage;
 import static com.example.ahmed.tamrah.AccountActivity.getOrientation;
@@ -73,7 +77,7 @@ public class AddOfferActivity extends AppCompatActivity {
             public void onClick(View view) {
                 offer = new Offer(title.getText().toString(), typeView.getText().toString(),
                         citySpinner.getSelectedItem().toString(), (priceView.getText().toString()),"-1");
-                offer.publish();
+                publish();
             }
         });
 
@@ -113,6 +117,37 @@ public class AddOfferActivity extends AppCompatActivity {
     public void selectPictureBtn(View view) {
         Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, SELECTED_PICTURE);
+
+    }
+
+    public void publish() {
+        DatabaseReference FBofferNode = FirebaseDatabase.getInstance().getReference().child("Offer");
+        Map offerPost = new HashMap();
+        offerPost.put("Seller", Auth.fbAuth.getUid()); //STUB
+        offerPost.put("Title", offer.getTitle());
+        offerPost.put("Description", offer.getDesc());
+        offerPost.put("Price", offer.getPrice());
+        offerPost.put("Type", offer.getType());
+        offerPost.put("Rate", offer.getRate());
+        offerPost.put("OID", "");
+
+        //FBofferNode.setValue(offerPost);
+        FBofferNode = FBofferNode.child(FBofferNode.push().getKey());
+        FBofferNode.setValue(offerPost);
+        String OID = FBofferNode.getKey();
+
+        Log.i("X", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX " + OID);
+        FBofferNode = FirebaseDatabase.getInstance().getReference().child("Offer").child(OID).child("OID");
+        FBofferNode.setValue(OID);
+
+
+//        FirebaseDatabase.getInstance().getReference().child("User")
+//                .child(Auth.fbAuth.getCurrentUser().getUid()).child("Offer").push()
+//                .setValue(new HashMap().put("OID",OID));
+
+        String UID = Auth.fbAuth.getCurrentUser().getUid();
+        DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference().child("User").child(UID).child("Offer");
+        DBRef.child(OID).setValue(OID);
 
     }
 }

@@ -120,6 +120,13 @@ public class User implements Serializable{
         this.address = address;
     }
 
+    public void setOID(String OID){
+        UID = Auth.fbAuth.getCurrentUser().getUid();
+        DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference().child("User").child(UID).child("Offer");
+        DBRef.child("OID").setValue(OID);
+        //this.address = address;
+    }
+
     public void setBio(String bio){
         UID = Auth.fbAuth.getCurrentUser().getUid();
         DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference().child("User").child(UID);

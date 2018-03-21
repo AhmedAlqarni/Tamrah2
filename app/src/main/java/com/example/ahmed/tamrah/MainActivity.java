@@ -199,9 +199,9 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("User", this.user);
                 startActivityForResult(intent, 0);
                 return;
-            case R.id.phoneConfrm:
-                intent = new Intent(this, PhoneConfirmationActivity.class);
-                //intent.putExtra("User", this.user);
+            case R.id.message:
+                intent = new Intent(this, Message_Activity.class);
+                intent.putExtra("User", this.user);
                 startActivityForResult(intent, 0);
                 return;
             case R.id.Signup:
@@ -333,9 +333,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Button Handler
     //this is for the plus button in searchin for offer page
-    public void goToAddOffer(View view) {
-        startActivity(new Intent(this, AddOfferActivity.class));
-    }
+
 
 
     //For reading a picture from the device
