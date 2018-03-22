@@ -47,7 +47,7 @@ public class AddOfferActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_offer);
 
         final TextInputEditText title = (TextInputEditText) findViewById(R.id.OfferTitleInput);
-        EditText descView = (EditText) findViewById(R.id.OfferDiscInput);
+        final EditText descView = (EditText) findViewById(R.id.OfferDiscInput);
         final EditText priceView = (EditText) findViewById(R.id.OfferPriceInput);
         final EditText typeView = (EditText) findViewById(R.id.OfferTypeInput);
         final Spinner citySpinner = (Spinner) findViewById(R.id.Region);
@@ -76,7 +76,8 @@ public class AddOfferActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 offer = new Offer(title.getText().toString(), typeView.getText().toString(),
-                        citySpinner.getSelectedItem().toString(), (priceView.getText().toString()),"-1");
+                        citySpinner.getSelectedItem().toString(), (priceView.getText().toString()),
+                        "-1", descView.getText().toString());
                 publish();
             }
         });

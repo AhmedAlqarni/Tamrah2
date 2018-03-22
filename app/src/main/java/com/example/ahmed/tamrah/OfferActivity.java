@@ -17,16 +17,31 @@ import java.util.Map;
 public class OfferActivity extends AppCompatActivity {
 
     private Offer offer;
-    private TextView OfferTitle;
     //private TextView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer);
-        //offer = new Offer();
-        fetchOffer("-L7QkPEsLZaQb500pAir");
-        OfferTitle = (TextView) findViewById(R.id.OfferTitle);
+        offer = (Offer) getIntent().getSerializableExtra("Offer");
+        TextView title = (TextView) findViewById(R.id.OfferTitle);
+        TextView city = (TextView) findViewById(R.id.City);
+        TextView type = (TextView) findViewById(R.id.TamrahTypeOfferPage);
+        TextView price = (TextView) findViewById(R.id.Phone);
+        TextView desc = (TextView) findViewById(R.id.Description);
+        TextView rate = (TextView) findViewById(R.id.OfferRating);
+
+        title.setText(offer.getTitle());
+        city.setText(offer.getCity());
+        type.setText(offer.getType());
+        price.setText(offer.getPrice() + " S.R.");
+        desc.setText(offer.getDesc());
+        //Log.i("the description is:",offer.getDesc());
+        if(offer.getRate().equals("-1"))
+            rate.setText("N\\A");
+        else
+            rate.setText(offer.getRate());
+
         //OfferTitle.setText(offer.getTitle());
 
     }

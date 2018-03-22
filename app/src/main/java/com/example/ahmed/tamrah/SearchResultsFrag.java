@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -163,7 +164,6 @@ public class SearchResultsFrag extends Fragment {
             protected void populateViewHolder(OffersAdapter.MyViewHolder viewHolder, Offer model, int position) {
 
                 viewHolder.setDetails(model.getTitle(), model.getType(), model.getPrice(), model.getCity(), model.getRate());
-
             }
         };
         recyclerView.setAdapter(mAdapter);
