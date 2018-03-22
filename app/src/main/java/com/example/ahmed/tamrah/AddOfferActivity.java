@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.google.android.gms.common.SignInButton;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -35,12 +37,14 @@ public class AddOfferActivity extends AppCompatActivity {
 
     private Offer offer;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    private StorageReference mStorage;
     private static final int SELECTED_PICTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_offer);
+        mStorage = FirebaseStorage.getInstance().getReference();
 
         final TextInputEditText title = (TextInputEditText) findViewById(R.id.OfferTitleInput);
         EditText descView = (EditText) findViewById(R.id.OfferDiscInput);

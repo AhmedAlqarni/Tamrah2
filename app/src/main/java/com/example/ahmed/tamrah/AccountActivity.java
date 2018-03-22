@@ -29,14 +29,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.net.URI;
+import java.util.HashMap;
 import java.util.Map;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,14 +57,16 @@ import static android.provider.MediaStore.Images.Media.getBitmap;
 
 
 public class AccountActivity extends AppCompatActivity {
-        private static final int SELECTED_PICTURE = 1;
-        private User user;
+    private static final int SELECTED_PICTURE = 1;
+    private User user;
+    private StorageReference mStorage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
         setResult(-1, null);
+        mStorage = FirebaseStorage.getInstance().getReference();
         String UID = getIntent().getStringExtra("UID");
         if(UID.equals("myProfile")) {
             user = (User) getIntent().getSerializableExtra("User");
@@ -113,7 +123,7 @@ public class AccountActivity extends AppCompatActivity {
         if(!user.getProfilePic().equals(""))
             pictureView.setImageDrawable(new ImageFetcher().fetch(user.getProfilePic()));
     }
-//Button Handler
+    //Button Handler
     //for selecting profile image in the Profile page
     public void changeProfilePictureBtn(View view) {
         Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -129,6 +139,7 @@ public class AccountActivity extends AppCompatActivity {
         //For reading a picture from the device
         if (requestCode == SELECTED_PICTURE && data != null) {
             Uri uri = data.getData();
+
             // Show the Selected Image on ImageView
             CircleImageView cV = (CircleImageView) findViewById(R.id.profile_image);
             getOrientation(this, uri);
@@ -137,9 +148,31 @@ public class AccountActivity extends AppCompatActivity {
                 Bitmap loadedBitmap = getCorrectlyOrientedImage(this, uri,1000);
                 cV.setImageBitmap(loadedBitmap);
                 //cV.setImageURI(uri);
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                loadedBitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                byte[] data2 = baos.toByteArray();
+
+                //firebase upload
+                final StorageReference filepath = mStorage.child("Photos").child(uri.getLastPathSegment());
+                filepath.putBytes(data2).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Toast.makeText(AccountActivity.this, "Upload Done", Toast.LENGTH_LONG);
+                        Uri downloadUrl = taskSnapshot.getDownloadUrl();
+//                        Log.i("X ", String.valueOf(downloadUrl));
+                        DatabaseReference DBRef = FirebaseDatabase.getInstance().getReference().child("User")
+                                .child(Auth.fbAuth.getUid()).child("profileImage");
+                        DBRef.setValue(String.valueOf(downloadUrl));
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+
+
         }
     }
 
