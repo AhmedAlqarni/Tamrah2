@@ -12,13 +12,13 @@
         android:icon="@drawable/ic_if_ic_settings_48px_352095"
         android:title="Account Settings" />
     <item android:id="@+id/ContactUs" android:title="Contact us" android:icon="@drawable/ic_if_headset_1724751"/>
-    <item android:id="@+id/Messages" android:title="acitvity_message" android:icon="@drawable/ic_if_sign_out_298869"/>
+    <item android:id="@+id/Messages" android:title="Messages" android:icon="@drawable/ic_if_sign_out_298869"/>
 
     <item android:id="@+id/Login" android:title="Login" android:icon="@drawable/ic_if_sign_out_298869"/>
     <item android:id="@+id/Signup" android:title="Signup" android:icon="@drawable/ic_if_sign_out_298869"/>
-    <item android:id="@+id/SearchResultPage" android:title="SearchResultPage" android:icon="@drawable/ic_if_sign_out_298869"/>
+    <!--<item android:id="@+id/SearchResultPage" android:title="SearchResultPage" android:icon="@drawable/ic_if_sign_out_298869"/>-->
     <item android:id="@+id/logout" android:title="Logout" android:icon="@drawable/ic_visibility_black_24dp"/>
-    <item android:id="@+id/phoneConfrm" android:title="aaa" android:icon="@drawable/ic_visibility_black_24dp"/>
+    <!--<item android:id="@+id/phoneConfrm" android:title="aaa" android:icon="@drawable/ic_visibility_black_24dp"/>-->
 
 
 

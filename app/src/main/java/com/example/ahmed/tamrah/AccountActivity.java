@@ -1,5 +1,6 @@
 package com.example.ahmed.tamrah;
 
+import android.accounts.Account;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -137,6 +138,11 @@ public class AccountActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //For reading a picture from the device
+        if(requestCode == 0){
+            if (resultCode == -1) return;
+            user = (User) data.getSerializableExtra("User");
+            updateContext();
+        }
         if (requestCode == SELECTED_PICTURE && data != null) {
             Uri uri = data.getData();
 
@@ -260,7 +266,9 @@ public class AccountActivity extends AppCompatActivity {
     //Button Handler
     //this is for the button in profile page "Edit Account"
     public void goToAccountSettings(View view) {
-        startActivity( new Intent(this,AccountSettingsActivity.class));
+        Intent intent = new Intent(this, AccountSettingsActivity.class);
+        intent.putExtra("User", this.user);
+        startActivityForResult(intent, 0);
     }
 
     //to add all rating 1...5 spinner values
@@ -282,6 +290,8 @@ public class AccountActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
 

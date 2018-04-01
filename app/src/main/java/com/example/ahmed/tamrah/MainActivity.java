@@ -199,11 +199,11 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("User", this.user);
                 startActivityForResult(intent, 0);
                 return;
-            case R.id.phoneConfrm:
-                intent = new Intent(this, PhoneConfirmationActivity.class);
-                //intent.putExtra("User", this.user);
-                startActivityForResult(intent, 0);
-                return;
+//            case R.id.phoneConfrm:
+//                intent = new Intent(this, PhoneConfirmationActivity.class);
+//                //intent.putExtra("User", this.user);
+//                startActivityForResult(intent, 0);
+//                return;
             case R.id.Signup:
                 intent = new Intent(this, SignupActivity.class);
                 intent.putExtra("User", this.user);
@@ -232,11 +232,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.Messages:
                 startActivity(new Intent(this, MessagesListActivity.class));
                 return;
-
-            case R.id.SearchResultPage:
-                fragmentClass = SearchResultsFrag.class;
-                break;
-
             default:
                 fragmentClass = HomeFrag.class;
         }

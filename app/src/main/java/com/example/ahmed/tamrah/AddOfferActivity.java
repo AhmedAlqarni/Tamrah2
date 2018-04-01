@@ -39,6 +39,7 @@ public class AddOfferActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private StorageReference mStorage;
     private static final int SELECTED_PICTURE = 1;
+    final Spinner citySpinner = (Spinner) findViewById(R.id.Region);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +51,8 @@ public class AddOfferActivity extends AppCompatActivity {
         EditText descView = (EditText) findViewById(R.id.OfferDiscInput);
         final EditText priceView = (EditText) findViewById(R.id.OfferPriceInput);
         final EditText typeView = (EditText) findViewById(R.id.OfferTypeInput);
-        final Spinner citySpinner = (Spinner) findViewById(R.id.Region);
         Button submitBtn = (Button) findViewById(R.id.PublishOfferBtn);
+        final Spinner citySpinner = (Spinner) findViewById(R.id.Region);
 
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(this.getResources().openRawResource(R.raw.cities_en)));

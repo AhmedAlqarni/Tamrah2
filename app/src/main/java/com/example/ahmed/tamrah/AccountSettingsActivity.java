@@ -19,6 +19,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,12 +39,11 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
         //Created by Khalid
         //User user = new User();
-        Bundle exras = getIntent().getExtras();
-        user = (User) exras.get("User");
-        setResult(-1, null);//????
+
+        user = (User) getIntent().getSerializableExtra("User");
+        setResult(-1, null); //????
 
         TextView tV = (TextView) findViewById(R.id.nameInput23);
-        Log.i("30","the name is: "+user.getName());
         tV.setText(user.getName());
 
         TextView emailTextView = (TextView) findViewById(R.id.EmailInput);
@@ -59,108 +61,126 @@ public class AccountSettingsActivity extends AppCompatActivity {
         //ToolBar
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
-
         addCitySpinerValues();
-        addLanguageSpinerValues();
-        addCurrencySpinerValues();
+//        addLanguageSpinerValues();
+//        addCurrencySpinerValues();
+    }
+
+    private void addCitySpinerValues() {
+        final Spinner citySpinner = (Spinner) findViewById(R.id.CitySpinner);
 
 
+        BufferedReader reader = new BufferedReader(new InputStreamReader(this.getResources().openRawResource(R.raw.cities_en)));
+        String[] citiesArray = new String[118];
+
+        try {
+            for(int i = 0; i < 118; i++) {
+                citiesArray[i] = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ArrayAdapter<String> adp2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, citiesArray);
+        adp2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        citySpinner.setAdapter(adp2);
     }
 
 
     //to add all City spinner values
     // add action on selection for the spinner
-    public void addCitySpinerValues() {
-        final Spinner spinner = (Spinner) findViewById(R.id.CitySpinner);
-        ArrayAdapter<String> adapter;
-        List<String> list;
-
-        list = new ArrayList<String>();
-        list.add("Makkah");
-        list.add("Riyadh");
-        list.add("Jeddah");
-        list.add("Dammam");
-        list.add("Tabuk");
-        adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_spinner_item, list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                TextView tV = (TextView) findViewById(R.id.CityInputLabel);
-                tV.setText(spinner.getSelectedItem().toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                return;
-            }
-        });
-
-    }
+//    public void addCitySpinerValues() {
+//        final Spinner spinner = (Spinner) findViewById(R.id.CitySpinner);
+//        ArrayAdapter<String> adapter;
+//        List<String> list;
+//
+//        list = new ArrayList<String>();
+//        list.add("Makkah");
+//        list.add("Riyadh");
+//        list.add("Jeddah");
+//        list.add("Dammam");
+//        list.add("Tabuk");
+//        adapter = new ArrayAdapter<String>(getApplicationContext(),
+//                android.R.layout.simple_spinner_item, list);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+//                TextView tV = (TextView) findViewById(R.id.CityInputLabel);
+//                tV.setText(spinner.getSelectedItem().toString());
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                return;
+//            }
+//        });
+//
+//    }
 
 
     //to add all Language spinner values
     // add action on selection for the spinner
-    public void addLanguageSpinerValues() {
-        final Spinner spinner = (Spinner) findViewById(R.id.LanguageSpinner);
-        ArrayAdapter<String> adapter;
-        List<String> list;
-
-        list = new ArrayList<String>();
-        list.add("English");
-        list.add("Arabic");
-        list.add("Hindi");
-        adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_spinner_item, list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                TextView tV = (TextView) findViewById(R.id.SelectedLanguage);
-                tV.setText(spinner.getSelectedItem().toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                return;
-            }
-        });
-    }
+//    public void addLanguageSpinerValues() {
+//        final Spinner spinner = (Spinner) findViewById(R.id.LanguageSpinner);
+//        ArrayAdapter<String> adapter;
+//        List<String> list;
+//
+//        list = new ArrayList<String>();
+//        list.add("English");
+//        list.add("Arabic");
+//        list.add("Hindi");
+//        adapter = new ArrayAdapter<String>(getApplicationContext(),
+//                android.R.layout.simple_spinner_item, list);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+//                TextView tV = (TextView) findViewById(R.id.SelectedLanguage);
+//                tV.setText(spinner.getSelectedItem().toString());
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                return;
+//            }
+//        });
+//    }
 
 
     //to add all Currency spinner values
     // add action on selection for the spinner
-    public void addCurrencySpinerValues() {
-        final Spinner spinner = (Spinner) findViewById(R.id.CurrencySpinner);
-        ArrayAdapter<String> adapter;
-        List<String> list;
-
-        list = new ArrayList<String>();
-        list.add("SAR");
-        list.add("USD");
-        list.add("AED ");
-        list.add("KWD");
-        list.add("BHD");
-        adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_spinner_item, list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                TextView tV = (TextView) findViewById(R.id.SelectedCurrency);
-                tV.setText(spinner.getSelectedItem().toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                return;
-            }
-        });
-    }
+//    public void addCurrencySpinerValues() {
+//        final Spinner spinner = (Spinner) findViewById(R.id.CurrencySpinner);
+//        ArrayAdapter<String> adapter;
+//        List<String> list;
+//
+//        list = new ArrayList<String>();
+//        list.add("SAR");
+//        list.add("USD");
+//        list.add("AED ");
+//        list.add("KWD");
+//        list.add("BHD");
+//        adapter = new ArrayAdapter<String>(getApplicationContext(),
+//                android.R.layout.simple_spinner_item, list);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+//                TextView tV = (TextView) findViewById(R.id.SelectedCurrency);
+//                tV.setText(spinner.getSelectedItem().toString());
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                return;
+//            }
+//        });
+//    }
 
 ///////////////////////////////////
     //Settings page text switcher

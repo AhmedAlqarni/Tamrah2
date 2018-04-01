@@ -51,8 +51,7 @@ public class  LoginActivity extends AppCompatActivity{
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            //    login(email.getText().toString().trim(),password.getText().toString().trim());
-                    login("s201342450@kfupm.edu.sa", "123456");
+            login(email.getText().toString().trim(),password.getText().toString().trim());
             }
         });
     }
